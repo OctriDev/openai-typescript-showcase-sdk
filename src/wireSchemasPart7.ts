@@ -4,6 +4,22 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart7: Record<string, WireSchema> = {
+  RealtimeServerEventConversationItemDone: {
+    eventId: { wire: "event_id" },
+    ["type"]: { wire: "type" },
+    previousItemId: { wire: "previous_item_id" },
+    item: { wire: "item" },
+  },
+  RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: {
+    eventId: { wire: "event_id" },
+    ["type"]: { wire: "type" },
+    itemId: { wire: "item_id" },
+    contentIndex: { wire: "content_index" },
+    transcript: { wire: "transcript" },
+    languages: { wire: "languages" },
+    logprobs: { wire: "logprobs" },
+    usage: { wire: "usage" },
+  },
   RealtimeServerEventConversationItemInputAudioTranscriptionDelta: {
     eventId: { wire: "event_id" },
     ["type"]: { wire: "type" },
@@ -487,52 +503,5 @@ export const wireSchemasPart7: Record<string, WireSchema> = {
       },
     },
     include: { wire: "include" },
-  },
-  RealtimeTranscriptionSessionCreateResponse: {
-    clientSecret: {
-      wire: "client_secret",
-      fields: { value: { wire: "value" }, expiresAt: { wire: "expires_at" } },
-    },
-    modalities: { wire: "modalities" },
-    inputAudioFormat: { wire: "input_audio_format" },
-    inputAudioTranscription: { wire: "input_audio_transcription" },
-    turnDetection: {
-      wire: "turn_detection",
-      fields: {
-        ["type"]: { wire: "type" },
-        threshold: { wire: "threshold" },
-        prefixPaddingMs: { wire: "prefix_padding_ms" },
-        silenceDurationMs: { wire: "silence_duration_ms" },
-      },
-    },
-  },
-  RealtimeTranscriptionSessionCreateResponseGA: {
-    ["type"]: { wire: "type" },
-    id: { wire: "id" },
-    object: { wire: "object" },
-    expiresAt: { wire: "expires_at" },
-    include: { wire: "include" },
-    audio: {
-      wire: "audio",
-      fields: {
-        input: {
-          wire: "input",
-          fields: {
-            format: { wire: "format" },
-            transcription: { wire: "transcription", type: "AudioTranscriptionResponse" },
-            noiseReduction: { wire: "noise_reduction" },
-            turnDetection: {
-              wire: "turn_detection",
-              fields: {
-                ["type"]: { wire: "type" },
-                threshold: { wire: "threshold" },
-                prefixPaddingMs: { wire: "prefix_padding_ms" },
-                silenceDurationMs: { wire: "silence_duration_ms" },
-              },
-            },
-          },
-        },
-      },
-    },
   },
 };

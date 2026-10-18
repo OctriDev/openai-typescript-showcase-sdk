@@ -147,7 +147,18 @@
             "file_ids": []
           },
           "file_search": {
-            "vector_store_ids": ["vector_store_ids"]
+            "vector_store_ids": ["vector_store_ids"],
+            "vector_stores": [
+              {
+                "file_ids": ["file_ids"],
+                "chunking_strategy": {
+                  "type": "auto"
+                },
+                "metadata": {
+                  "key": "key"
+                }
+              }
+            ]
           }
         },
         "metadata": {
@@ -5064,11 +5075,13 @@
         "model": "gpt-image-2.5-sunburst",
         "images": [
           {
-            "image_url": "https://example.com/source-image.png"
+            "image_url": "https://example.com/source-image.png",
+            "file_id": "file-abc123"
           }
         ],
         "mask": {
-          "image_url": "https://example.com/source-image.png"
+          "image_url": "https://example.com/source-image.png",
+          "file_id": "file-abc123"
         },
         "prompt": "Add a watercolor effect and keep the subject centered",
         "n": 1,
@@ -11001,7 +11014,9 @@
                 "prompt": "prompt",
                 "delay": "minimal"
               },
-              "noise_reduction": null,
+              "noise_reduction": {
+                "type": "near_field"
+              },
               "turn_detection": {
                 "type": "server_vad",
                 "threshold": 1,
@@ -11184,7 +11199,9 @@
                 "prompt": "prompt",
                 "delay": "minimal"
               },
-              "noise_reduction": null,
+              "noise_reduction": {
+                "type": "near_field"
+              },
               "turn_detection": {
                 "type": "server_vad",
                 "threshold": 1,
@@ -12023,7 +12040,7 @@
         "object": "list",
         "data": [
           {
-            "type": "InputMessageResource",
+            "type": "message",
             "role": "user",
             "status": "in_progress",
             "content": [
@@ -12116,7 +12133,18 @@
               "file_ids": []
             },
             "file_search": {
-              "vector_store_ids": ["vector_store_ids"]
+              "vector_store_ids": ["vector_store_ids"],
+              "vector_stores": [
+                {
+                  "file_ids": ["file_ids"],
+                  "chunking_strategy": {
+                    "type": "auto"
+                  },
+                  "metadata": {
+                    "key": "key"
+                  }
+                }
+              ]
             }
           },
           "metadata": {
@@ -12262,11 +12290,12 @@
     "operationId": "listMessages",
     "method": "GET",
     "path": "/threads/{thread_id}/messages",
-    "signature": "{\"errors\":[\"json\"],\"method\":\"GET\",\"nullable\":false,\"pagination\":null,\"parameters\":[{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{\"ApiKeyAuth\":[]}],\"streaming\":false}",
+    "signature": "{\"errors\":[\"json\"],\"method\":\"GET\",\"nullable\":false,\"pagination\":\"cursor\",\"parameters\":[{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{\"ApiKeyAuth\":[]}],\"streaming\":false}",
     "kinds": [
       "auth-application",
       "error-response",
       "json-response",
+      "pagination",
       "path-serialization",
       "query-serialization"
     ],
@@ -12401,7 +12430,15 @@
         "genericBearerFieldName": "adminApiKeyAuth"
       }
     ],
-    "pagination": null
+    "pagination": {
+      "type": "cursor",
+      "results": ["data"],
+      "cursor": {
+        "request": "after",
+        "response": ["last_id"],
+        "hasMore": ["has_more"]
+      }
+    }
   },
   {
     "id": "behavior-120",
@@ -13038,11 +13075,12 @@
     "operationId": "listRunSteps",
     "method": "GET",
     "path": "/threads/{thread_id}/runs/{run_id}/steps",
-    "signature": "{\"errors\":[\"json\"],\"method\":\"GET\",\"nullable\":false,\"pagination\":null,\"parameters\":[{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":true,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{\"ApiKeyAuth\":[]}],\"streaming\":false}",
+    "signature": "{\"errors\":[\"json\"],\"method\":\"GET\",\"nullable\":false,\"pagination\":\"cursor\",\"parameters\":[{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":true,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{\"ApiKeyAuth\":[]}],\"streaming\":false}",
     "kinds": [
       "auth-application",
       "error-response",
       "json-response",
+      "pagination",
       "path-serialization",
       "query-serialization"
     ],
@@ -13181,7 +13219,15 @@
         "genericBearerFieldName": "adminApiKeyAuth"
       }
     ],
-    "pagination": null
+    "pagination": {
+      "type": "cursor",
+      "results": ["data"],
+      "cursor": {
+        "request": "after",
+        "response": ["last_id"],
+        "hasMore": ["has_more"]
+      }
+    }
   },
   {
     "id": "behavior-126",
@@ -13594,115 +13640,6 @@
   },
   {
     "id": "behavior-130",
-    "operationId": "listVectorStores",
-    "method": "GET",
-    "path": "/vector_stores",
-    "signature": "{\"errors\":[\"json\",\"json\"],\"method\":\"GET\",\"nullable\":false,\"pagination\":null,\"parameters\":[{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{\"ApiKeyAuth\":[]}],\"streaming\":false}",
-    "kinds": ["auth-application", "error-response", "json-response", "query-serialization"],
-    "parameters": [
-      {
-        "name": "limit",
-        "location": "query",
-        "required": false,
-        "style": "form",
-        "explode": true,
-        "jsonContent": false,
-        "value": 20
-      },
-      {
-        "name": "order",
-        "location": "query",
-        "required": false,
-        "style": "form",
-        "explode": true,
-        "jsonContent": false,
-        "value": "desc"
-      },
-      {
-        "name": "after",
-        "location": "query",
-        "required": false,
-        "style": "form",
-        "explode": true,
-        "jsonContent": false,
-        "value": "after"
-      },
-      {
-        "name": "before",
-        "location": "query",
-        "required": false,
-        "style": "form",
-        "explode": true,
-        "jsonContent": false,
-        "value": "before"
-      }
-    ],
-    "request": null,
-    "response": {
-      "mediaType": "application/json",
-      "kind": "json",
-      "value": {
-        "object": "list",
-        "data": [
-          {
-            "id": "id-1",
-            "object": "vector_store",
-            "created_at": 1,
-            "name": "Example Name",
-            "usage_bytes": 30,
-            "file_counts": {
-              "in_progress": 1,
-              "completed": 1,
-              "failed": 1,
-              "cancelled": 1,
-              "total": 100
-            },
-            "status": "expired",
-            "expires_after": {
-              "anchor": "last_active_at",
-              "days": 1
-            },
-            "expires_at": 1,
-            "last_active_at": 1,
-            "metadata": {
-              "key": "key"
-            }
-          }
-        ],
-        "first_id": "vs_abc123",
-        "last_id": "vs_abc456",
-        "has_more": false
-      }
-    },
-    "security": [
-      {
-        "ApiKeyAuth": []
-      }
-    ],
-    "securitySchemes": [
-      {
-        "name": "ApiKeyAuth",
-        "fieldName": "apiKeyAuth",
-        "scheme": {
-          "type": "http",
-          "scheme": "bearer"
-        },
-        "genericBearerFieldName": "apiKeyAuth"
-      },
-      {
-        "name": "AdminApiKeyAuth",
-        "fieldName": "adminApiKeyAuth",
-        "scheme": {
-          "type": "http",
-          "scheme": "bearer"
-        },
-        "genericBearerFieldName": "adminApiKeyAuth"
-      }
-    ],
-    "pagination": null
-  },
-  {
-    "id": "behavior-131",
     "operationId": "cancelVectorStoreFileBatch",
     "method": "POST",
     "path": "/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel",
@@ -13775,15 +13712,16 @@
     "pagination": null
   },
   {
-    "id": "behavior-132",
+    "id": "behavior-131",
     "operationId": "listFilesInVectorStoreBatch",
     "method": "GET",
     "path": "/vector_stores/{vector_store_id}/file_batches/{batch_id}/files",
-    "signature": "{\"errors\":[\"json\",\"json\",\"json\"],\"method\":\"GET\",\"nullable\":false,\"pagination\":null,\"parameters\":[{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{\"ApiKeyAuth\":[]}],\"streaming\":false}",
+    "signature": "{\"errors\":[\"json\",\"json\",\"json\"],\"method\":\"GET\",\"nullable\":false,\"pagination\":\"cursor\",\"parameters\":[{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{\"ApiKeyAuth\":[]}],\"streaming\":false}",
     "kinds": [
       "auth-application",
       "error-response",
       "json-response",
+      "pagination",
       "path-serialization",
       "query-serialization"
     ],
@@ -13912,18 +13850,27 @@
         "genericBearerFieldName": "adminApiKeyAuth"
       }
     ],
-    "pagination": null
+    "pagination": {
+      "type": "cursor",
+      "results": ["data"],
+      "cursor": {
+        "request": "after",
+        "response": ["last_id"],
+        "hasMore": ["has_more"]
+      }
+    }
   },
   {
-    "id": "behavior-133",
+    "id": "behavior-132",
     "operationId": "listVectorStoreFiles",
     "method": "GET",
     "path": "/vector_stores/{vector_store_id}/files",
-    "signature": "{\"errors\":[\"json\",\"json\",\"json\"],\"method\":\"GET\",\"nullable\":false,\"pagination\":null,\"parameters\":[{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{\"ApiKeyAuth\":[]}],\"streaming\":false}",
+    "signature": "{\"errors\":[\"json\",\"json\",\"json\"],\"method\":\"GET\",\"nullable\":false,\"pagination\":\"cursor\",\"parameters\":[{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{\"ApiKeyAuth\":[]}],\"streaming\":false}",
     "kinds": [
       "auth-application",
       "error-response",
       "json-response",
+      "pagination",
       "path-serialization",
       "query-serialization"
     ],
@@ -14043,10 +13990,18 @@
         "genericBearerFieldName": "adminApiKeyAuth"
       }
     ],
-    "pagination": null
+    "pagination": {
+      "type": "cursor",
+      "results": ["data"],
+      "cursor": {
+        "request": "after",
+        "response": ["last_id"],
+        "hasMore": ["has_more"]
+      }
+    }
   },
   {
-    "id": "behavior-134",
+    "id": "behavior-133",
     "operationId": "deleteVectorStoreFile",
     "method": "DELETE",
     "path": "/vector_stores/{vector_store_id}/files/{file_id}",
@@ -14110,7 +14065,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-135",
+    "id": "behavior-134",
     "operationId": "updateVectorStoreFileAttributes",
     "method": "POST",
     "path": "/vector_stores/{vector_store_id}/files/{file_id}",
@@ -14205,7 +14160,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-136",
+    "id": "behavior-135",
     "operationId": "retrieveVectorStoreFileContent",
     "method": "GET",
     "path": "/vector_stores/{vector_store_id}/files/{file_id}/content",
@@ -14275,7 +14230,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-137",
+    "id": "behavior-136",
     "operationId": "retrieveSafetyCase",
     "method": "GET",
     "path": "/safety/cases/{id}",
@@ -14335,7 +14290,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-138",
+    "id": "behavior-137",
     "operationId": "retrieveSafetyAlert",
     "method": "GET",
     "path": "/safety/alerts/{id}",
@@ -14397,7 +14352,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-139",
+    "id": "behavior-138",
     "operationId": "downloadLiveRecording",
     "method": "GET",
     "path": "/live/sessions/{session_id}/content",
@@ -14448,7 +14403,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-140",
+    "id": "behavior-139",
     "operationId": "decisionsUsage",
     "method": "GET",
     "path": "/organization/usage/decisions",
@@ -14643,7 +14598,7 @@
     }
   },
   {
-    "id": "behavior-141",
+    "id": "behavior-140",
     "operationId": "listExternalStorage",
     "method": "GET",
     "path": "/organization/external_storage",
@@ -14759,7 +14714,7 @@
     }
   },
   {
-    "id": "behavior-142",
+    "id": "behavior-141",
     "operationId": "deleteExternalStorage",
     "method": "DELETE",
     "path": "/organization/external_storage/{external_storage_id}",
@@ -14814,7 +14769,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-143",
+    "id": "behavior-142",
     "operationId": "deleteSpendLimitsOrganization",
     "method": "DELETE",
     "path": "/organization/spend_limit",
@@ -14858,7 +14813,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-144",
+    "id": "behavior-143",
     "operationId": "createProjectsServiceAccountApiKey",
     "method": "POST",
     "path": "/organization/projects/{project_id}/service_accounts/{service_account_id}/api_keys",
@@ -14939,7 +14894,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-145",
+    "id": "behavior-144",
     "operationId": "createVideo",
     "method": "POST",
     "path": "/videos",
@@ -15029,7 +14984,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-146",
+    "id": "behavior-145",
     "operationId": "ListVideos",
     "method": "GET",
     "path": "/videos",
@@ -15150,7 +15105,7 @@
     }
   },
   {
-    "id": "behavior-147",
+    "id": "behavior-146",
     "operationId": "CreateVideoCharacter",
     "method": "POST",
     "path": "/videos/characters",
@@ -15202,7 +15157,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-148",
+    "id": "behavior-147",
     "operationId": "RetrieveVideoContent",
     "method": "GET",
     "path": "/videos/{video_id}/content",
@@ -15269,7 +15224,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-149",
+    "id": "behavior-148",
     "operationId": "CreateVideoRemix",
     "method": "POST",
     "path": "/videos/{video_id}/remix",
@@ -15363,7 +15318,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-150",
+    "id": "behavior-149",
     "operationId": "CreateSkill",
     "method": "POST",
     "path": "/skills",
@@ -15424,7 +15379,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-151",
+    "id": "behavior-150",
     "operationId": "GetSkillContent",
     "method": "GET",
     "path": "/skills/{skill_id}/content",
@@ -15481,7 +15436,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-152",
+    "id": "behavior-151",
     "operationId": "CreateSkillVersion",
     "method": "POST",
     "path": "/skills/{skill_id}/versions",
@@ -15554,7 +15509,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-153",
+    "id": "behavior-152",
     "operationId": "ListSkillVersions",
     "method": "GET",
     "path": "/skills/{skill_id}/versions",
@@ -15663,7 +15618,7 @@
     }
   },
   {
-    "id": "behavior-154",
+    "id": "behavior-153",
     "operationId": "GetSkillVersionContent",
     "method": "GET",
     "path": "/skills/{skill_id}/versions/{version}/content",
@@ -15729,7 +15684,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-155",
+    "id": "behavior-154",
     "operationId": "listChatkitThreads",
     "method": "GET",
     "path": "/chatkit/threads",
@@ -15847,7 +15802,7 @@
     }
   },
   {
-    "id": "behavior-156",
+    "id": "behavior-155",
     "operationId": "listAgentEnvironments",
     "method": "GET",
     "path": "/agents/environments",
@@ -15977,7 +15932,7 @@
     }
   },
   {
-    "id": "behavior-157",
+    "id": "behavior-156",
     "operationId": "createAgentEnvironment",
     "method": "POST",
     "path": "/agents/environments",
@@ -16123,7 +16078,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-158",
+    "id": "behavior-157",
     "operationId": "retrieveAgentEnvironment",
     "method": "GET",
     "path": "/agents/environments/{environment_id}",
@@ -16204,7 +16159,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-159",
+    "id": "behavior-158",
     "operationId": "listAgentEnvironmentFiles",
     "method": "GET",
     "path": "/agents/environments/{environment_id}/files",
@@ -16310,7 +16265,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-160",
+    "id": "behavior-159",
     "operationId": "createAgentEnvironmentFile",
     "method": "POST",
     "path": "/agents/environments/{environment_id}/files",
@@ -16380,7 +16335,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-161",
+    "id": "behavior-160",
     "operationId": "listAgentSessionSubagents",
     "method": "GET",
     "path": "/agents/sessions/{session_id}/subagents",
@@ -16496,7 +16451,7 @@
     }
   },
   {
-    "id": "behavior-162",
+    "id": "behavior-161",
     "operationId": "retrieveAgentSessionSubagent",
     "method": "GET",
     "path": "/agents/sessions/{session_id}/subagents/{subagent_id}",
@@ -16571,7 +16526,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-163",
+    "id": "behavior-162",
     "operationId": "listAgentSessionSubagentItems",
     "method": "GET",
     "path": "/agents/sessions/{session_id}/subagents/{subagent_id}/items",
@@ -16694,7 +16649,7 @@
     }
   },
   {
-    "id": "behavior-164",
+    "id": "behavior-163",
     "operationId": "retrieveAgentSessionSubagentTurn",
     "method": "GET",
     "path": "/agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}",
@@ -16788,7 +16743,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-165",
+    "id": "behavior-164",
     "operationId": "listAgentSessionSubagentTurnItems",
     "method": "GET",
     "path": "/agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}/items",
@@ -16920,7 +16875,7 @@
     }
   },
   {
-    "id": "behavior-166",
+    "id": "behavior-165",
     "operationId": "listAgents",
     "method": "GET",
     "path": "/agents",
@@ -17048,7 +17003,7 @@
     }
   },
   {
-    "id": "behavior-167",
+    "id": "behavior-166",
     "operationId": "createAgent",
     "method": "POST",
     "path": "/agents",
@@ -17163,7 +17118,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-168",
+    "id": "behavior-167",
     "operationId": "updateAgent",
     "method": "POST",
     "path": "/agents/{agent_id}",
@@ -17294,7 +17249,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-169",
+    "id": "behavior-168",
     "operationId": "deleteAgent",
     "method": "DELETE",
     "path": "/agents/{agent_id}",
@@ -17349,7 +17304,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-170",
+    "id": "behavior-169",
     "operationId": "listAgentEnvironmentTemplates",
     "method": "GET",
     "path": "/agents/environments/templates",
@@ -17480,7 +17435,7 @@
     }
   },
   {
-    "id": "behavior-171",
+    "id": "behavior-170",
     "operationId": "createAgentEnvironmentTemplate",
     "method": "POST",
     "path": "/agents/environments/templates",
@@ -17616,7 +17571,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-172",
+    "id": "behavior-171",
     "operationId": "retrieveAgentEnvironmentTemplate",
     "method": "GET",
     "path": "/agents/environments/templates/{environment_template_id}",
@@ -17707,7 +17662,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-173",
+    "id": "behavior-172",
     "operationId": "createAgentSession",
     "method": "POST",
     "path": "/agents/sessions",
@@ -17884,7 +17839,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-174",
+    "id": "behavior-173",
     "operationId": "listAgentSessionArtifacts",
     "method": "GET",
     "path": "/agents/sessions/{session_id}/artifacts",
@@ -18004,7 +17959,7 @@
     }
   },
   {
-    "id": "behavior-175",
+    "id": "behavior-174",
     "operationId": "deleteAgentSessionArtifact",
     "method": "DELETE",
     "path": "/agents/sessions/{session_id}/artifacts/{artifact_id}",
@@ -18068,7 +18023,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-176",
+    "id": "behavior-175",
     "operationId": "retrieveAgentSessionArtifactContent",
     "method": "GET",
     "path": "/agents/sessions/{session_id}/artifacts/{artifact_id}/content",
@@ -18128,7 +18083,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-177",
+    "id": "behavior-176",
     "operationId": "listAgentSessionEvents",
     "method": "GET",
     "path": "/agents/sessions/{session_id}/events",
@@ -18175,7 +18130,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-178",
+    "id": "behavior-177",
     "operationId": "createAgentSessionEvents",
     "method": "POST",
     "path": "/agents/sessions/{session_id}/events",
@@ -18264,7 +18219,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-179",
+    "id": "behavior-178",
     "operationId": "listVaults",
     "method": "GET",
     "path": "/vaults",
@@ -18384,7 +18339,7 @@
     }
   },
   {
-    "id": "behavior-180",
+    "id": "behavior-179",
     "operationId": "listVaultCredentials",
     "method": "GET",
     "path": "/vaults/{vault_id}/credentials",
@@ -18530,7 +18485,7 @@
     }
   },
   {
-    "id": "behavior-181",
+    "id": "behavior-180",
     "operationId": "rotateVaultCredential",
     "method": "POST",
     "path": "/vaults/{vault_id}/credentials/{credential_id}",
@@ -18626,7 +18581,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-182",
+    "id": "behavior-181",
     "operationId": "ListWebhookEndpoints",
     "method": "GET",
     "path": "/webhook_endpoints",
@@ -18718,7 +18673,7 @@
     }
   },
   {
-    "id": "behavior-183",
+    "id": "behavior-182",
     "operationId": "beta_createResponse",
     "method": "POST",
     "path": "/responses?beta=true",
@@ -18941,7 +18896,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-184",
+    "id": "behavior-183",
     "operationId": "beta_getResponse",
     "method": "GET",
     "path": "/responses/{response_id}?beta=true",
@@ -19104,7 +19059,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-185",
+    "id": "behavior-184",
     "operationId": "beta_deleteResponse",
     "method": "DELETE",
     "path": "/responses/{response_id}?beta=true",
@@ -19174,7 +19129,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-186",
+    "id": "behavior-185",
     "operationId": "beta_cancelResponse",
     "method": "POST",
     "path": "/responses/{response_id}/cancel?beta=true",
@@ -19299,7 +19254,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-187",
+    "id": "behavior-186",
     "operationId": "betaResponsesCompact",
     "method": "POST",
     "path": "/responses/compact?beta=true",
@@ -19419,7 +19374,7 @@
     "pagination": null
   },
   {
-    "id": "behavior-188",
+    "id": "behavior-187",
     "operationId": "beta_listInputItems",
     "method": "GET",
     "path": "/responses/{response_id}/input_items?beta=true",
@@ -19500,7 +19455,7 @@
             "agent": {
               "agent_name": "Example Name"
             },
-            "type": "BetaInputMessageResource",
+            "type": "message",
             "role": "user",
             "status": "in_progress",
             "content": [
@@ -19556,7 +19511,7 @@
     }
   },
   {
-    "id": "behavior-189",
+    "id": "behavior-188",
     "operationId": "betaResponsesCountInputTokens",
     "method": "POST",
     "path": "/responses/input_tokens?beta=true",

@@ -21804,7 +21804,7 @@
           "in": "body",
           "required": false,
           "nullable": false,
-          "type": "oneOf",
+          "type": "RealtimeSessionCreateRequestTracing",
           "wireType": null,
           "declaredValue": "auto",
           "mediaTypes": ["application/json"]
@@ -21926,7 +21926,7 @@
           "in": "body",
           "required": false,
           "nullable": false,
-          "type": "oneOf",
+          "type": "RealtimeSessionCreateRequestTracing",
           "wireType": null,
           "declaredValue": "auto",
           "mediaTypes": ["application/json"]
@@ -22047,7 +22047,7 @@
               "name": "input_audio_noise_reduction",
               "required": false,
               "repeated": false,
-              "partKind": "scalar",
+              "partKind": "json",
               "contentType": null
             },
             {
@@ -22120,8 +22120,8 @@
           "in": "body",
           "required": false,
           "nullable": false,
-          "type": "any",
-          "wireType": null,
+          "type": "object",
+          "wireType": "object",
           "declaredValue": null,
           "mediaTypes": ["application/json"]
         },
@@ -22162,8 +22162,8 @@
           "in": "body",
           "required": false,
           "nullable": false,
-          "type": "any",
-          "wireType": null,
+          "type": "object",
+          "wireType": "object",
           "declaredValue": null,
           "mediaTypes": ["application/json"]
         },
@@ -24406,17 +24406,7 @@
                 "nullable": false,
                 "items": null,
                 "mapValue": null,
-                "variants": [
-                  {
-                    "type": "object",
-                    "format": null,
-                    "ref": null,
-                    "nullable": false,
-                    "items": null,
-                    "mapValue": null,
-                    "variants": null
-                  }
-                ]
+                "variants": null
               },
               {
                 "type": "ref",
@@ -25872,7 +25862,7 @@
           "in": "body",
           "required": true,
           "nullable": false,
-          "type": "anyOf",
+          "type": "CreateSpeechRequestVoice",
           "wireType": null,
           "declaredValue": "fable",
           "mediaTypes": ["application/json"]
@@ -25904,7 +25894,7 @@
           "in": "body",
           "required": true,
           "nullable": false,
-          "type": "anyOf",
+          "type": "CreateSpeechRequestVoice",
           "wireType": null,
           "declaredValue": "fable",
           "mediaTypes": ["application/json"]
@@ -26261,7 +26251,7 @@
           "in": "body",
           "required": true,
           "nullable": false,
-          "type": "anyOf",
+          "type": "CreateSpeechRequestVoice",
           "wireType": null,
           "declaredValue": "fable",
           "mediaTypes": ["application/json"]
@@ -26293,7 +26283,7 @@
           "in": "body",
           "required": true,
           "nullable": false,
-          "type": "anyOf",
+          "type": "CreateSpeechRequestVoice",
           "wireType": null,
           "declaredValue": "fable",
           "mediaTypes": ["application/json"]
@@ -27184,17 +27174,7 @@
                 "nullable": false,
                 "items": null,
                 "mapValue": null,
-                "variants": [
-                  {
-                    "type": "object",
-                    "format": null,
-                    "ref": null,
-                    "nullable": false,
-                    "items": null,
-                    "mapValue": null,
-                    "variants": null
-                  }
-                ]
+                "variants": null
               },
               {
                 "type": "ref",
@@ -27931,11 +27911,11 @@
           "statusCode": "200",
           "mediaType": "application/json",
           "decoderKind": "json",
-          "schemaRef": null,
+          "schemaRef": "#/components/schemas/CreateTranscriptionResponse",
           "schemaType": {
-            "type": "anyOf",
+            "type": "ref",
             "format": null,
-            "ref": null,
+            "ref": "CreateTranscriptionResponse",
             "nullable": false,
             "items": null,
             "mapValue": null,
@@ -28151,7 +28131,7 @@
           "in": "body",
           "required": false,
           "nullable": true,
-          "type": "anyOf",
+          "type": "CreateTranscriptionRequestChunkingStrategy",
           "wireType": null,
           "declaredValue": "auto",
           "mediaTypes": ["multipart/form-data"]
@@ -28403,7 +28383,7 @@
           "in": "body",
           "required": false,
           "nullable": true,
-          "type": "anyOf",
+          "type": "CreateTranscriptionRequestChunkingStrategy",
           "wireType": null,
           "declaredValue": "auto",
           "mediaTypes": ["multipart/form-data"]
@@ -28776,7 +28756,7 @@
           "in": "body",
           "required": false,
           "nullable": true,
-          "type": "anyOf",
+          "type": "CreateTranscriptionRequestChunkingStrategy",
           "wireType": null,
           "declaredValue": "auto",
           "mediaTypes": ["multipart/form-data"]
@@ -29028,7 +29008,7 @@
           "in": "body",
           "required": false,
           "nullable": true,
-          "type": "anyOf",
+          "type": "CreateTranscriptionRequestChunkingStrategy",
           "wireType": null,
           "declaredValue": "auto",
           "mediaTypes": ["multipart/form-data"]
@@ -29131,11 +29111,11 @@
           "statusCode": "200",
           "mediaType": "application/json",
           "decoderKind": "json",
-          "schemaRef": null,
+          "schemaRef": "#/components/schemas/CreateTranslationResponse",
           "schemaType": {
-            "type": "oneOf",
+            "type": "ref",
             "format": null,
-            "ref": null,
+            "ref": "CreateTranslationResponse",
             "nullable": false,
             "items": null,
             "mapValue": null,
@@ -30745,26 +30725,7 @@
             "nullable": false,
             "items": null,
             "mapValue": null,
-            "variants": [
-              {
-                "type": "any",
-                "format": null,
-                "ref": null,
-                "nullable": false,
-                "items": null,
-                "mapValue": null,
-                "variants": null
-              },
-              {
-                "type": "any",
-                "format": null,
-                "ref": null,
-                "nullable": false,
-                "items": null,
-                "mapValue": null,
-                "variants": null
-              }
-            ]
+            "variants": null
           },
           "bodyShape": "fields",
           "fields": [
@@ -69488,7 +69449,7 @@
       "publicMethods": [
         {
           "mode": "stream",
-          "name": "submitAssistantsToolOutputsToRun"
+          "name": "submitAssistantsToolOutputsToRunStream"
         }
       ],
       "requestModes": [
@@ -69545,17 +69506,7 @@
                 "nullable": false,
                 "items": null,
                 "mapValue": null,
-                "variants": [
-                  {
-                    "type": "object",
-                    "format": null,
-                    "ref": null,
-                    "nullable": false,
-                    "items": null,
-                    "mapValue": null,
-                    "variants": null
-                  }
-                ]
+                "variants": null
               },
               {
                 "type": "ref",
@@ -85556,17 +85507,7 @@
             "nullable": false,
             "items": null,
             "mapValue": null,
-            "variants": [
-              {
-                "type": "object",
-                "format": null,
-                "ref": null,
-                "nullable": false,
-                "items": null,
-                "mapValue": null,
-                "variants": null
-              }
-            ]
+            "variants": null
           },
           {
             "type": "ref",
@@ -90890,9 +90831,9 @@
         {
           "name": "container",
           "required": true,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "BetaCodeInterpreterToolContainer",
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -91085,6 +91026,40 @@
             "type": "ref",
             "format": null,
             "ref": "BetaCodeInterpreterOutputImage",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
+      "values": []
+    },
+    {
+      "name": "BetaCodeInterpreterToolContainer",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "BetaAutoCodeInterpreterToolParam",
             "nullable": false,
             "items": null,
             "mapValue": null,
@@ -104517,9 +104492,9 @@
         {
           "name": "require_approval",
           "required": false,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "BetaMCPToolRequireApproval",
           "nullable": true,
           "items": null,
           "mapValue": null,
@@ -104916,6 +104891,40 @@
           "variants": null
         }
       ],
+      "values": []
+    },
+    {
+      "name": "BetaMCPToolRequireApproval",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": true,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "object",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
       "values": []
     },
     {
@@ -128853,9 +128862,9 @@
         {
           "name": "container",
           "required": true,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "CodeInterpreterToolContainer",
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -129027,6 +129036,40 @@
             "type": "ref",
             "format": null,
             "ref": "CodeInterpreterOutputImage",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
+      "values": []
+    },
+    {
+      "name": "CodeInterpreterToolContainer",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "AutoCodeInterpreterToolParam",
             "nullable": false,
             "items": null,
             "mapValue": null,
@@ -135501,9 +135544,9 @@
         {
           "name": "response_format",
           "required": false,
-          "type": "ref",
+          "type": "oneOf",
           "format": null,
-          "ref": "ResponseFormat",
+          "ref": null,
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -135696,9 +135739,9 @@
           "ref": null,
           "nullable": false,
           "items": {
-            "type": "ref",
+            "type": "oneOf",
             "format": null,
-            "ref": "ToolsItem",
+            "ref": null,
             "nullable": false,
             "items": null,
             "mapValue": null,
@@ -142400,40 +142443,30 @@
         {
           "name": "voice",
           "required": true,
-          "type": "anyOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "CreateSpeechRequestVoice",
           "nullable": false,
           "items": null,
           "mapValue": null,
           "variants": [
             {
-              "type": "anyOf",
+              "type": "ref",
+              "format": null,
+              "ref": "VoiceIdsShared",
+              "nullable": false,
+              "items": null,
+              "mapValue": null,
+              "variants": null
+            },
+            {
+              "type": "string",
               "format": null,
               "ref": null,
               "nullable": false,
               "items": null,
               "mapValue": null,
-              "variants": [
-                {
-                  "type": "ref",
-                  "format": null,
-                  "ref": "VoiceIdsShared",
-                  "nullable": false,
-                  "items": null,
-                  "mapValue": null,
-                  "variants": null
-                },
-                {
-                  "type": "string",
-                  "format": null,
-                  "ref": null,
-                  "nullable": false,
-                  "items": null,
-                  "mapValue": null,
-                  "variants": null
-                }
-              ]
+              "variants": null
             },
             {
               "type": "object",
@@ -142447,6 +142480,49 @@
           ]
         }
       ],
+      "values": []
+    },
+    {
+      "name": "CreateSpeechRequestVoice",
+      "kind": "union",
+      "type": {
+        "type": "anyOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "VoiceIdsShared",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "object",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
       "values": []
     },
     {
@@ -143089,9 +143165,9 @@
         {
           "name": "chunking_strategy",
           "required": false,
-          "type": "anyOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "CreateTranscriptionRequestChunkingStrategy",
           "nullable": true,
           "items": null,
           "mapValue": null,
@@ -143308,6 +143384,83 @@
           "variants": null
         }
       ],
+      "values": []
+    },
+    {
+      "name": "CreateTranscriptionRequestChunkingStrategy",
+      "kind": "union",
+      "type": {
+        "type": "anyOf",
+        "format": null,
+        "ref": null,
+        "nullable": true,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "VadConfig",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
+      "values": []
+    },
+    {
+      "name": "CreateTranscriptionResponse",
+      "kind": "union",
+      "type": {
+        "type": "anyOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "CreateTranscriptionResponseJson",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "CreateTranscriptionResponseDiarizedJson",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "CreateTranscriptionResponseVerboseJson",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
       "values": []
     },
     {
@@ -143781,6 +143934,40 @@
           "variants": null
         }
       ],
+      "values": []
+    },
+    {
+      "name": "CreateTranslationResponse",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "CreateTranslationResponseJson",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "CreateTranslationResponseVerboseJson",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
       "values": []
     },
     {
@@ -144342,26 +144529,7 @@
         "nullable": false,
         "items": null,
         "mapValue": null,
-        "variants": [
-          {
-            "type": "any",
-            "format": null,
-            "ref": null,
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          {
-            "type": "any",
-            "format": null,
-            "ref": null,
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          }
-        ]
+        "variants": null
       },
       "properties": [
         {
@@ -147770,9 +147938,9 @@
         {
           "name": "error",
           "required": true,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "DecisionsUsagePermissionErrorResponseError",
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -147798,6 +147966,40 @@
           ]
         }
       ],
+      "values": []
+    },
+    {
+      "name": "DecisionsUsagePermissionErrorResponseError",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "DecisionsUsageErrorDetails",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
       "values": []
     },
     {
@@ -149718,26 +149920,7 @@
             "nullable": false,
             "items": null,
             "mapValue": null,
-            "variants": [
-              {
-                "type": "any",
-                "format": null,
-                "ref": null,
-                "nullable": false,
-                "items": null,
-                "mapValue": null,
-                "variants": null
-              },
-              {
-                "type": "any",
-                "format": null,
-                "ref": null,
-                "nullable": false,
-                "items": null,
-                "mapValue": null,
-                "variants": null
-              }
-            ]
+            "variants": null
           },
           "mapValue": null,
           "variants": null
@@ -149772,26 +149955,7 @@
           "nullable": false,
           "items": null,
           "mapValue": null,
-          "variants": [
-            {
-              "type": "any",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            },
-            {
-              "type": "any",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            }
-          ]
+          "variants": null
         },
         {
           "name": "model",
@@ -163606,26 +163770,7 @@
         "nullable": false,
         "items": null,
         "mapValue": null,
-        "variants": [
-          {
-            "type": "any",
-            "format": null,
-            "ref": null,
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          {
-            "type": "any",
-            "format": null,
-            "ref": null,
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          }
-        ]
+        "variants": null
       },
       "properties": [
         {
@@ -169097,26 +169242,7 @@
           "nullable": false,
           "items": null,
           "mapValue": null,
-          "variants": [
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            },
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            }
-          ]
+          "variants": null
         },
         {
           "name": "store",
@@ -173363,13 +173489,22 @@
         {
           "name": "voice",
           "required": false,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "LiveInitialSessionAudioOutputParamVoice",
           "nullable": false,
           "items": null,
           "mapValue": null,
           "variants": [
+            {
+              "type": "string",
+              "format": null,
+              "ref": null,
+              "nullable": false,
+              "items": null,
+              "mapValue": null,
+              "variants": null
+            },
             {
               "type": "string",
               "format": null,
@@ -173391,6 +173526,49 @@
           ]
         }
       ],
+      "values": []
+    },
+    {
+      "name": "LiveInitialSessionAudioOutputParamVoice",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "LiveCustomVoiceParam",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
       "values": []
     },
     {
@@ -174593,26 +174771,7 @@
           "nullable": false,
           "items": null,
           "mapValue": null,
-          "variants": [
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            },
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            }
-          ]
+          "variants": null
         },
         {
           "name": "store",
@@ -175736,9 +175895,9 @@
         {
           "name": "tool_choice",
           "required": false,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "LiveResponsesDelegationSettingsInputParamToolChoice",
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -176022,6 +176181,158 @@
       "values": []
     },
     {
+      "name": "LiveResponsesDelegationSettingsInputParamToolChoice",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "LiveToolChoiceEnum",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "oneOf",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": [
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveFunctionToolChoiceParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveMCPToolChoiceParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificFileSearchParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificWebSearchParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificWebSearchPreviewParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificImageGenParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificComputerParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificCodeInterpreterParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificProgrammaticToolCallingParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificFunctionShellParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificCustomToolParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificApplyPatchParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              }
+            ]
+          },
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "LiveAllowedToolsChoiceParam",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
+      "values": []
+    },
+    {
       "name": "LiveResponsesDelegationSettingsInputParamToolsItem",
       "kind": "union",
       "type": {
@@ -176287,9 +176598,9 @@
         {
           "name": "tool_choice",
           "required": false,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "LiveResponsesDelegationSettingsUpdateInputParamToolChoice",
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -176570,6 +176881,158 @@
           "variants": null
         }
       ],
+      "values": []
+    },
+    {
+      "name": "LiveResponsesDelegationSettingsUpdateInputParamToolChoice",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "LiveToolChoiceEnum",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "oneOf",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": [
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveFunctionToolChoiceParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveMCPToolChoiceParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificFileSearchParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificWebSearchParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificWebSearchPreviewParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificImageGenParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificComputerParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificCodeInterpreterParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificProgrammaticToolCallingParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificFunctionShellParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificCustomToolParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              },
+              {
+                "type": "ref",
+                "format": null,
+                "ref": "LiveSpecificApplyPatchParam",
+                "nullable": false,
+                "items": null,
+                "mapValue": null,
+                "variants": null
+              }
+            ]
+          },
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "LiveAllowedToolsChoiceParam",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
       "values": []
     },
     {
@@ -177463,26 +177926,7 @@
           "nullable": false,
           "items": null,
           "mapValue": null,
-          "variants": [
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            },
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            }
-          ]
+          "variants": null
         },
         {
           "name": "store",
@@ -177996,26 +178440,7 @@
           "nullable": false,
           "items": null,
           "mapValue": null,
-          "variants": [
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            },
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            }
-          ]
+          "variants": null
         },
         {
           "name": "status",
@@ -181668,9 +182093,9 @@
         {
           "name": "require_approval",
           "required": false,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "MCPToolRequireApproval",
           "nullable": true,
           "items": null,
           "mapValue": null,
@@ -182046,6 +182471,40 @@
           "variants": null
         }
       ],
+      "values": []
+    },
+    {
+      "name": "MCPToolRequireApproval",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": true,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "object",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
       "values": []
     },
     {
@@ -184622,34 +185081,15 @@
     },
     {
       "name": "ModelIdsLive",
-      "kind": "union",
+      "kind": "alias",
       "type": {
-        "type": "anyOf",
+        "type": "string",
         "format": null,
         "ref": null,
         "nullable": false,
         "items": null,
         "mapValue": null,
-        "variants": [
-          {
-            "type": "string",
-            "format": null,
-            "ref": null,
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          {
-            "type": "string",
-            "format": null,
-            "ref": null,
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          }
-        ]
+        "variants": null
       },
       "properties": [],
       "values": []
@@ -187980,9 +188420,9 @@
         {
           "name": "error",
           "required": true,
-          "type": "anyOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "PermissionErrorResponseError",
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -188008,6 +188448,40 @@
           ]
         }
       ],
+      "values": []
+    },
+    {
+      "name": "PermissionErrorResponseError",
+      "kind": "union",
+      "type": {
+        "type": "anyOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "ref",
+            "format": null,
+            "ref": "Error3",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
       "values": []
     },
     {
@@ -198675,9 +199149,9 @@
         {
           "name": "session",
           "required": false,
-          "type": "any",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "RealtimeSessionCreateRequestGA",
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -206104,9 +206578,9 @@
         {
           "name": "input_audio_transcription",
           "required": false,
-          "type": "any",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "AudioTranscriptionResponse",
           "nullable": true,
           "items": null,
           "mapValue": null,
@@ -206281,9 +206755,9 @@
         {
           "name": "tracing",
           "required": false,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "RealtimeSessionTracing",
           "nullable": true,
           "items": null,
           "mapValue": null,
@@ -206535,9 +207009,9 @@
         {
           "name": "tracing",
           "required": false,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "RealtimeSessionCreateRequestTracing",
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -207012,6 +207486,40 @@
       "values": []
     },
     {
+      "name": "RealtimeSessionCreateRequestTracing",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "object",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
+      "values": []
+    },
+    {
       "name": "RealtimeSessionCreateResponse",
       "kind": "object",
       "type": {
@@ -207191,9 +207699,9 @@
         {
           "name": "tracing",
           "required": false,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "RealtimeSessionCreateResponseTracing",
           "nullable": false,
           "items": null,
           "mapValue": null,
@@ -207481,9 +207989,9 @@
         {
           "name": "tracing",
           "required": false,
-          "type": "oneOf",
+          "type": "ref",
           "format": null,
-          "ref": null,
+          "ref": "RealtimeSessionCreateResponseGATracing",
           "nullable": true,
           "items": null,
           "mapValue": null,
@@ -207619,6 +208127,108 @@
             "type": "ref",
             "format": null,
             "ref": "MCPTool",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
+      "values": []
+    },
+    {
+      "name": "RealtimeSessionCreateResponseGATracing",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": true,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "object",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
+      "values": []
+    },
+    {
+      "name": "RealtimeSessionCreateResponseTracing",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": false,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "object",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          }
+        ]
+      },
+      "properties": [],
+      "values": []
+    },
+    {
+      "name": "RealtimeSessionTracing",
+      "kind": "union",
+      "type": {
+        "type": "oneOf",
+        "format": null,
+        "ref": null,
+        "nullable": true,
+        "items": null,
+        "mapValue": null,
+        "variants": [
+          {
+            "type": "string",
+            "format": null,
+            "ref": null,
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          {
+            "type": "object",
+            "format": null,
+            "ref": null,
             "nullable": false,
             "items": null,
             "mapValue": null,
@@ -212326,49 +212936,6 @@
           "variants": null
         }
       ],
-      "values": []
-    },
-    {
-      "name": "ResponseFormat",
-      "kind": "union",
-      "type": {
-        "type": "oneOf",
-        "format": null,
-        "ref": null,
-        "nullable": false,
-        "items": null,
-        "mapValue": null,
-        "variants": [
-          {
-            "type": "ref",
-            "format": null,
-            "ref": "ResponseFormatText",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          {
-            "type": "ref",
-            "format": null,
-            "ref": "ResponseFormatJsonSchema",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          {
-            "type": "ref",
-            "format": null,
-            "ref": "ResponseFormatJsonObject",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          }
-        ]
-      },
-      "properties": [],
       "values": []
     },
     {
@@ -229994,74 +230561,6 @@
       "properties": []
     },
     {
-      "name": "TemplateItem",
-      "kind": "union",
-      "type": {
-        "type": "oneOf",
-        "format": null,
-        "ref": null,
-        "nullable": false,
-        "items": null,
-        "mapValue": null,
-        "variants": [
-          {
-            "type": "ref",
-            "format": null,
-            "ref": "EasyInputMessage",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          {
-            "type": "ref",
-            "format": null,
-            "ref": "EvalItem",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          }
-        ]
-      },
-      "properties": [],
-      "values": []
-    },
-    {
-      "name": "TemplateItem2",
-      "kind": "union",
-      "type": {
-        "type": "oneOf",
-        "format": null,
-        "ref": null,
-        "nullable": false,
-        "items": null,
-        "mapValue": null,
-        "variants": [
-          {
-            "type": "object",
-            "format": null,
-            "ref": null,
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          {
-            "type": "ref",
-            "format": null,
-            "ref": "EvalItem",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          }
-        ]
-      },
-      "properties": [],
-      "values": []
-    },
-    {
       "name": "TextContent",
       "kind": "object",
       "type": {
@@ -231070,27 +231569,51 @@
     },
     {
       "name": "ThreadStreamEvent",
-      "kind": "union",
+      "kind": "object",
       "type": {
-        "type": "oneOf",
+        "type": "object",
         "format": null,
         "ref": null,
         "nullable": false,
         "items": null,
         "mapValue": null,
-        "variants": [
-          {
-            "type": "object",
-            "format": null,
-            "ref": null,
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          }
-        ]
+        "variants": null
       },
-      "properties": [],
+      "properties": [
+        {
+          "name": "data",
+          "required": true,
+          "type": "ref",
+          "format": null,
+          "ref": "ThreadObject",
+          "nullable": false,
+          "items": null,
+          "mapValue": null,
+          "variants": null
+        },
+        {
+          "name": "enabled",
+          "required": false,
+          "type": "boolean",
+          "format": null,
+          "ref": null,
+          "nullable": false,
+          "items": null,
+          "mapValue": null,
+          "variants": null
+        },
+        {
+          "name": "event",
+          "required": true,
+          "type": "string",
+          "format": null,
+          "ref": null,
+          "nullable": false,
+          "items": null,
+          "mapValue": null,
+          "variants": null
+        }
+      ],
       "values": []
     },
     {
@@ -233959,40 +234482,6 @@
           "variants": null
         }
       ],
-      "values": []
-    },
-    {
-      "name": "ToolsItem",
-      "kind": "union",
-      "type": {
-        "type": "oneOf",
-        "format": null,
-        "ref": null,
-        "nullable": false,
-        "items": null,
-        "mapValue": null,
-        "variants": [
-          {
-            "type": "ref",
-            "format": null,
-            "ref": "ChatCompletionTool",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          {
-            "type": "ref",
-            "format": null,
-            "ref": "CustomToolChatCompletions",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          }
-        ]
-      },
-      "properties": [],
       "values": []
     },
     {
@@ -257599,6 +258088,13 @@
         "properties": []
       },
       {
+        "name": "BetaCodeInterpreterToolContainer",
+        "kind": "model",
+        "description": "The code interpreter container. Can be a container ID or an object that specifies uploaded file IDs to make available to your code, along with an optional `memory_limit` setting.",
+        "values": [],
+        "properties": []
+      },
+      {
         "name": "BetaCompactionBody",
         "kind": "model",
         "description": "A compaction item generated by the [`v1/responses/compact` API](https://developers.openai.com/api/reference/resources/responses/methods/compact).",
@@ -260584,6 +261080,13 @@
             "description": "Indicates whether or not a tool modifies data or is read-only. If an MCP server is [annotated with `readOnlyHint`](https://modelcontextprotocol.io/specification/2025-06-18/schema#toolannotations-readonlyhint), it will match this filter."
           }
         ]
+      },
+      {
+        "name": "BetaMCPToolRequireApproval",
+        "kind": "model",
+        "description": "Specify which of the MCP server's tools require approval.",
+        "values": [],
+        "properties": []
       },
       {
         "name": "BetaMessage",
@@ -266668,6 +267171,13 @@
         "properties": []
       },
       {
+        "name": "CodeInterpreterToolContainer",
+        "kind": "model",
+        "description": "The code interpreter container. Can be a container ID or an object that specifies uploaded file IDs to make available to your code, along with an optional `memory_limit` setting.",
+        "values": [],
+        "properties": []
+      },
+      {
         "name": "CommandExecutionItemResource",
         "kind": "model",
         "description": "A command execution produced by the agent.",
@@ -269542,6 +270052,13 @@
         ]
       },
       {
+        "name": "CreateSpeechRequestVoice",
+        "kind": "model",
+        "description": "The voice to use when generating the audio. Supported built-in voices are `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `onyx`, `nova`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. You may also provide a custom voice object with an `id`, for example `{ \"id\": \"voice_1234\" }`. Previews of the voices are available in the [Text to speech guide](https://developers.openai.com/api/docs/guides/text-to-speech#voice-options). Custom voices must be created from audio samples.",
+        "values": [],
+        "properties": []
+      },
+      {
         "name": "CreateSpeechResponseStreamEvent",
         "kind": "model",
         "description": "Typed representation of the `CreateSpeechResponseStreamEvent` API schema.",
@@ -269783,6 +270300,20 @@
         ]
       },
       {
+        "name": "CreateTranscriptionRequestChunkingStrategy",
+        "kind": "model",
+        "description": "Controls how the audio is cut into chunks. When set to `\"auto\"`, the server first normalizes loudness and then uses voice activity detection (VAD) to choose boundaries. `server_vad` object can be provided to tweak VAD detection parameters manually. If unset, the audio is transcribed as a single block. Required when using `gpt-4o-transcribe-diarize` for inputs longer than 30 seconds.",
+        "values": [],
+        "properties": []
+      },
+      {
+        "name": "CreateTranscriptionResponse",
+        "kind": "model",
+        "description": "Typed representation of the `CreateTranscriptionResponse` API schema.",
+        "values": [],
+        "properties": []
+      },
+      {
         "name": "CreateTranscriptionResponseDiarizedJson",
         "kind": "model",
         "description": "Represents a diarized transcription response returned by the model, including the combined transcript and speaker-segment annotations.",
@@ -269914,6 +270445,13 @@
             "description": "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit."
           }
         ]
+      },
+      {
+        "name": "CreateTranslationResponse",
+        "kind": "model",
+        "description": "Typed representation of the `CreateTranslationResponse` API schema.",
+        "values": [],
+        "properties": []
       },
       {
         "name": "CreateTranslationResponseJson",
@@ -271007,6 +271545,13 @@
             "description": "Details about the permission error."
           }
         ]
+      },
+      {
+        "name": "DecisionsUsagePermissionErrorResponseError",
+        "kind": "model",
+        "description": "Details about the permission error.",
+        "values": [],
+        "properties": []
       },
       {
         "name": "DecisionsUsageResult",
@@ -278438,6 +278983,13 @@
         ]
       },
       {
+        "name": "LiveInitialSessionAudioOutputParamVoice",
+        "kind": "model",
+        "description": "The voice used for Live speech, as a built-in voice name or a custom voice object containing its ID. Defaults to `marin` and cannot change after startup.",
+        "values": [],
+        "properties": []
+      },
+      {
         "name": "LiveInitialSessionAudioParam",
         "kind": "model",
         "description": "Startup audio configuration. Only primary WebSockets accept audio.format; WebRTC and SIP negotiate their media format. Voice and format are immutable after startup.",
@@ -279180,6 +279732,13 @@
         ]
       },
       {
+        "name": "LiveResponsesDelegationSettingsInputParamToolChoice",
+        "kind": "model",
+        "description": "Controls which tool the Responses backend uses when handling a task delegated by the Live model.",
+        "values": [],
+        "properties": []
+      },
+      {
         "name": "LiveResponsesDelegationSettingsInputParamToolsItem",
         "kind": "model",
         "description": "Required API value serialized in the `tools[]` wire field.",
@@ -279229,6 +279788,13 @@
             "description": "Optional `boolean` value serialized in the `parallel_tool_calls` wire field."
           }
         ]
+      },
+      {
+        "name": "LiveResponsesDelegationSettingsUpdateInputParamToolChoice",
+        "kind": "model",
+        "description": "Controls which tool the Responses backend uses when handling a task delegated by the Live model.",
+        "values": [],
+        "properties": []
       },
       {
         "name": "LiveResponsesDelegationSettingsUpdateInputParamToolsItem",
@@ -280873,6 +281439,13 @@
             "description": "Indicates whether or not a tool modifies data or is read-only. If an MCP server is [annotated with `readOnlyHint`](https://modelcontextprotocol.io/specification/2025-06-18/schema#toolannotations-readonlyhint), it will match this filter."
           }
         ]
+      },
+      {
+        "name": "MCPToolRequireApproval",
+        "kind": "model",
+        "description": "Specify which of the MCP server's tools require approval.",
+        "values": [],
+        "properties": []
       },
       {
         "name": "McpTransportConfigParam",
@@ -282652,6 +283225,13 @@
             "description": "Details about the permission error."
           }
         ]
+      },
+      {
+        "name": "PermissionErrorResponseError",
+        "kind": "model",
+        "description": "Details about the permission error.",
+        "values": [],
+        "properties": []
       },
       {
         "name": "PersistedAgentToolConfigParam",
@@ -288708,6 +289288,13 @@
         "properties": []
       },
       {
+        "name": "RealtimeSessionCreateRequestTracing",
+        "kind": "model",
+        "description": "Configuration options for tracing. Set to null to disable tracing. Once tracing is enabled for a session, the configuration cannot be modified. `auto` will create a trace for the session with default values for the workflow name, group id, and metadata.",
+        "values": [],
+        "properties": []
+      },
+      {
         "name": "RealtimeSessionCreateResponse",
         "kind": "model",
         "description": "A Realtime session configuration object.",
@@ -288850,6 +289437,27 @@
         "name": "RealtimeSessionCreateResponseGAToolsItem",
         "kind": "model",
         "description": "Required API value serialized in the `tools[]` wire field.",
+        "values": [],
+        "properties": []
+      },
+      {
+        "name": "RealtimeSessionCreateResponseGATracing",
+        "kind": "model",
+        "description": "Realtime API can write session traces to the [Traces Dashboard](https://platform.openai.com/logs?api=traces). Set to null to disable tracing. Once tracing is enabled for a session, the configuration cannot be modified. `auto` will create a trace for the session with default values for the workflow name, group id, and metadata.",
+        "values": [],
+        "properties": []
+      },
+      {
+        "name": "RealtimeSessionCreateResponseTracing",
+        "kind": "model",
+        "description": "Configuration options for tracing. Set to null to disable tracing. Once tracing is enabled for a session, the configuration cannot be modified. `auto` will create a trace for the session with default values for the workflow name, group id, and metadata.",
+        "values": [],
+        "properties": []
+      },
+      {
+        "name": "RealtimeSessionTracing",
+        "kind": "model",
+        "description": "Configuration options for tracing. Set to null to disable tracing. Once tracing is enabled for a session, the configuration cannot be modified. `auto` will create a trace for the session with default values for the workflow name, group id, and metadata.",
         "values": [],
         "properties": []
       },
@@ -290097,13 +290705,6 @@
             "description": "The sequence number of this event."
           }
         ]
-      },
-      {
-        "name": "ResponseFormat",
-        "kind": "model",
-        "description": "An object specifying the format that the model must output. Setting to `{ \"type\": \"json_schema\", \"json_schema\": {...} }` enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](https://developers.openai.com/api/docs/guides/structured-outputs). Setting to `{ \"type\": \"json_object\" }` enables the older JSON mode, which ensures the message the model generates is valid JSON. Using `json_schema` is preferred for models that support it.",
-        "values": [],
-        "properties": []
       },
       {
         "name": "ResponseFormatJsonObject",
@@ -295258,20 +295859,6 @@
         "properties": []
       },
       {
-        "name": "TemplateItem",
-        "kind": "model",
-        "description": "Required API value serialized in the `template[]` wire field.",
-        "values": [],
-        "properties": []
-      },
-      {
-        "name": "TemplateItem2",
-        "kind": "model",
-        "description": "Required API value serialized in the `template[]` wire field.",
-        "values": [],
-        "properties": []
-      },
-      {
         "name": "TextContent",
         "kind": "model",
         "description": "A text content.",
@@ -295557,9 +296144,22 @@
       {
         "name": "ThreadStreamEvent",
         "kind": "model",
-        "description": "Typed representation of the `ThreadStreamEvent` API schema.",
+        "description": "Occurs when a new [thread](https://developers.openai.com/api/docs/assistants/migration) is created.",
         "values": [],
-        "properties": []
+        "properties": [
+          {
+            "name": "enabled",
+            "description": "Whether to enable input audio transcription."
+          },
+          {
+            "name": "event",
+            "description": "Required enumerated value serialized in the `event` wire field."
+          },
+          {
+            "name": "data",
+            "description": "Represents a thread that contains [messages](https://developers.openai.com/api/docs/assistants/migration)."
+          }
+        ]
       },
       {
         "name": "ToggleCertificatesRequest",
@@ -296059,13 +296659,6 @@
             "description": "Optional API value serialized in the `parameters` wire field."
           }
         ]
-      },
-      {
-        "name": "ToolsItem",
-        "kind": "model",
-        "description": "Typed representation of the `ToolsItem` API schema.",
-        "values": [],
-        "properties": []
       },
       {
         "name": "TopLogProb",

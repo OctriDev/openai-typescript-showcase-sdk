@@ -707,7 +707,20 @@ export const wireSchemasPart1: Record<string, WireSchema> = {
       wire: "tool_resources",
       fields: {
         codeInterpreter: { wire: "code_interpreter", fields: { fileIds: { wire: "file_ids" } } },
-        fileSearch: { wire: "file_search" },
+        fileSearch: {
+          wire: "file_search",
+          fields: {
+            vectorStoreIds: { wire: "vector_store_ids" },
+            vectorStores: {
+              wire: "vector_stores",
+              fields: {
+                fileIds: { wire: "file_ids" },
+                chunkingStrategy: { wire: "chunking_strategy" },
+                metadata: { wire: "metadata" },
+              },
+            },
+          },
+        },
       },
     },
     metadata: { wire: "metadata" },

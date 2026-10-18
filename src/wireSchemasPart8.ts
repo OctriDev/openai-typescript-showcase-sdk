@@ -4,6 +4,53 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart8: Record<string, WireSchema> = {
+  RealtimeTranscriptionSessionCreateResponse: {
+    clientSecret: {
+      wire: "client_secret",
+      fields: { value: { wire: "value" }, expiresAt: { wire: "expires_at" } },
+    },
+    modalities: { wire: "modalities" },
+    inputAudioFormat: { wire: "input_audio_format" },
+    inputAudioTranscription: { wire: "input_audio_transcription" },
+    turnDetection: {
+      wire: "turn_detection",
+      fields: {
+        ["type"]: { wire: "type" },
+        threshold: { wire: "threshold" },
+        prefixPaddingMs: { wire: "prefix_padding_ms" },
+        silenceDurationMs: { wire: "silence_duration_ms" },
+      },
+    },
+  },
+  RealtimeTranscriptionSessionCreateResponseGA: {
+    ["type"]: { wire: "type" },
+    id: { wire: "id" },
+    object: { wire: "object" },
+    expiresAt: { wire: "expires_at" },
+    include: { wire: "include" },
+    audio: {
+      wire: "audio",
+      fields: {
+        input: {
+          wire: "input",
+          fields: {
+            format: { wire: "format" },
+            transcription: { wire: "transcription", type: "AudioTranscriptionResponse" },
+            noiseReduction: { wire: "noise_reduction" },
+            turnDetection: {
+              wire: "turn_detection",
+              fields: {
+                ["type"]: { wire: "type" },
+                threshold: { wire: "threshold" },
+                prefixPaddingMs: { wire: "prefix_padding_ms" },
+                silenceDurationMs: { wire: "silence_duration_ms" },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
   RealtimeTranslationClientEventInputAudioBufferAppend: {
     eventId: { wire: "event_id" },
     ["type"]: { wire: "type" },
@@ -356,17 +403,5 @@ export const wireSchemasPart8: Record<string, WireSchema> = {
     hasMore: { wire: "has_more" },
     firstId: { wire: "first_id" },
     lastId: { wire: "last_id" },
-  },
-  ResponseLogProb: {
-    token: { wire: "token" },
-    logprob: { wire: "logprob" },
-    topLogprobs: { wire: "top_logprobs" },
-  },
-  ResponseMCPCallArgumentsDeltaEvent: {
-    ["type"]: { wire: "type" },
-    outputIndex: { wire: "output_index" },
-    itemId: { wire: "item_id" },
-    delta: { wire: "delta" },
-    sequenceNumber: { wire: "sequence_number" },
   },
 };

@@ -4,6 +4,26 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart24: Record<string, WireSchema> = {
+  BetaLocalShellToolCallOutput: {
+    agent: { wire: "agent", type: "BetaAgentTag" },
+    ["type"]: { wire: "type" },
+    id: { wire: "id" },
+    output: { wire: "output" },
+    status: { wire: "status" },
+  },
+  BetaResponseConfigurationUpdateItemParam: {
+    agent: { wire: "agent", type: "Beta_AgentTagParam" },
+    id: { wire: "id" },
+    ["type"]: { wire: "type" },
+    reasoning: { wire: "reasoning" },
+  },
+  BetaAdditionalToolsItemParam: {
+    agent: { wire: "agent", type: "Beta_AgentTagParam" },
+    id: { wire: "id" },
+    ["type"]: { wire: "type" },
+    role: { wire: "role" },
+    tools: { wire: "tools" },
+  },
   BetaAgentMessageItemParam: {
     agent: { wire: "agent", type: "Beta_AgentTagParam" },
     id: { wire: "id" },

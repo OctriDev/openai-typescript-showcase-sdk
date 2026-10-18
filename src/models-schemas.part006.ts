@@ -7,6 +7,13 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart006: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "ResponseIncompleteEvent",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type","response","sequenceNumber"],"properties":{"type":{"type":"string","enum":["response.incomplete"]},"response":{"ref":"Response"},"sequenceNumber":{"type":"integer"}}}',
+    ),
+  ],
+
+  [
     "ResponseItemList",
     parseRuntimeSchema(
       '{"type":"object","required":["object","data","hasMore","firstId","lastId"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"ItemResource"}},"hasMore":{"type":"boolean"},"firstId":{"type":"string"},"lastId":{"type":"string"}}}',
@@ -502,6 +509,13 @@ export const modelSchemasPart006: readonly (readonly [string, RuntimeSchema])[] 
   ],
 
   [
+    "ThreadStreamEvent",
+    parseRuntimeSchema(
+      '{"type":"object","required":["event","data"],"properties":{"enabled":{"type":"boolean"},"event":{"type":"string","enum":["thread.created"]},"data":{"ref":"ThreadObject"}}}',
+    ),
+  ],
+
+  [
     "ToggleCertificatesRequest",
     parseRuntimeSchema(
       '{"type":"object","required":["certificateIds"],"properties":{"certificateIds":{"type":"array","minItems":1,"maxItems":10,"items":{"type":"string"}}}}',
@@ -687,20 +701,6 @@ export const modelSchemasPart006: readonly (readonly [string, RuntimeSchema])[] 
     "UsageCodeInterpreterSessionsResult",
     parseRuntimeSchema(
       '{"type":"object","required":["object","numSessions"],"properties":{"object":{"type":"string","enum":["organization.usage.code_interpreter_sessions.result"]},"numSessions":{"type":"integer"},"projectId":{"type":"string","nullable":true}}}',
-    ),
-  ],
-
-  [
-    "UsageCompletionsResult",
-    parseRuntimeSchema(
-      '{"type":"object","required":["object","inputTokens","outputTokens","numModelRequests"],"properties":{"apiSource":{"anyOf":[{"type":"string"},{"type":"null"}]},"object":{"type":"string","enum":["organization.usage.completions.result"]},"inputTokens":{"type":"integer"},"inputCachedTokens":{"type":"integer"},"inputCacheWriteTokens":{"type":"integer"},"inputCacheWrite12hTokens":{"type":"integer"},"inputUncachedTokens":{"type":"integer"},"outputTokens":{"type":"integer"},"inputTextTokens":{"type":"integer"},"outputTextTokens":{"type":"integer"},"inputCachedTextTokens":{"type":"integer"},"inputAudioTokens":{"type":"integer"},"inputCachedAudioTokens":{"type":"integer"},"outputAudioTokens":{"type":"integer"},"inputImageTokens":{"type":"integer"},"inputCachedImageTokens":{"type":"integer"},"outputImageTokens":{"type":"integer"},"numModelRequests":{"type":"integer"},"projectId":{"type":"string","nullable":true},"userId":{"type":"string","nullable":true},"apiKeyId":{"type":"string","nullable":true},"model":{"type":"string","nullable":true},"batch":{"type":"boolean","nullable":true},"serviceTier":{"type":"string","nullable":true}}}',
-    ),
-  ],
-
-  [
-    "UsageEmbeddingsResult",
-    parseRuntimeSchema(
-      '{"type":"object","required":["object","inputTokens","numModelRequests"],"properties":{"object":{"type":"string","enum":["organization.usage.embeddings.result"]},"inputTokens":{"type":"integer"},"numModelRequests":{"type":"integer"},"projectId":{"type":"string","nullable":true},"userId":{"type":"string","nullable":true},"apiKeyId":{"type":"string","nullable":true},"model":{"type":"string","nullable":true}}}',
     ),
   ],
 ];

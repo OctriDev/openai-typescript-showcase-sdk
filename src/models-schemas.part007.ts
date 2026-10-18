@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart007: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "UsageCompletionsResult",
+    parseRuntimeSchema(
+      '{"type":"object","required":["object","inputTokens","outputTokens","numModelRequests"],"properties":{"apiSource":{"anyOf":[{"type":"string"},{"type":"null"}]},"object":{"type":"string","enum":["organization.usage.completions.result"]},"inputTokens":{"type":"integer"},"inputCachedTokens":{"type":"integer"},"inputCacheWriteTokens":{"type":"integer"},"inputCacheWrite12hTokens":{"type":"integer"},"inputUncachedTokens":{"type":"integer"},"outputTokens":{"type":"integer"},"inputTextTokens":{"type":"integer"},"outputTextTokens":{"type":"integer"},"inputCachedTextTokens":{"type":"integer"},"inputAudioTokens":{"type":"integer"},"inputCachedAudioTokens":{"type":"integer"},"outputAudioTokens":{"type":"integer"},"inputImageTokens":{"type":"integer"},"inputCachedImageTokens":{"type":"integer"},"outputImageTokens":{"type":"integer"},"numModelRequests":{"type":"integer"},"projectId":{"type":"string","nullable":true},"userId":{"type":"string","nullable":true},"apiKeyId":{"type":"string","nullable":true},"model":{"type":"string","nullable":true},"batch":{"type":"boolean","nullable":true},"serviceTier":{"type":"string","nullable":true}}}',
+    ),
+  ],
+
+  [
+    "UsageEmbeddingsResult",
+    parseRuntimeSchema(
+      '{"type":"object","required":["object","inputTokens","numModelRequests"],"properties":{"object":{"type":"string","enum":["organization.usage.embeddings.result"]},"inputTokens":{"type":"integer"},"numModelRequests":{"type":"integer"},"projectId":{"type":"string","nullable":true},"userId":{"type":"string","nullable":true},"apiKeyId":{"type":"string","nullable":true},"model":{"type":"string","nullable":true}}}',
+    ),
+  ],
+
+  [
     "UsageFileSearchCallsResult",
     parseRuntimeSchema(
       '{"type":"object","required":["object","numRequests"],"properties":{"object":{"type":"string","enum":["organization.usage.file_searches.result"]},"numRequests":{"type":"integer"},"projectId":{"type":"string","nullable":true},"userId":{"type":"string","nullable":true},"apiKeyId":{"type":"string","nullable":true},"vectorStoreId":{"type":"string","nullable":true}}}',
@@ -689,20 +703,6 @@ export const modelSchemasPart007: readonly (readonly [string, RuntimeSchema])[] 
     "ScrollParam",
     parseRuntimeSchema(
       '{"type":"object","required":["type","x","y","scrollX","scrollY"],"properties":{"type":{"type":"string","enum":["scroll"]},"x":{"type":"integer"},"y":{"type":"integer"},"scrollX":{"type":"integer"},"scrollY":{"type":"integer"},"keys":{"type":"array","nullable":true,"items":{"type":"string"}}}}',
-    ),
-  ],
-
-  [
-    "TypeParam",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type","text"],"properties":{"type":{"type":"string","enum":["type"]},"text":{"type":"string"}}}',
-    ),
-  ],
-
-  [
-    "WaitParam",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["wait"]}}}',
     ),
   ],
 ];

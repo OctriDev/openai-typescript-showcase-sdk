@@ -4,6 +4,20 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart4: Record<string, WireSchema> = {
+  ListVectorStoreFilesResponse: {
+    object: { wire: "object" },
+    data: { wire: "data", type: "VectorStoreFileObject" },
+    firstId: { wire: "first_id" },
+    lastId: { wire: "last_id" },
+    hasMore: { wire: "has_more" },
+  },
+  ListVectorStoresResponse: {
+    object: { wire: "object" },
+    data: { wire: "data", type: "VectorStoreObject" },
+    firstId: { wire: "first_id" },
+    lastId: { wire: "last_id" },
+    hasMore: { wire: "has_more" },
+  },
   LiveCallReferRequest: {
     targetUri: { wire: "target_uri" },
   },
@@ -385,20 +399,5 @@ export const wireSchemasPart4: Record<string, WireSchema> = {
     firstId: { wire: "first_id" },
     lastId: { wire: "last_id" },
     hasMore: { wire: "has_more" },
-  },
-  ProjectRateLimitUpdateRequest: {
-    maxRequestsPer1Minute: { wire: "max_requests_per_1_minute" },
-    maxTokensPer1Minute: { wire: "max_tokens_per_1_minute" },
-    maxImagesPer1Minute: { wire: "max_images_per_1_minute" },
-    maxAudioMegabytesPer1Minute: { wire: "max_audio_megabytes_per_1_minute" },
-    maxRequestsPer1Day: { wire: "max_requests_per_1_day" },
-    batch1DayMaxInputTokens: { wire: "batch_1_day_max_input_tokens" },
-  },
-  ProjectServiceAccount: {
-    object: { wire: "object" },
-    id: { wire: "id" },
-    name: { wire: "name" },
-    role: { wire: "role" },
-    createdAt: { wire: "created_at" },
   },
 };

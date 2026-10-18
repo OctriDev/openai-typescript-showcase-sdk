@@ -9,10 +9,8 @@ import {
   DeleteVectorStoreResponse,
   ListVectorStoreFilesResponse,
   ListVectorStoresResponse,
-  UpdateVectorStoreFileAttributesRequest,
   UpdateVectorStoreRequest,
   VectorStoreFileBatchObject,
-  VectorStoreFileContentResponse,
   VectorStoreFileObject,
   VectorStoreObject,
 } from "../../types/vector-stores";
@@ -24,6 +22,7 @@ import {
   fromWire,
   queryValue,
   sdkDecode,
+  SdkPage,
   sdkRequest,
   toWire,
 } from "../../client";
@@ -38,25 +37,7 @@ export interface ListVectorStoresParams {
   before?: string;
 }
 
-/**
- * Lists vector stores, which are collections of processed files that you can use with the `file_search` tool. Use the cursor parameters to move forward or backward through the results, and set `order` to control sorting by creation time.
- *
- * Returns a list of vector stores.
- *
- * @param limit - A limit on the number of objects to be returned. Limit can
- *   range between 1 and 100, and the default is 20.
- * @param order - Sort order by the `created_at` timestamp of the objects. `asc`
- *   for ascending order and `desc` for descending order.
- * @param after - A cursor for use in pagination. `after` is an object ID that
- *   defines your place in the list. For instance, if you make a list request and
- *   receive 100 objects, ending with obj_foo, your subsequent call can include
- *   after=obj_foo in order to fetch the next page of the list.
- * @param before - A cursor for use in pagination. `before` is an object ID that
- *   defines your place in the list. For instance, if you make a list request and
- *   receive 100 objects, starting with obj_foo, your subsequent call can include
- *   before=obj_foo in order to fetch the previous page of the list.
- */
-export async function listVectorStores(
+async function _listVectorStores(
   config: ClientConfig,
   { limit, order, after, before }: ListVectorStoresParams = {},
   requestOptions?: RequestOptions,
@@ -84,6 +65,61 @@ export async function listVectorStores(
         "ListVectorStoresResponse",
       ) as ListVectorStoresResponse,
   );
+}
+
+/**
+ * Lists vector stores, which are collections of processed files that you can use with the `file_search` tool. Use the cursor parameters to move forward or backward through the results, and set `order` to control sorting by creation time.
+ *
+ * Returns a list of vector stores.
+ *
+ * @param limit - A limit on the number of objects to be returned. Limit can
+ *   range between 1 and 100, and the default is 20.
+ * @param order - Sort order by the `created_at` timestamp of the objects. `asc`
+ *   for ascending order and `desc` for descending order.
+ * @param after - A cursor for use in pagination. `after` is an object ID that
+ *   defines your place in the list. For instance, if you make a list request and
+ *   receive 100 objects, ending with obj_foo, your subsequent call can include
+ *   after=obj_foo in order to fetch the next page of the list.
+ * @param before - A cursor for use in pagination. `before` is an object ID that
+ *   defines your place in the list. For instance, if you make a list request and
+ *   receive 100 objects, starting with obj_foo, your subsequent call can include
+ *   before=obj_foo in order to fetch the previous page of the list.
+ */
+export async function* listVectorStores(
+  config: ClientConfig,
+  params: ListVectorStoresParams = {},
+  requestOptions?: RequestOptions,
+): AsyncGenerator<VectorStoreObject> {
+  let _cursor = params.after;
+  while (true) {
+    const _page = await _listVectorStores(config, { ...params, after: _cursor }, requestOptions);
+    const _items = _page.data ?? [];
+    if (_items.length === 0) break;
+    for (const item of _items) yield item;
+    if (!_page.hasMore) break;
+
+    const _next = _page.lastId;
+    if (_next == null || _next === _cursor) break;
+    _cursor = _next;
+  }
+}
+
+export async function* listVectorStoresPages(
+  config: ClientConfig,
+  params: ListVectorStoresParams = {},
+  requestOptions?: RequestOptions,
+): AsyncGenerator<SdkPage<ListVectorStoresResponse, VectorStoreObject>> {
+  let _cursor = params.after;
+  while (true) {
+    const _page = await _listVectorStores(config, { ...params, after: _cursor }, requestOptions);
+    const _items = _page.data ?? [];
+    if (_items.length === 0) break;
+    const _next = _page.lastId;
+    const _hasMore = !(!_page.hasMore || _next == null || _next === _cursor);
+    yield new SdkPage(_page, _items, _hasMore);
+    if (!_hasMore || _next == null) break;
+    _cursor = _next;
+  }
 }
 
 export type CreateVectorStoreError = ErrorResponse;
@@ -455,29 +491,7 @@ export interface ListFilesInVectorStoreBatchParams {
   filter?: "in_progress" | "completed" | "failed" | "cancelled" | (string & {});
 }
 
-/**
- * Lists the files in a vector store file batch. Use `filter` to limit results by processing status and the cursor parameters to navigate through the batch's files.
- *
- * Returns a list of vector store files in a batch.
- *
- * @param vectorStoreId - The ID of the vector store that the files belong to.
- * @param batchId - The ID of the file batch that the files belong to.
- * @param limit - A limit on the number of objects to be returned. Limit can
- *   range between 1 and 100, and the default is 20.
- * @param order - Sort order by the `created_at` timestamp of the objects. `asc`
- *   for ascending order and `desc` for descending order.
- * @param after - A cursor for use in pagination. `after` is an object ID that
- *   defines your place in the list. For instance, if you make a list request and
- *   receive 100 objects, ending with obj_foo, your subsequent call can include
- *   after=obj_foo in order to fetch the next page of the list.
- * @param before - A cursor for use in pagination. `before` is an object ID that
- *   defines your place in the list. For instance, if you make a list request and
- *   receive 100 objects, starting with obj_foo, your subsequent call can include
- *   before=obj_foo in order to fetch the previous page of the list.
- * @param filter - Filter by file status. One of `in_progress`, `completed`,
- *   `failed`, `cancelled`.
- */
-export async function listFilesInVectorStoreBatch(
+async function _listFilesInVectorStoreBatch(
   config: ClientConfig,
   {
     vectorStoreId,
@@ -516,23 +530,13 @@ export async function listFilesInVectorStoreBatch(
   );
 }
 
-export type ListVectorStoreFilesError = ErrorResponse;
-
-export interface ListVectorStoreFilesParams {
-  vectorStoreId: string;
-  limit?: number;
-  order?: "asc" | "desc" | (string & {});
-  after?: string;
-  before?: string;
-  filter?: "in_progress" | "completed" | "failed" | "cancelled" | (string & {});
-}
-
 /**
- * Lists files attached to a vector store, with pagination and an optional status filter. Use `after` or `before` to navigate the list, and `filter` to select files by processing status.
+ * Lists the files in a vector store file batch. Use `filter` to limit results by processing status and the cursor parameters to navigate through the batch's files.
  *
- * Returns a list of vector store files.
+ * Returns a list of vector store files in a batch.
  *
  * @param vectorStoreId - The ID of the vector store that the files belong to.
+ * @param batchId - The ID of the file batch that the files belong to.
  * @param limit - A limit on the number of objects to be returned. Limit can
  *   range between 1 and 100, and the default is 20.
  * @param order - Sort order by the `created_at` timestamp of the objects. `asc`
@@ -548,7 +552,63 @@ export interface ListVectorStoreFilesParams {
  * @param filter - Filter by file status. One of `in_progress`, `completed`,
  *   `failed`, `cancelled`.
  */
-export async function listVectorStoreFiles(
+export async function* listFilesInVectorStoreBatch(
+  config: ClientConfig,
+  params: ListFilesInVectorStoreBatchParams,
+  requestOptions?: RequestOptions,
+): AsyncGenerator<VectorStoreFileObject> {
+  let _cursor = params.after;
+  while (true) {
+    const _page = await _listFilesInVectorStoreBatch(
+      config,
+      { ...params, after: _cursor },
+      requestOptions,
+    );
+    const _items = _page.data ?? [];
+    if (_items.length === 0) break;
+    for (const item of _items) yield item;
+    if (!_page.hasMore) break;
+
+    const _next = _page.lastId;
+    if (_next == null || _next === _cursor) break;
+    _cursor = _next;
+  }
+}
+
+export async function* listFilesInVectorStoreBatchPages(
+  config: ClientConfig,
+  params: ListFilesInVectorStoreBatchParams,
+  requestOptions?: RequestOptions,
+): AsyncGenerator<SdkPage<ListVectorStoreFilesResponse, VectorStoreFileObject>> {
+  let _cursor = params.after;
+  while (true) {
+    const _page = await _listFilesInVectorStoreBatch(
+      config,
+      { ...params, after: _cursor },
+      requestOptions,
+    );
+    const _items = _page.data ?? [];
+    if (_items.length === 0) break;
+    const _next = _page.lastId;
+    const _hasMore = !(!_page.hasMore || _next == null || _next === _cursor);
+    yield new SdkPage(_page, _items, _hasMore);
+    if (!_hasMore || _next == null) break;
+    _cursor = _next;
+  }
+}
+
+export type ListVectorStoreFilesError = ErrorResponse;
+
+export interface ListVectorStoreFilesParams {
+  vectorStoreId: string;
+  limit?: number;
+  order?: "asc" | "desc" | (string & {});
+  after?: string;
+  before?: string;
+  filter?: "in_progress" | "completed" | "failed" | "cancelled" | (string & {});
+}
+
+async function _listVectorStoreFiles(
   config: ClientConfig,
   { vectorStoreId, limit, order, after, before, filter }: ListVectorStoreFilesParams,
   requestOptions?: RequestOptions,
@@ -577,6 +637,72 @@ export async function listVectorStoreFiles(
         "ListVectorStoreFilesResponse",
       ) as ListVectorStoreFilesResponse,
   );
+}
+
+/**
+ * Lists files attached to a vector store, with pagination and an optional status filter. Use `after` or `before` to navigate the list, and `filter` to select files by processing status.
+ *
+ * Returns a list of vector store files.
+ *
+ * @param vectorStoreId - The ID of the vector store that the files belong to.
+ * @param limit - A limit on the number of objects to be returned. Limit can
+ *   range between 1 and 100, and the default is 20.
+ * @param order - Sort order by the `created_at` timestamp of the objects. `asc`
+ *   for ascending order and `desc` for descending order.
+ * @param after - A cursor for use in pagination. `after` is an object ID that
+ *   defines your place in the list. For instance, if you make a list request and
+ *   receive 100 objects, ending with obj_foo, your subsequent call can include
+ *   after=obj_foo in order to fetch the next page of the list.
+ * @param before - A cursor for use in pagination. `before` is an object ID that
+ *   defines your place in the list. For instance, if you make a list request and
+ *   receive 100 objects, starting with obj_foo, your subsequent call can include
+ *   before=obj_foo in order to fetch the previous page of the list.
+ * @param filter - Filter by file status. One of `in_progress`, `completed`,
+ *   `failed`, `cancelled`.
+ */
+export async function* listVectorStoreFiles(
+  config: ClientConfig,
+  params: ListVectorStoreFilesParams,
+  requestOptions?: RequestOptions,
+): AsyncGenerator<VectorStoreFileObject> {
+  let _cursor = params.after;
+  while (true) {
+    const _page = await _listVectorStoreFiles(
+      config,
+      { ...params, after: _cursor },
+      requestOptions,
+    );
+    const _items = _page.data ?? [];
+    if (_items.length === 0) break;
+    for (const item of _items) yield item;
+    if (!_page.hasMore) break;
+
+    const _next = _page.lastId;
+    if (_next == null || _next === _cursor) break;
+    _cursor = _next;
+  }
+}
+
+export async function* listVectorStoreFilesPages(
+  config: ClientConfig,
+  params: ListVectorStoreFilesParams,
+  requestOptions?: RequestOptions,
+): AsyncGenerator<SdkPage<ListVectorStoreFilesResponse, VectorStoreFileObject>> {
+  let _cursor = params.after;
+  while (true) {
+    const _page = await _listVectorStoreFiles(
+      config,
+      { ...params, after: _cursor },
+      requestOptions,
+    );
+    const _items = _page.data ?? [];
+    if (_items.length === 0) break;
+    const _next = _page.lastId;
+    const _hasMore = !(!_page.hasMore || _next == null || _next === _cursor);
+    yield new SdkPage(_page, _items, _hasMore);
+    if (!_hasMore || _next == null) break;
+    _cursor = _next;
+  }
 }
 
 export type CreateVectorStoreFileError = ErrorResponse;
@@ -717,102 +843,5 @@ export async function deleteVectorStoreFile(
   });
   return sdkDecode(_resp, () =>
     decodeResponseEnums(_resp.data, { ref: "DeleteVectorStoreFileResponse" }),
-  );
-}
-
-export type UpdateVectorStoreFileAttributesError = ErrorResponse;
-
-export type UpdateVectorStoreFileAttributesParams = UpdateVectorStoreFileAttributesRequest & {
-  vectorStoreId: string;
-  fileId: string;
-};
-
-/**
- * Updates the attributes attached to a file in a vector store. Supply `attributes` to replace the file's attribute set, or use `null` to clear it.
- *
- * Update attributes on a vector store file.
- *
- * @param vectorStoreId - The ID of the vector store the file belongs to.
- * @param fileId - The ID of the file to update attributes.
- * @param attributes - Set of 16 key-value pairs that can be attached to an
- *   object. This can be useful for storing additional information about the object
- *   in a structured format, and querying for objects via API or the dashboard.
- *   Keys are strings with a maximum length of 64 characters. Values are strings
- *   with a maximum length of 512 characters, booleans, or numbers.
- */
-export async function updateVectorStoreFileAttributes(
-  config: ClientConfig,
-  { vectorStoreId, fileId, attributes }: UpdateVectorStoreFileAttributesParams,
-  requestOptions?: RequestOptions,
-): Promise<VectorStoreFileObject> {
-  const _resp = await sdkRequest<VectorStoreFileObject>({
-    method: "POST",
-    path: `/vector_stores/${encodePathSegment(vectorStoreId)}/files/${encodePathSegment(fileId)}`,
-    operationId: "updateVectorStoreFileAttributes",
-    errors: {
-      "400": "ErrorResponse",
-      "404": "ErrorResponse",
-      "409": "ErrorResponse",
-      "429": "ErrorResponse",
-      "500": "ErrorResponse",
-    },
-    responseDecoder: "json",
-    ...requestOptions,
-    body: {
-      attributes,
-    },
-    config,
-  });
-  return sdkDecode(
-    _resp,
-    () =>
-      fromWire(
-        decodeResponseEnums(_resp.data, { ref: "VectorStoreFileObject" }),
-        "VectorStoreFileObject",
-      ) as VectorStoreFileObject,
-  );
-}
-
-export type RetrieveVectorStoreFileContentError = ErrorResponse;
-
-export interface RetrieveVectorStoreFileContentParams {
-  vectorStoreId: string;
-  fileId: string;
-}
-
-/**
- * Retrieves parsed content from a file attached to a vector store. Use `vector_store_id` and `file_id` to identify the file, then follow `next_page` when `has_more` indicates that additional content pages are available.
- *
- * Retrieve the parsed contents of a vector store file.
- *
- * @param vectorStoreId - The ID of the vector store.
- * @param fileId - The ID of the file within the vector store.
- */
-export async function retrieveVectorStoreFileContent(
-  config: ClientConfig,
-  { vectorStoreId, fileId }: RetrieveVectorStoreFileContentParams,
-  requestOptions?: RequestOptions,
-): Promise<VectorStoreFileContentResponse> {
-  const _resp = await sdkRequest<VectorStoreFileContentResponse>({
-    method: "GET",
-    path: `/vector_stores/${encodePathSegment(vectorStoreId)}/files/${encodePathSegment(fileId)}/content`,
-    operationId: "retrieveVectorStoreFileContent",
-    errors: {
-      "400": "ErrorResponse",
-      "404": "ErrorResponse",
-      "429": "ErrorResponse",
-      "500": "ErrorResponse",
-    },
-    responseDecoder: "json",
-    ...requestOptions,
-    config,
-  });
-  return sdkDecode(
-    _resp,
-    () =>
-      fromWire(
-        decodeResponseEnums(_resp.data, { ref: "VectorStoreFileContentResponse" }),
-        "VectorStoreFileContentResponse",
-      ) as VectorStoreFileContentResponse,
   );
 }

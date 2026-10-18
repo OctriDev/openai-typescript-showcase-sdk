@@ -4,6 +4,21 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart5: Record<string, WireSchema> = {
+  ProjectRateLimitUpdateRequest: {
+    maxRequestsPer1Minute: { wire: "max_requests_per_1_minute" },
+    maxTokensPer1Minute: { wire: "max_tokens_per_1_minute" },
+    maxImagesPer1Minute: { wire: "max_images_per_1_minute" },
+    maxAudioMegabytesPer1Minute: { wire: "max_audio_megabytes_per_1_minute" },
+    maxRequestsPer1Day: { wire: "max_requests_per_1_day" },
+    batch1DayMaxInputTokens: { wire: "batch_1_day_max_input_tokens" },
+  },
+  ProjectServiceAccount: {
+    object: { wire: "object" },
+    id: { wire: "id" },
+    name: { wire: "name" },
+    role: { wire: "role" },
+    createdAt: { wire: "created_at" },
+  },
   ProjectServiceAccountApiKey: {
     object: { wire: "object" },
     value: { wire: "value" },
@@ -356,23 +371,5 @@ export const wireSchemasPart5: Record<string, WireSchema> = {
     outputIndex: { wire: "output_index" },
     contentIndex: { wire: "content_index" },
     delta: { wire: "delta" },
-  },
-  RealtimeBetaServerEventResponseAudioTranscriptDone: {
-    eventId: { wire: "event_id" },
-    ["type"]: { wire: "type" },
-    responseId: { wire: "response_id" },
-    itemId: { wire: "item_id" },
-    outputIndex: { wire: "output_index" },
-    contentIndex: { wire: "content_index" },
-    transcript: { wire: "transcript" },
-  },
-  RealtimeBetaServerEventResponseContentPartAdded: {
-    eventId: { wire: "event_id" },
-    ["type"]: { wire: "type" },
-    responseId: { wire: "response_id" },
-    itemId: { wire: "item_id" },
-    outputIndex: { wire: "output_index" },
-    contentIndex: { wire: "content_index" },
-    part: { wire: "part" },
   },
 };

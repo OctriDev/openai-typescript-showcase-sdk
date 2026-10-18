@@ -7,6 +7,13 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart004: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "ProjectSpendAlert",
+    parseRuntimeSchema(
+      '{"type":"object","required":["id","object","thresholdAmount","currency","interval","notificationChannel"],"properties":{"id":{"type":"string"},"object":{"type":"string"},"thresholdAmount":{"type":"integer"},"currency":{"type":"string"},"interval":{"type":"string"},"notificationChannel":{"ref":"SpendAlertNotificationChannel"}}}',
+    ),
+  ],
+
+  [
     "ProjectSpendAlertDeletedResource",
     parseRuntimeSchema(
       '{"type":"object","required":["id","object","deleted"],"properties":{"id":{"type":"string"},"object":{"type":"string"},"deleted":{"type":"boolean"}}}',
@@ -450,7 +457,7 @@ export const modelSchemasPart004: readonly (readonly [string, RuntimeSchema])[] 
   [
     "RealtimeCallCreateRequest",
     parseRuntimeSchema(
-      '{"type":"object","required":["sdp"],"properties":{"sdp":{"type":"string"},"session":{"allOf":[{"ref":"RealtimeSessionCreateRequestGA"}]}}}',
+      '{"type":"object","required":["sdp"],"properties":{"sdp":{"type":"string"},"session":{"ref":"RealtimeSessionCreateRequestGA"}}}',
     ),
   ],
 
@@ -696,13 +703,6 @@ export const modelSchemasPart004: readonly (readonly [string, RuntimeSchema])[] 
     "RealtimeServerEventConversationItemInputAudioTranscriptionCompleted",
     parseRuntimeSchema(
       '{"type":"object","required":["eventId","type","itemId","contentIndex","transcript","usage"],"properties":{"eventId":{"type":"string"},"type":{"type":"string","enum":["conversation.item.input_audio_transcription.completed"]},"itemId":{"type":"string"},"contentIndex":{"type":"integer"},"transcript":{"type":"string"},"languages":{"type":"array","items":{"ref":"TranscriptionLanguage"}},"logprobs":{"type":"array","nullable":true,"items":{"ref":"LogProbProperties"}},"usage":{"ref":"RealtimeServerEventConversationItemInputAudioTranscriptionCompletedUsage"}}}',
-    ),
-  ],
-
-  [
-    "RealtimeServerEventConversationItemInputAudioTranscriptionDelta",
-    parseRuntimeSchema(
-      '{"type":"object","required":["eventId","type","itemId"],"properties":{"eventId":{"type":"string"},"type":{"type":"string","enum":["conversation.item.input_audio_transcription.delta"]},"itemId":{"type":"string"},"contentIndex":{"type":"integer"},"delta":{"type":"string"},"logprobs":{"type":"array","nullable":true,"items":{"ref":"LogProbProperties"}}}}',
     ),
   ],
 ];

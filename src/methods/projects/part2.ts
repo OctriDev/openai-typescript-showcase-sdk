@@ -2,7 +2,7 @@
 // This file is machine-generated from your OpenAPI spec.
 
 import { ErrorResponse } from "../../types/shared-error";
-import { PermissionErrorResponse } from "../../types/shared";
+import { PermissionErrorResponse } from "../../types/shared-permission";
 import {
   ProjectServiceAccount,
   ProjectServiceAccountCreateRequest,

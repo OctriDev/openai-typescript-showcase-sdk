@@ -51,7 +51,7 @@ export const modelSchemasPart003: readonly (readonly [string, RuntimeSchema])[] 
   [
     "ListMessagesResponse",
     parseRuntimeSchema(
-      '{"required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"MessageObject"}},"firstId":{"type":"string"},"lastId":{"type":"string"},"hasMore":{"type":"boolean"}}}',
+      '{"type":"object","required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"MessageObject"}},"firstId":{"type":"string"},"lastId":{"type":"string"},"hasMore":{"type":"boolean"}}}',
     ),
   ],
 
@@ -79,7 +79,7 @@ export const modelSchemasPart003: readonly (readonly [string, RuntimeSchema])[] 
   [
     "ListRunStepsResponse",
     parseRuntimeSchema(
-      '{"required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"RunStepObject"}},"firstId":{"type":"string"},"lastId":{"type":"string"},"hasMore":{"type":"boolean"}}}',
+      '{"type":"object","required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"RunStepObject"}},"firstId":{"type":"string"},"lastId":{"type":"string"},"hasMore":{"type":"boolean"}}}',
     ),
   ],
 
@@ -93,14 +93,14 @@ export const modelSchemasPart003: readonly (readonly [string, RuntimeSchema])[] 
   [
     "ListVectorStoreFilesResponse",
     parseRuntimeSchema(
-      '{"required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"VectorStoreFileObject"}},"firstId":{"type":"string"},"lastId":{"type":"string"},"hasMore":{"type":"boolean"}}}',
+      '{"type":"object","required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"VectorStoreFileObject"}},"firstId":{"type":"string"},"lastId":{"type":"string"},"hasMore":{"type":"boolean"}}}',
     ),
   ],
 
   [
     "ListVectorStoresResponse",
     parseRuntimeSchema(
-      '{"required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"VectorStoreObject"}},"firstId":{"type":"string"},"lastId":{"type":"string"},"hasMore":{"type":"boolean"}}}',
+      '{"type":"object","required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"VectorStoreObject"}},"firstId":{"type":"string"},"lastId":{"type":"string"},"hasMore":{"type":"boolean"}}}',
     ),
   ],
 
@@ -282,7 +282,7 @@ export const modelSchemasPart003: readonly (readonly [string, RuntimeSchema])[] 
   [
     "MCPTool",
     parseRuntimeSchema(
-      '{"type":"object","required":["type","serverLabel"],"properties":{"type":{"type":"string","enum":["mcp"]},"serverLabel":{"type":"string"},"serverUrl":{"type":"string","format":"uri"},"connectorId":{"type":"string"},"tunnelId":{"type":"string","pattern":"^tunnel_[a-z0-9]{32}$"},"authorization":{"type":"string"},"serverDescription":{"type":"string"},"headers":{"type":"object","nullable":true,"additionalProperties":{"type":"string"}},"allowedTools":{"nullable":true,"oneOf":[{"type":"array","items":{"type":"string"}},{"ref":"MCPToolFilter"}]},"allowedCallers":{"type":"array","nullable":true,"minItems":1,"items":{"ref":"CallableToolAllowedCaller"}},"requireApproval":{"nullable":true,"oneOf":[{"type":"object","properties":{"always":{"ref":"MCPToolFilter"},"never":{"ref":"MCPToolFilter"}}},{"type":"string"}]},"deferLoading":{"type":"boolean"}}}',
+      '{"type":"object","required":["type","serverLabel"],"properties":{"type":{"type":"string","enum":["mcp"]},"serverLabel":{"type":"string"},"serverUrl":{"type":"string","format":"uri"},"connectorId":{"type":"string"},"tunnelId":{"type":"string","pattern":"^tunnel_[a-z0-9]{32}$"},"authorization":{"type":"string"},"serverDescription":{"type":"string"},"headers":{"type":"object","nullable":true,"additionalProperties":{"type":"string"}},"allowedTools":{"nullable":true,"oneOf":[{"type":"array","items":{"type":"string"}},{"ref":"MCPToolFilter"}]},"allowedCallers":{"type":"array","nullable":true,"minItems":1,"items":{"ref":"CallableToolAllowedCaller"}},"requireApproval":{"ref":"MCPToolRequireApproval"},"deferLoading":{"type":"boolean"}}}',
     ),
   ],
 
@@ -401,9 +401,11 @@ export const modelSchemasPart003: readonly (readonly [string, RuntimeSchema])[] 
   [
     "Model",
     parseRuntimeSchema(
-      '{"required":["id","object","created","ownedBy"],"properties":{"id":{"type":"string"},"created":{"type":"integer"},"object":{"type":"string"},"ownedBy":{"type":"string"},"shutdownDate":{"anyOf":[{"type":"string","format":"date"},{"type":"null"}]}}}',
+      '{"type":"object","required":["id","object","created","ownedBy"],"properties":{"id":{"type":"string"},"created":{"type":"integer"},"object":{"type":"string"},"ownedBy":{"type":"string"},"shutdownDate":{"anyOf":[{"type":"string","format":"date"},{"type":"null"}]}}}',
     ),
   ],
+
+  ["ModelIdsLive", parseRuntimeSchema('{"type":"string","minLength":1}')],
 
   [
     "ModifyAssistantRequest",
@@ -422,7 +424,7 @@ export const modelSchemasPart003: readonly (readonly [string, RuntimeSchema])[] 
   [
     "OpenAIFile",
     parseRuntimeSchema(
-      '{"required":["id","object","bytes","createdAt","filename","purpose","status"],"properties":{"id":{"type":"string"},"bytes":{"type":["integer","null"]},"createdAt":{"type":"integer"},"expiresAt":{"type":"integer"},"filename":{"type":"string"},"object":{"type":"string"},"purpose":{"type":"string"},"status":{"type":"string"},"statusDetails":{"type":"string"}}}',
+      '{"type":"object","required":["id","object","bytes","createdAt","filename","purpose","status"],"properties":{"id":{"type":"string"},"bytes":{"type":["integer","null"]},"createdAt":{"type":"integer"},"expiresAt":{"type":"integer"},"filename":{"type":"string"},"object":{"type":"string"},"purpose":{"type":"string"},"status":{"type":"string"},"statusDetails":{"type":"string"}}}',
     ),
   ],
 
@@ -520,7 +522,7 @@ export const modelSchemasPart003: readonly (readonly [string, RuntimeSchema])[] 
   [
     "PermissionErrorResponse",
     parseRuntimeSchema(
-      '{"type":"object","required":["error"],"properties":{"error":{"anyOf":[{"ref":"Error3"},{"type":"string"}]}}}',
+      '{"type":"object","required":["error"],"properties":{"error":{"ref":"PermissionErrorResponseError"}}}',
     ),
   ],
 
@@ -696,13 +698,6 @@ export const modelSchemasPart003: readonly (readonly [string, RuntimeSchema])[] 
     "ProjectServiceAccountListResponse",
     parseRuntimeSchema(
       '{"type":"object","required":["object","data","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"ProjectServiceAccount"}},"firstId":{"type":"string","nullable":true},"lastId":{"type":"string","nullable":true},"hasMore":{"type":"boolean"}}}',
-    ),
-  ],
-
-  [
-    "ProjectSpendAlert",
-    parseRuntimeSchema(
-      '{"type":"object","required":["id","object","thresholdAmount","currency","interval","notificationChannel"],"properties":{"id":{"type":"string"},"object":{"type":"string"},"thresholdAmount":{"type":"integer"},"currency":{"type":"string"},"interval":{"type":"string"},"notificationChannel":{"ref":"SpendAlertNotificationChannel"}}}',
     ),
   ],
 ];

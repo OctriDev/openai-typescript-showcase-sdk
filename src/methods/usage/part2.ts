@@ -3,7 +3,7 @@
 
 import { UsageResponse, UsageTimeBucket } from "../../types/usage";
 import { ErrorResponse } from "../../types/shared-error";
-import { PermissionErrorResponse } from "../../types/shared";
+import { PermissionErrorResponse } from "../../types/shared-permission";
 import {
   DecisionsUsageBucket,
   DecisionsUsageBucketWidth,

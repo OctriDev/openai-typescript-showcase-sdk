@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart011: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "EnvironmentPackagesParam",
+    parseRuntimeSchema(
+      '{"type":"object","properties":{"python":{"type":["array","null"],"minItems":0,"maxItems":16384,"items":{"type":"string","minLength":0,"maxLength":1048576}},"system":{"type":["array","null"],"minItems":0,"maxItems":16384,"items":{"type":"string","minLength":0,"maxLength":1048576}},"npm":{"type":["array","null"],"minItems":0,"maxItems":16384,"items":{"type":"string","minLength":0,"maxLength":1048576}}}}',
+    ),
+  ],
+
+  [
+    "SetupCommandParam",
+    parseRuntimeSchema(
+      '{"type":"object","required":["command"],"properties":{"command":{"type":"string","minLength":0,"maxLength":65536},"cwd":{"type":["string","null"],"minLength":0,"maxLength":4096}}}',
+    ),
+  ],
+
+  [
     "NetworkPolicyParam",
     parseRuntimeSchema(
       '{"type":"object","required":["access"],"properties":{"access":{"ref":"NetworkAccessParam"},"allowedDomains":{"type":["array","null"],"minItems":0,"maxItems":16384,"items":{"type":"string","minLength":0,"maxLength":1048576}},"blockedDomains":{"type":["array","null"],"minItems":0,"maxItems":100,"items":{"type":"string","minLength":0,"maxLength":1048576}}}}',
@@ -191,7 +205,7 @@ export const modelSchemasPart011: readonly (readonly [string, RuntimeSchema])[] 
   [
     "McpCallItemResource",
     parseRuntimeSchema(
-      '{"type":"object","required":["type","id","turnId","serverLabel","name","arguments","status","output","error"],"properties":{"type":{"type":"string","enum":["mcp_call"]},"id":{"type":"string","minLength":0},"turnId":{"type":"string","minLength":0},"serverLabel":{"type":"string","minLength":0},"name":{"type":"string","minLength":0},"arguments":{},"status":{"ref":"FunctionCallStatusResource"},"output":{"anyOf":[{},{"type":"null"}]},"error":{"anyOf":[{},{"type":"null"}]}}}',
+      '{"type":"object","required":["type","id","turnId","serverLabel","name","arguments","status","output","error"],"properties":{"type":{"type":"string","enum":["mcp_call"]},"id":{"type":"string","minLength":0},"turnId":{"type":"string","minLength":0},"serverLabel":{"type":"string","minLength":0},"name":{"type":"string","minLength":0},"arguments":{},"status":{"ref":"FunctionCallStatusResource"},"output":{"nullable":true,"anyOf":[{},{"type":"null"}]},"error":{"nullable":true,"anyOf":[{},{"type":"null"}]}}}',
     ),
   ],
 
@@ -689,20 +703,6 @@ export const modelSchemasPart011: readonly (readonly [string, RuntimeSchema])[] 
     "DeletedEnvironmentTemplateResource",
     parseRuntimeSchema(
       '{"type":"object","required":["id","object","deleted"],"properties":{"id":{"type":"string","minLength":0},"object":{"type":"string"},"deleted":{"type":"boolean"}}}',
-    ),
-  ],
-
-  [
-    "SessionSpendControlResource",
-    parseRuntimeSchema(
-      '{"type":"object","required":["limit","consumed"],"properties":{"limit":{"type":"integer","minimum":1,"maximum":4503599627370495},"consumed":{"type":["integer","null"],"minimum":0}}}',
-    ),
-  ],
-
-  [
-    "ComputerUseApprovalRequestKindResourceBrowserAuthentication",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type","reason","credentialOrigin","fields","options"],"properties":{"type":{"type":"string","enum":["browser_authentication"]},"reason":{"type":["string","null"],"minLength":0},"credentialOrigin":{"type":["string","null"],"minLength":0},"fields":{"type":"array","minItems":0,"maxItems":2000,"items":{"ref":"BrowserAuthenticationFieldResource"}},"options":{"type":"array","minItems":0,"maxItems":2000,"items":{"ref":"BrowserAuthenticationOptionResource"}}}}',
     ),
   ],
 ];

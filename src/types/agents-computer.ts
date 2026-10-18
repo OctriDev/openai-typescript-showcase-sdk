@@ -185,7 +185,7 @@ export interface ComputerUseApprovalResponseParamBrowserAuthenticationCancelPara
   /**
    * Required enumerated value serialized in the `type` wire field.
    */
-  type: "browser_authentication" | (string & {});
+  type: "browser_authentication";
   /**
    * Required enumerated value serialized in the `action` wire field.
    */
@@ -199,7 +199,7 @@ export interface ComputerUseApprovalResponseParamBrowserAuthenticationSubmitPara
   /**
    * Required enumerated value serialized in the `type` wire field.
    */
-  type: "browser_authentication" | (string & {});
+  type: "browser_authentication";
   /**
    * Required enumerated value serialized in the `action` wire field.
    */

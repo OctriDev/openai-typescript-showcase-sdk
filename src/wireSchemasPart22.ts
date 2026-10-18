@@ -4,6 +4,24 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart22: Record<string, WireSchema> = {
+  BetaResponseReasoningTextDeltaEvent: {
+    agent: { wire: "agent", type: "BetaAgentTag" },
+    ["type"]: { wire: "type" },
+    itemId: { wire: "item_id" },
+    outputIndex: { wire: "output_index" },
+    contentIndex: { wire: "content_index" },
+    delta: { wire: "delta" },
+    sequenceNumber: { wire: "sequence_number" },
+  },
+  BetaResponseReasoningSummaryTextDoneEvent: {
+    agent: { wire: "agent", type: "BetaAgentTag" },
+    ["type"]: { wire: "type" },
+    itemId: { wire: "item_id" },
+    outputIndex: { wire: "output_index" },
+    summaryIndex: { wire: "summary_index" },
+    text: { wire: "text" },
+    sequenceNumber: { wire: "sequence_number" },
+  },
   BetaResponseReasoningSummaryTextDeltaEvent: {
     agent: { wire: "agent", type: "BetaAgentTag" },
     ["type"]: { wire: "type" },
@@ -367,17 +385,6 @@ export const wireSchemasPart22: Record<string, WireSchema> = {
     ["type"]: { wire: "type" },
     responseId: { wire: "response_id" },
     sequenceNumber: { wire: "sequence_number" },
-    streamId: { wire: "stream_id" },
-  },
-  BetaResponseWsError: {
-    agent: { wire: "agent", type: "BetaAgentTag" },
-    ["type"]: { wire: "type" },
-    status: { wire: "status" },
-    sequenceNumber: { wire: "sequence_number" },
-    error: { wire: "error", type: "BetaErrorPayload" },
-    streamId: { wire: "stream_id" },
-  },
-  BetaResponsesWebSocketStreamEvent: {
     streamId: { wire: "stream_id" },
   },
 };

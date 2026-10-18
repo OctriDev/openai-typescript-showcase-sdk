@@ -82,21 +82,7 @@ export interface MCPTool {
   /**
    * Specify which of the MCP server's tools require approval.
    */
-  requireApproval?:
-    | {
-        /**
-         * A filter object to specify which tools are allowed.
-         */
-        always?: MCPToolFilter;
-        /**
-         * A filter object to specify which tools are allowed.
-         */
-        never?: MCPToolFilter;
-      }
-    | "always"
-    | "never"
-    | (string & {})
-    | null;
+  requireApproval?: MCPToolRequireApproval | null;
   /**
    * Whether this MCP tool is deferred and discovered via tool search.
    */
@@ -196,3 +182,19 @@ export interface MCPToolFilter {
    */
   readOnly?: boolean;
 }
+
+export type MCPToolRequireApproval =
+  | {
+      /**
+       * A filter object to specify which tools are allowed.
+       */
+      always?: MCPToolFilter;
+      /**
+       * A filter object to specify which tools are allowed.
+       */
+      never?: MCPToolFilter;
+    }
+  | "always"
+  | "never"
+  | (string & {})
+  | null;

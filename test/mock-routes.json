@@ -18137,7 +18137,9 @@
                 "prompt": "prompt",
                 "delay": "minimal"
               },
-              "noise_reduction": null,
+              "noise_reduction": {
+                "type": "near_field"
+              },
               "turn_detection": {
                 "type": "server_vad",
                 "threshold": 1,
@@ -21420,7 +21422,7 @@
         "decoderKind": "sse",
         "example": {
           "enabled": false,
-          "event": "ThreadStreamEvent",
+          "event": "thread.created",
           "data": {
             "id": "id-1",
             "object": "thread",
@@ -28795,7 +28797,7 @@
           {
             "wireName": "input_audio_noise_reduction",
             "repeated": false,
-            "partKind": "scalar",
+            "partKind": "json",
             "contentType": null
           },
           {
@@ -28824,7 +28826,9 @@
             "prefix_padding_ms": 1,
             "silence_duration_ms": 1
           },
-          "input_audio_noise_reduction": null,
+          "input_audio_noise_reduction": {
+            "type": "near_field"
+          },
           "input_audio_format": "pcm16",
           "input_audio_transcription": {
             "model": "model",
@@ -31570,7 +31574,9 @@
                   "prompt": "prompt",
                   "delay": "minimal"
                 },
-                "noise_reduction": null,
+                "noise_reduction": {
+                  "type": "near_field"
+                },
                 "turn_detection": {
                   "type": "server_vad",
                   "threshold": 1,
@@ -40411,7 +40417,9 @@
                   "prompt": "prompt",
                   "delay": "minimal"
                 },
-                "noise_reduction": null,
+                "noise_reduction": {
+                  "type": "near_field"
+                },
                 "turn_detection": {
                   "type": "server_vad",
                   "threshold": 1,
@@ -41929,7 +41937,18 @@
                 "file_ids": []
               },
               "file_search": {
-                "vector_store_ids": ["vector_store_ids"]
+                "vector_store_ids": ["vector_store_ids"],
+                "vector_stores": [
+                  {
+                    "file_ids": ["file_ids"],
+                    "chunking_strategy": {
+                      "type": "auto"
+                    },
+                    "metadata": {
+                      "key": "key"
+                    }
+                  }
+                ]
               }
             },
             "metadata": {
@@ -42057,7 +42076,7 @@
         "decoderKind": "sse",
         "example": {
           "enabled": false,
-          "event": "ThreadStreamEvent",
+          "event": "thread.created",
           "data": {
             "id": "id-1",
             "object": "thread",
@@ -44630,7 +44649,7 @@
               "agent": {
                 "agent_name": "Example Name"
               },
-              "type": "BetaInputMessageResource",
+              "type": "message",
               "role": "user",
               "status": "in_progress",
               "content": [
@@ -45174,7 +45193,7 @@
           "object": "list",
           "data": [
             {
-              "type": "InputMessageResource",
+              "type": "message",
               "role": "user",
               "status": "in_progress",
               "content": [
@@ -46755,7 +46774,8 @@
               "type": "message"
             }
           ]
-        }
+        },
+        "expectsArray": false
       }
     ],
     "responseModes": [
@@ -56128,7 +56148,7 @@
         "decoderKind": "sse",
         "example": {
           "enabled": false,
-          "event": "ThreadStreamEvent",
+          "event": "thread.created",
           "data": {
             "id": "id-1",
             "object": "thread",
@@ -63131,7 +63151,18 @@
               "file_ids": []
             },
             "file_search": {
-              "vector_store_ids": ["vector_store_ids"]
+              "vector_store_ids": ["vector_store_ids"],
+              "vector_stores": [
+                {
+                  "file_ids": ["file_ids"],
+                  "chunking_strategy": {
+                    "type": "auto"
+                  },
+                  "metadata": {
+                    "key": "key"
+                  }
+                }
+              ]
             }
           },
           "metadata": {
@@ -65277,7 +65308,18 @@
               "file_ids": []
             },
             "file_search": {
-              "vector_store_ids": ["vector_store_ids"]
+              "vector_store_ids": ["vector_store_ids"],
+              "vector_stores": [
+                {
+                  "file_ids": ["file_ids"],
+                  "chunking_strategy": {
+                    "type": "auto"
+                  },
+                  "metadata": {
+                    "key": "key"
+                  }
+                }
+              ]
             }
           },
           "metadata": {

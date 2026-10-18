@@ -48,7 +48,7 @@ export interface BetaCodeInterpreterTool {
    * specifies uploaded file IDs to make available to your code, along with an
    * optional `memory_limit` setting.
    */
-  container: string | BetaAutoCodeInterpreterToolParam;
+  container: BetaCodeInterpreterToolContainer;
   /**
    * The tool invocation context(s).
    */
@@ -102,3 +102,5 @@ export type BetaCodeInterpreterToolCallOutputsItem =
   | BetaCodeInterpreterOutputLogs
   | BetaCodeInterpreterOutputImage
   | UnknownBetaCodeInterpreterToolCallOutputsItem;
+
+export type BetaCodeInterpreterToolContainer = string | BetaAutoCodeInterpreterToolParam;

@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart009: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "LiveImageGenerationToolInputParam",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["image_generation"]}}}',
+    ),
+  ],
+
+  [
+    "LiveMCPToolInputParam",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["mcp"]}}}',
+    ),
+  ],
+
+  [
     "LiveCustomToolInputParam",
     parseRuntimeSchema(
       '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["custom"]}}}',
@@ -142,7 +156,7 @@ export const modelSchemasPart009: readonly (readonly [string, RuntimeSchema])[] 
   [
     "LiveResponsesDelegationSettingsInputParam",
     parseRuntimeSchema(
-      '{"type":"object","required":["model"],"properties":{"model":{"type":"string"},"instructions":{"type":"string","nullable":true},"maxOutputTokens":{"anyOf":[{"type":"integer","minimum":16},{"type":"null"}]},"serviceTier":{"ref":"LiveResponsesServiceTier"},"reasoning":{"ref":"LiveDelegationReasoningInputParam"},"text":{"ref":"LiveDelegationTextInputParam"},"tools":{"type":"array","items":{"ref":"LiveResponsesDelegationSettingsInputParamToolsItem"}},"toolChoice":{"oneOf":[{"ref":"LiveToolChoiceEnum"},{"oneOf":[{"ref":"LiveFunctionToolChoiceParam"},{"ref":"LiveMCPToolChoiceParam"},{"ref":"LiveSpecificFileSearchParam"},{"ref":"LiveSpecificWebSearchParam"},{"ref":"LiveSpecificWebSearchPreviewParam"},{"ref":"LiveSpecificImageGenParam"},{"ref":"LiveSpecificComputerParam"},{"ref":"LiveSpecificCodeInterpreterParam"},{"ref":"LiveSpecificProgrammaticToolCallingParam"},{"ref":"LiveSpecificFunctionShellParam"},{"ref":"LiveSpecificCustomToolParam"},{"ref":"LiveSpecificApplyPatchParam"}]},{"ref":"LiveAllowedToolsChoiceParam"}]},"parallelToolCalls":{"type":"boolean","nullable":true}}}',
+      '{"type":"object","required":["model"],"properties":{"model":{"type":"string"},"instructions":{"type":"string","nullable":true},"maxOutputTokens":{"anyOf":[{"type":"integer","minimum":16},{"type":"null"}]},"serviceTier":{"ref":"LiveResponsesServiceTier"},"reasoning":{"ref":"LiveDelegationReasoningInputParam"},"text":{"ref":"LiveDelegationTextInputParam"},"tools":{"type":"array","items":{"ref":"LiveResponsesDelegationSettingsInputParamToolsItem"}},"toolChoice":{"ref":"LiveResponsesDelegationSettingsInputParamToolChoice"},"parallelToolCalls":{"type":"boolean","nullable":true}}}',
     ),
   ],
 
@@ -530,7 +544,7 @@ export const modelSchemasPart009: readonly (readonly [string, RuntimeSchema])[] 
   [
     "DecisionsUsagePermissionErrorResponse",
     parseRuntimeSchema(
-      '{"type":"object","required":["error"],"properties":{"error":{"oneOf":[{"ref":"DecisionsUsageErrorDetails"},{"type":"string"}]}}}',
+      '{"type":"object","required":["error"],"properties":{"error":{"ref":"DecisionsUsagePermissionErrorResponseError"}}}',
     ),
   ],
 
@@ -685,20 +699,6 @@ export const modelSchemasPart009: readonly (readonly [string, RuntimeSchema])[] 
     "VideoResource",
     parseRuntimeSchema(
       '{"type":"object","required":["id","object","model","status","progress","createdAt","completedAt","expiresAt","prompt","size","seconds","remixedFromVideoId","error"],"properties":{"id":{"type":"string"},"object":{"type":"string"},"model":{"ref":"VideoModel"},"status":{"ref":"VideoStatus"},"progress":{"type":"integer"},"createdAt":{"type":"integer"},"completedAt":{"anyOf":[{"type":"integer"},{"type":"null"}]},"expiresAt":{"anyOf":[{"type":"integer"},{"type":"null"}]},"prompt":{"type":"string","nullable":true},"size":{"ref":"VideoSize"},"seconds":{"type":"string"},"remixedFromVideoId":{"type":"string","nullable":true},"error":{"ref":"Error2"}}}',
-    ),
-  ],
-
-  [
-    "VideoListResource",
-    parseRuntimeSchema(
-      '{"type":"object","required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"VideoResource"}},"firstId":{"type":"string","nullable":true},"lastId":{"type":"string","nullable":true},"hasMore":{"type":"boolean"}}}',
-    ),
-  ],
-
-  [
-    "ImageRefParam2",
-    parseRuntimeSchema(
-      '{"type":"object","properties":{"imageUrl":{"type":"string","maxLength":20971520,"format":"uri"},"fileId":{"type":"string"}}}',
     ),
   ],
 ];

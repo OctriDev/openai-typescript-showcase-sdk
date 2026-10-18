@@ -4,6 +4,7 @@
 import { ListAssistantsResponse } from "../../types/assistants-list";
 import { AssistantObject, AssistantStreamEvent } from "../../types/assistants-assistant";
 import { ErrorResponse } from "../../types/shared-error";
+import { Metadata, ParallelToolCalls } from "../../types/shared";
 import {
   CreateAssistantRequest,
   CreateThreadAndRunRequest,
@@ -19,7 +20,6 @@ import {
   AssistantsApiToolChoiceOption,
 } from "../../types/assistants-assistants";
 import { RunObject } from "../../types/assistants-run";
-import { Metadata, ParallelToolCalls } from "../../types/shared";
 import { decodeResponseEnums } from "../../response-enum-validation";
 import type { ClientConfig, RequestOptions } from "../../client";
 import {

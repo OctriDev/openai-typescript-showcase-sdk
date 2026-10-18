@@ -88,21 +88,7 @@ export interface BetaMCPTool {
   /**
    * Specify which of the MCP server's tools require approval.
    */
-  requireApproval?:
-    | {
-        /**
-         * A filter object to specify which tools are allowed.
-         */
-        always?: BetaMCPToolFilter;
-        /**
-         * A filter object to specify which tools are allowed.
-         */
-        never?: BetaMCPToolFilter;
-      }
-    | "always"
-    | "never"
-    | (string & {})
-    | null;
+  requireApproval?: BetaMCPToolRequireApproval | null;
   /**
    * Whether this MCP tool is deferred and discovered via tool search.
    */
@@ -206,3 +192,19 @@ export interface BetaMCPToolFilter {
    */
   readOnly?: boolean;
 }
+
+export type BetaMCPToolRequireApproval =
+  | {
+      /**
+       * A filter object to specify which tools are allowed.
+       */
+      always?: BetaMCPToolFilter;
+      /**
+       * A filter object to specify which tools are allowed.
+       */
+      never?: BetaMCPToolFilter;
+    }
+  | "always"
+  | "never"
+  | (string & {})
+  | null;

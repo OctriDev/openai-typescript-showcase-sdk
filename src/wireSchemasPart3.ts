@@ -4,6 +4,22 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart3: Record<string, WireSchema> = {
+  FileSearchToolCall: {
+    id: { wire: "id" },
+    ["type"]: { wire: "type" },
+    status: { wire: "status" },
+    queries: { wire: "queries" },
+    results: {
+      wire: "results",
+      fields: {
+        fileId: { wire: "file_id" },
+        text: { wire: "text" },
+        filename: { wire: "filename" },
+        attributes: { wire: "attributes" },
+        score: { wire: "score" },
+      },
+    },
+  },
   FineTuneChatCompletionRequestAssistantMessage: {
     weight: { wire: "weight" },
     content: { wire: "content" },
@@ -288,6 +304,10 @@ export const wireSchemasPart3: Record<string, WireSchema> = {
     partialImages: { wire: "partial_images" },
     action: { wire: "action" },
   },
+  ImageRefParam: {
+    imageUrl: { wire: "image_url" },
+    fileId: { wire: "file_id" },
+  },
   ImagesResponse: {
     safetyIdentifier: { wire: "safety_identifier" },
     created: { wire: "created" },
@@ -416,20 +436,6 @@ export const wireSchemasPart3: Record<string, WireSchema> = {
   ListRunsResponse: {
     object: { wire: "object" },
     data: { wire: "data", type: "RunObject" },
-    firstId: { wire: "first_id" },
-    lastId: { wire: "last_id" },
-    hasMore: { wire: "has_more" },
-  },
-  ListVectorStoreFilesResponse: {
-    object: { wire: "object" },
-    data: { wire: "data", type: "VectorStoreFileObject" },
-    firstId: { wire: "first_id" },
-    lastId: { wire: "last_id" },
-    hasMore: { wire: "has_more" },
-  },
-  ListVectorStoresResponse: {
-    object: { wire: "object" },
-    data: { wire: "data", type: "VectorStoreObject" },
     firstId: { wire: "first_id" },
     lastId: { wire: "last_id" },
     hasMore: { wire: "has_more" },

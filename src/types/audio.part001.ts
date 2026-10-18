@@ -39,20 +39,7 @@ export interface CreateSpeechRequest {
   /**
    * The voice to use when generating the audio. Supported built-in voices are `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `onyx`, `nova`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. You may also provide a custom voice object with an `id`, for example `{ "id": "voice_1234" }`. Previews of the voices are available in the [Text to speech guide](https://developers.openai.com/api/docs/guides/text-to-speech#voice-options). Custom voices must be created from audio samples.
    */
-  voice:
-    | VoiceIdsShared
-    | "fable"
-    | "onyx"
-    | "nova"
-    | (string & {})
-    | {
-        /**
-     * The custom voice ID, e.g. `voice_1234`.
-
-     * @example "voice_1234"
-     */
-        id: string;
-      };
+  voice: CreateSpeechRequestVoice;
   /**
    * The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
    */
@@ -66,6 +53,21 @@ export interface CreateSpeechRequest {
    */
   streamFormat?: "sse" | "audio" | (string & {});
 }
+
+export type CreateSpeechRequestVoice =
+  | VoiceIdsShared
+  | "fable"
+  | "onyx"
+  | "nova"
+  | (string & {})
+  | {
+      /**
+   * The custom voice ID, e.g. `voice_1234`.
+
+   * @example "voice_1234"
+   */
+      id: string;
+    };
 
 /**
  * A `CreateSpeechResponseStreamEvent` whose `type` names no branch this SDK knows, kept as received.
@@ -139,7 +141,7 @@ export interface CreateTranscriptionRequest {
   /**
    * Controls how the audio is cut into chunks. When set to `"auto"`, the server first normalizes loudness and then uses voice activity detection (VAD) to choose boundaries. `server_vad` object can be provided to tweak VAD detection parameters manually. If unset, the audio is transcribed as a single block. Required when using `gpt-4o-transcribe-diarize` for inputs longer than 30 seconds.
    */
-  chunkingStrategy?: "auto" | (string & {}) | VadConfig | null;
+  chunkingStrategy?: CreateTranscriptionRequestChunkingStrategy | null;
   /**
    * Optional list of speaker names that correspond to the audio samples provided in `known_speaker_references[]`. Each entry should be a short identifier (for example `customer` or `agent`). Up to 4 speakers are supported.
    */
@@ -149,6 +151,13 @@ export interface CreateTranscriptionRequest {
    */
   knownSpeakerReferences?: string[];
 }
+
+export type CreateTranscriptionRequestChunkingStrategy = "auto" | (string & {}) | VadConfig | null;
+
+export type CreateTranscriptionResponse =
+  | CreateTranscriptionResponseJson
+  | CreateTranscriptionResponseDiarizedJson
+  | CreateTranscriptionResponseVerboseJson;
 
 /**
  * Represents a diarized transcription response returned by the model, including the combined transcript and speaker-segment annotations.
@@ -308,6 +317,10 @@ export interface CreateTranslationRequest {
    */
   temperature?: number;
 }
+
+export type CreateTranslationResponse =
+  | CreateTranslationResponseJson
+  | CreateTranslationResponseVerboseJson;
 
 /**
  * Typed representation of the `CreateTranslationResponseJson` API schema.

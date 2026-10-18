@@ -4,6 +4,20 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart15: Record<string, WireSchema> = {
+  HostedSkillResourceSkillReference: {
+    ["type"]: { wire: "type" },
+    skillId: { wire: "skill_id" },
+    version: { wire: "version" },
+    name: { wire: "name" },
+    description: { wire: "description" },
+  },
+  AgentEnvironmentListResource: {
+    object: { wire: "object" },
+    data: { wire: "data" },
+    firstId: { wire: "first_id" },
+    lastId: { wire: "last_id" },
+    hasMore: { wire: "has_more" },
+  },
   NetworkPolicyParam: {
     access: { wire: "access" },
     allowedDomains: { wire: "allowed_domains" },
@@ -346,17 +360,5 @@ export const wireSchemasPart15: Record<string, WireSchema> = {
     firstId: { wire: "first_id" },
     lastId: { wire: "last_id" },
     hasMore: { wire: "has_more" },
-  },
-  PersistedAgentToolConfigParamFunction: {
-    ["type"]: { wire: "type" },
-    name: { wire: "name" },
-    description: { wire: "description" },
-    parameters: { wire: "parameters" },
-    deferLoading: { wire: "defer_loading" },
-  },
-  PersistedMcpTransportConfigParamHttp: {
-    ["type"]: { wire: "type" },
-    serverUrl: { wire: "server_url" },
-    headers: { wire: "headers" },
   },
 };

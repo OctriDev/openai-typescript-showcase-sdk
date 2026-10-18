@@ -4,6 +4,15 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart18: Record<string, WireSchema> = {
+  CreateVaultCredentialAuthParamStaticBearer: {
+    ["type"]: { wire: "type" },
+    mcpServerUrl: { wire: "mcp_server_url" },
+    token: { wire: "token" },
+  },
+  VaultCredentialNetworkingParamLimited: {
+    ["type"]: { wire: "type" },
+    allowedHosts: { wire: "allowed_hosts" },
+  },
   CreateVaultCredentialAuthParamEnvironmentVariable: {
     ["type"]: { wire: "type" },
     secretName: { wire: "secret_name" },
@@ -269,19 +278,5 @@ export const wireSchemasPart18: Record<string, WireSchema> = {
     endMs: { wire: "end_ms" },
     delta: { wire: "delta" },
     ["type"]: { wire: "type" },
-  },
-  LiveOutputTranscriptDelta: {
-    eventId: { wire: "event_id" },
-    clientEventId: { wire: "client_event_id" },
-    startMs: { wire: "start_ms" },
-    endMs: { wire: "end_ms" },
-    delta: { wire: "delta" },
-    ["type"]: { wire: "type" },
-  },
-  LiveDelegationItem: {
-    id: { wire: "id" },
-    ["type"]: { wire: "type" },
-    target: { wire: "target" },
-    responseId: { wire: "response_id" },
   },
 };

@@ -4,6 +4,20 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart11: Record<string, WireSchema> = {
+  WebSearchTool: {
+    ["type"]: { wire: "type" },
+    externalWebAccess: { wire: "external_web_access" },
+    filters: { wire: "filters", fields: { allowedDomains: { wire: "allowed_domains" } } },
+    userLocation: { wire: "user_location" },
+    searchContextSize: { wire: "search_context_size" },
+  },
+  WebhookAgentEnvironmentExpired: {
+    id: { wire: "id" },
+    object: { wire: "object" },
+    createdAt: { wire: "created_at" },
+    ["type"]: { wire: "type" },
+    data: { wire: "data" },
+  },
   WebhookAgentEnvironmentFailed: {
     id: { wire: "id" },
     object: { wire: "object" },
@@ -349,22 +363,5 @@ export const wireSchemasPart11: Record<string, WireSchema> = {
     background: { wire: "background" },
     outputFormat: { wire: "output_format" },
     revisedPrompt: { wire: "revised_prompt" },
-  },
-  ScrollParam: {
-    ["type"]: { wire: "type" },
-    x: { wire: "x" },
-    y: { wire: "y" },
-    scrollX: { wire: "scroll_x" },
-    scrollY: { wire: "scroll_y" },
-    keys: { wire: "keys" },
-  },
-  ToolSearchCall: {
-    ["type"]: { wire: "type" },
-    id: { wire: "id" },
-    callId: { wire: "call_id" },
-    execution: { wire: "execution" },
-    ["arguments"]: { wire: "arguments" },
-    status: { wire: "status" },
-    createdBy: { wire: "created_by" },
   },
 };

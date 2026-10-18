@@ -58,7 +58,7 @@ export const modelSchemasPart002: readonly (readonly [string, RuntimeSchema])[] 
   [
     "CreateVectorStoreFileBatchRequest",
     parseRuntimeSchema(
-      '{"type":"object","properties":{"fileIds":{"type":"array","minItems":1,"maxItems":2000,"items":{"type":"string"}},"files":{"type":"array","minItems":1,"maxItems":2000,"items":{"ref":"CreateVectorStoreFileRequest"}},"chunkingStrategy":{"ref":"ChunkingStrategyRequestParam"},"attributes":{"ref":"VectorStoreFileAttributes"}},"anyOf":[{"required":["file_ids"]},{"required":["files"]}]}',
+      '{"type":"object","properties":{"fileIds":{"type":"array","minItems":1,"maxItems":2000,"items":{"type":"string"}},"files":{"type":"array","minItems":1,"maxItems":2000,"items":{"ref":"CreateVectorStoreFileRequest"}},"chunkingStrategy":{"ref":"ChunkingStrategyRequestParam"},"attributes":{"ref":"VectorStoreFileAttributes"}}}',
     ),
   ],
 
@@ -625,7 +625,7 @@ export const modelSchemasPart002: readonly (readonly [string, RuntimeSchema])[] 
   [
     "ImageRefParam",
     parseRuntimeSchema(
-      '{"type":"object","properties":{"imageUrl":{"type":"string","maxLength":20971520,"format":"uri"},"fileId":{"type":"string"}},"anyOf":[{"required":["image_url"]},{"required":["file_id"]}]}',
+      '{"type":"object","properties":{"imageUrl":{"type":"string","maxLength":20971520,"format":"uri"},"fileId":{"type":"string"}}}',
     ),
   ],
 

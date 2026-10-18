@@ -248,7 +248,7 @@ export function createCreateUploadRequest(
 export function createCreateVectorStoreFileBatchRequest(
   value: Types.CreateVectorStoreFileBatchRequest,
 ): Types.CreateVectorStoreFileBatchRequest {
-  return modelRuntime.validate(value, "CreateVectorStoreFileBatchRequest");
+  return modelRuntime.validate({ ...value }, "CreateVectorStoreFileBatchRequest");
 }
 
 /** Constructs a validated CreateVectorStoreFileRequest model value. */

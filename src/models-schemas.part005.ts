@@ -7,6 +7,13 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart005: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "RealtimeServerEventConversationItemInputAudioTranscriptionDelta",
+    parseRuntimeSchema(
+      '{"type":"object","required":["eventId","type","itemId"],"properties":{"eventId":{"type":"string"},"type":{"type":"string","enum":["conversation.item.input_audio_transcription.delta"]},"itemId":{"type":"string"},"contentIndex":{"type":"integer"},"delta":{"type":"string"},"logprobs":{"type":"array","nullable":true,"items":{"ref":"LogProbProperties"}}}}',
+    ),
+  ],
+
+  [
     "RealtimeServerEventConversationItemInputAudioTranscriptionFailed",
     parseRuntimeSchema(
       '{"type":"object","required":["eventId","type","itemId","contentIndex","error"],"properties":{"eventId":{"type":"string"},"type":{"type":"string","enum":["conversation.item.input_audio_transcription.failed"]},"itemId":{"type":"string"},"contentIndex":{"type":"integer"},"error":{"type":"object","properties":{"type":{"type":"string"},"code":{"type":"string"},"message":{"type":"string"},"param":{"type":"string"}}}}}',
@@ -289,49 +296,49 @@ export const modelSchemasPart005: readonly (readonly [string, RuntimeSchema])[] 
   [
     "RealtimeSession",
     parseRuntimeSchema(
-      '{"type":"object","properties":{"id":{"type":"string"},"object":{"type":"string"},"modalities":{"type":"array","items":{"type":"string"}},"model":{"type":"string"},"instructions":{"type":"string"},"voice":{"ref":"VoiceIdsShared"},"inputAudioFormat":{"type":"string"},"outputAudioFormat":{"type":"string"},"inputAudioTranscription":{"nullable":true,"allOf":[{"ref":"AudioTranscriptionResponse"}]},"turnDetection":{"ref":"RealtimeTurnDetection"},"inputAudioNoiseReduction":{"properties":{"type":{"ref":"NoiseReductionType"}}},"speed":{"type":"number","minimum":0.25,"maximum":1.5},"tracing":{"nullable":true,"oneOf":[{"type":"string"},{"type":"object","properties":{"workflowName":{"type":"string"},"groupId":{"type":"string"},"metadata":{"type":"object"}}}]},"tools":{"type":"array","items":{"ref":"RealtimeFunctionTool"}},"toolChoice":{"type":"string"},"temperature":{"type":"number"},"maxResponseOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]},"expiresAt":{"type":"integer"},"prompt":{"ref":"Prompt"},"include":{"type":"array","nullable":true,"items":{"type":"string"}}}}',
+      '{"type":"object","properties":{"id":{"type":"string"},"object":{"type":"string"},"modalities":{"type":"array","items":{"type":"string"}},"model":{"type":"string"},"instructions":{"type":"string"},"voice":{"ref":"VoiceIdsShared"},"inputAudioFormat":{"type":"string"},"outputAudioFormat":{"type":"string"},"inputAudioTranscription":{"ref":"AudioTranscriptionResponse"},"turnDetection":{"ref":"RealtimeTurnDetection"},"inputAudioNoiseReduction":{"type":"object","properties":{"type":{"ref":"NoiseReductionType"}}},"speed":{"type":"number","minimum":0.25,"maximum":1.5},"tracing":{"ref":"RealtimeSessionTracing"},"tools":{"type":"array","items":{"ref":"RealtimeFunctionTool"}},"toolChoice":{"type":"string"},"temperature":{"type":"number"},"maxResponseOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]},"expiresAt":{"type":"integer"},"prompt":{"ref":"Prompt"},"include":{"type":"array","nullable":true,"items":{"type":"string"}}}}',
     ),
   ],
 
   [
     "RealtimeSessionCreateRequest",
     parseRuntimeSchema(
-      '{"type":"object","required":["clientSecret"],"properties":{"clientSecret":{"type":"object","required":["value","expiresAt"],"properties":{"value":{"type":"string"},"expiresAt":{"type":"integer"}}},"modalities":{"type":"array","items":{"type":"string"}},"instructions":{"type":"string"},"voice":{"ref":"VoiceIdsOrCustomVoice"},"inputAudioFormat":{"type":"string"},"outputAudioFormat":{"type":"string"},"inputAudioTranscription":{"type":"object","properties":{"model":{"type":"string"}}},"speed":{"type":"number","minimum":0.25,"maximum":1.5},"tracing":{"oneOf":[{"type":"string"},{"type":"object","properties":{"workflowName":{"type":"string"},"groupId":{"type":"string"},"metadata":{"type":"object"}}}]},"turnDetection":{"type":"object","properties":{"type":{"type":"string"},"threshold":{"type":"number"},"prefixPaddingMs":{"type":"integer"},"silenceDurationMs":{"type":"integer"}}},"tools":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"name":{"type":"string"},"description":{"type":"string"},"parameters":{"type":"object"}}}},"toolChoice":{"type":"string"},"temperature":{"type":"number"},"maxResponseOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]},"truncation":{"ref":"RealtimeTruncation"},"prompt":{"ref":"Prompt"}}}',
+      '{"type":"object","required":["clientSecret"],"properties":{"clientSecret":{"type":"object","required":["value","expiresAt"],"properties":{"value":{"type":"string"},"expiresAt":{"type":"integer"}}},"modalities":{"type":"array","items":{"type":"string"}},"instructions":{"type":"string"},"voice":{"ref":"VoiceIdsOrCustomVoice"},"inputAudioFormat":{"type":"string"},"outputAudioFormat":{"type":"string"},"inputAudioTranscription":{"type":"object","properties":{"model":{"type":"string"}}},"speed":{"type":"number","minimum":0.25,"maximum":1.5},"tracing":{"ref":"RealtimeSessionCreateRequestTracing"},"turnDetection":{"type":"object","properties":{"type":{"type":"string"},"threshold":{"type":"number"},"prefixPaddingMs":{"type":"integer"},"silenceDurationMs":{"type":"integer"}}},"tools":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"name":{"type":"string"},"description":{"type":"string"},"parameters":{"type":"object"}}}},"toolChoice":{"type":"string"},"temperature":{"type":"number"},"maxResponseOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]},"truncation":{"ref":"RealtimeTruncation"},"prompt":{"ref":"Prompt"}}}',
     ),
   ],
 
   [
     "RealtimeSessionCreateRequestGA",
     parseRuntimeSchema(
-      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["realtime"]},"outputModalities":{"type":"array","items":{"type":"string"}},"model":{"type":"string"},"instructions":{"type":"string"},"audio":{"type":"object","properties":{"input":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"transcription":{"ref":"AudioTranscription"},"noiseReduction":{"properties":{"type":{"ref":"NoiseReductionType"}}},"turnDetection":{"ref":"RealtimeTurnDetection"}}},"output":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"voice":{"ref":"VoiceIdsOrCustomVoice"},"speed":{"type":"number","minimum":0.25,"maximum":1.5}}}}},"include":{"type":"array","items":{"type":"string"}},"tracing":{"oneOf":[{"type":"string"},{"type":"object","properties":{"workflowName":{"type":"string"},"groupId":{"type":"string"},"metadata":{"type":"object"}}},{"type":"null"}]},"tools":{"type":"array","items":{"ref":"RealtimeSessionCreateRequestGAToolsItem"}},"toolChoice":{"ref":"RealtimeSessionCreateRequestGAToolChoice"},"parallelToolCalls":{"type":"boolean"},"reasoning":{"ref":"RealtimeReasoning"},"maxOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]},"truncation":{"ref":"RealtimeTruncation"},"prompt":{"ref":"Prompt"}}}',
+      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["realtime"]},"outputModalities":{"type":"array","items":{"type":"string"}},"model":{"type":"string"},"instructions":{"type":"string"},"audio":{"type":"object","properties":{"input":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"transcription":{"ref":"AudioTranscription"},"noiseReduction":{"type":"object","properties":{"type":{"ref":"NoiseReductionType"}}},"turnDetection":{"ref":"RealtimeTurnDetection"}}},"output":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"voice":{"ref":"VoiceIdsOrCustomVoice"},"speed":{"type":"number","minimum":0.25,"maximum":1.5}}}}},"include":{"type":"array","items":{"type":"string"}},"tracing":{"oneOf":[{"type":"string"},{"type":"object","properties":{"workflowName":{"type":"string"},"groupId":{"type":"string"},"metadata":{"type":"object"}}},{"type":"null"}]},"tools":{"type":"array","items":{"ref":"RealtimeSessionCreateRequestGAToolsItem"}},"toolChoice":{"ref":"RealtimeSessionCreateRequestGAToolChoice"},"parallelToolCalls":{"type":"boolean"},"reasoning":{"ref":"RealtimeReasoning"},"maxOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]},"truncation":{"ref":"RealtimeTruncation"},"prompt":{"ref":"Prompt"}}}',
     ),
   ],
 
   [
     "RealtimeSessionCreateResponse",
     parseRuntimeSchema(
-      '{"type":"object","properties":{"id":{"type":"string"},"object":{"type":"string"},"expiresAt":{"type":"integer"},"include":{"type":"array","items":{"type":"string"}},"model":{"type":"string"},"outputModalities":{"items":{"type":"string"}},"instructions":{"type":"string"},"audio":{"type":"object","properties":{"input":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"transcription":{"ref":"AudioTranscriptionResponse"},"noiseReduction":{"type":["object","null"],"properties":{"type":{"ref":"NoiseReductionType"}}},"turnDetection":{"type":["object","null"],"properties":{"type":{"type":"string"},"threshold":{"type":"number"},"prefixPaddingMs":{"type":"integer"},"silenceDurationMs":{"type":"integer"}}}}},"output":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"voice":{"ref":"VoiceIdsShared"},"speed":{"type":"number"}}}}},"tracing":{"oneOf":[{"type":"string"},{"type":"object","properties":{"workflowName":{"type":"string"},"groupId":{"type":"string"},"metadata":{"type":"object"}}}]},"turnDetection":{"type":["object","null"],"properties":{"type":{"type":"string"},"threshold":{"type":"number"},"prefixPaddingMs":{"type":"integer"},"silenceDurationMs":{"type":"integer"}}},"tools":{"type":"array","items":{"ref":"RealtimeFunctionTool"}},"toolChoice":{"type":"string"},"maxOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]}}}',
+      '{"type":"object","properties":{"id":{"type":"string"},"object":{"type":"string"},"expiresAt":{"type":"integer"},"include":{"type":"array","items":{"type":"string"}},"model":{"type":"string"},"outputModalities":{"items":{"type":"string"}},"instructions":{"type":"string"},"audio":{"type":"object","properties":{"input":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"transcription":{"ref":"AudioTranscriptionResponse"},"noiseReduction":{"type":["object","null"],"properties":{"type":{"ref":"NoiseReductionType"}}},"turnDetection":{"type":["object","null"],"properties":{"type":{"type":"string"},"threshold":{"type":"number"},"prefixPaddingMs":{"type":"integer"},"silenceDurationMs":{"type":"integer"}}}}},"output":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"voice":{"ref":"VoiceIdsShared"},"speed":{"type":"number"}}}}},"tracing":{"ref":"RealtimeSessionCreateResponseTracing"},"turnDetection":{"type":["object","null"],"properties":{"type":{"type":"string"},"threshold":{"type":"number"},"prefixPaddingMs":{"type":"integer"},"silenceDurationMs":{"type":"integer"}}},"tools":{"type":"array","items":{"ref":"RealtimeFunctionTool"}},"toolChoice":{"type":"string"},"maxOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]}}}',
     ),
   ],
 
   [
     "RealtimeSessionCreateResponseGA",
     parseRuntimeSchema(
-      '{"type":"object","required":["type","id","object"],"properties":{"type":{"type":"string","enum":["realtime"]},"id":{"type":"string"},"object":{"type":"string"},"expiresAt":{"type":"integer"},"outputModalities":{"type":"array","items":{"type":"string"}},"model":{"type":"string"},"instructions":{"type":"string"},"audio":{"type":"object","properties":{"input":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"transcription":{"ref":"AudioTranscriptionResponse"},"noiseReduction":{"type":["object","null"],"properties":{"type":{"ref":"NoiseReductionType"}}},"turnDetection":{"ref":"RealtimeTurnDetection"}}},"output":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"voice":{"ref":"VoiceIdsShared"},"speed":{"type":"number","minimum":0.25,"maximum":1.5}}}}},"include":{"type":["array","null"],"items":{"type":"string"}},"tracing":{"nullable":true,"oneOf":[{"type":"string"},{"type":"object","properties":{"workflowName":{"type":"string"},"groupId":{"type":"string"},"metadata":{"type":"object"}}}]},"tools":{"type":"array","items":{"ref":"RealtimeSessionCreateResponseGAToolsItem"}},"toolChoice":{"ref":"RealtimeSessionCreateResponseGAToolChoice"},"reasoning":{"ref":"RealtimeReasoning"},"maxOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]},"truncation":{"ref":"RealtimeTruncation"},"prompt":{"ref":"Prompt"}}}',
+      '{"type":"object","required":["type","id","object"],"properties":{"type":{"type":"string","enum":["realtime"]},"id":{"type":"string"},"object":{"type":"string"},"expiresAt":{"type":"integer"},"outputModalities":{"type":"array","items":{"type":"string"}},"model":{"type":"string"},"instructions":{"type":"string"},"audio":{"type":"object","properties":{"input":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"transcription":{"ref":"AudioTranscriptionResponse"},"noiseReduction":{"type":["object","null"],"properties":{"type":{"ref":"NoiseReductionType"}}},"turnDetection":{"ref":"RealtimeTurnDetection"}}},"output":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"voice":{"ref":"VoiceIdsShared"},"speed":{"type":"number","minimum":0.25,"maximum":1.5}}}}},"include":{"type":["array","null"],"items":{"type":"string"}},"tracing":{"ref":"RealtimeSessionCreateResponseGATracing"},"tools":{"type":"array","items":{"ref":"RealtimeSessionCreateResponseGAToolsItem"}},"toolChoice":{"ref":"RealtimeSessionCreateResponseGAToolChoice"},"reasoning":{"ref":"RealtimeReasoning"},"maxOutputTokens":{"oneOf":[{"type":"integer"},{"type":"string"}]},"truncation":{"ref":"RealtimeTruncation"},"prompt":{"ref":"Prompt"}}}',
     ),
   ],
 
   [
     "RealtimeTranscriptionSessionCreateRequest",
     parseRuntimeSchema(
-      '{"type":"object","properties":{"turnDetection":{"type":"object","properties":{"type":{"type":"string"},"threshold":{"type":"number"},"prefixPaddingMs":{"type":"integer"},"silenceDurationMs":{"type":"integer"}}},"inputAudioNoiseReduction":{"properties":{"type":{"ref":"NoiseReductionType"}}},"inputAudioFormat":{"type":"string"},"inputAudioTranscription":{"ref":"AudioTranscription"},"include":{"type":"array","items":{"type":"string"}}}}',
+      '{"type":"object","properties":{"turnDetection":{"type":"object","properties":{"type":{"type":"string"},"threshold":{"type":"number"},"prefixPaddingMs":{"type":"integer"},"silenceDurationMs":{"type":"integer"}}},"inputAudioNoiseReduction":{"type":"object","properties":{"type":{"ref":"NoiseReductionType"}}},"inputAudioFormat":{"type":"string"},"inputAudioTranscription":{"ref":"AudioTranscription"},"include":{"type":"array","items":{"type":"string"}}}}',
     ),
   ],
 
   [
     "RealtimeTranscriptionSessionCreateRequestGA",
     parseRuntimeSchema(
-      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["transcription"]},"audio":{"type":"object","properties":{"input":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"transcription":{"ref":"AudioTranscription"},"noiseReduction":{"properties":{"type":{"ref":"NoiseReductionType"}}},"turnDetection":{"ref":"RealtimeTurnDetection"}}}}},"include":{"type":"array","items":{"type":"string"}}}}',
+      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["transcription"]},"audio":{"type":"object","properties":{"input":{"type":"object","properties":{"format":{"ref":"RealtimeAudioFormats"},"transcription":{"ref":"AudioTranscription"},"noiseReduction":{"type":"object","properties":{"type":{"ref":"NoiseReductionType"}}},"turnDetection":{"ref":"RealtimeTurnDetection"}}}}},"include":{"type":"array","items":{"type":"string"}}}}',
     ),
   ],
 
@@ -696,13 +703,6 @@ export const modelSchemasPart005: readonly (readonly [string, RuntimeSchema])[] 
     "ResponseInProgressEvent",
     parseRuntimeSchema(
       '{"type":"object","required":["type","response","sequenceNumber"],"properties":{"type":{"type":"string","enum":["response.in_progress"]},"response":{"ref":"Response"},"sequenceNumber":{"type":"integer"}}}',
-    ),
-  ],
-
-  [
-    "ResponseIncompleteEvent",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type","response","sequenceNumber"],"properties":{"type":{"type":"string","enum":["response.incomplete"]},"response":{"ref":"Response"},"sequenceNumber":{"type":"integer"}}}',
     ),
   ],
 ];

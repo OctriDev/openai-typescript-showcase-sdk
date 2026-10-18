@@ -9,7 +9,7 @@ import {
   UpdateOrganizationSpendLimitBody,
   UpdateProjectSpendLimitBody,
 } from "../types/spend-limit";
-import { PermissionErrorResponse } from "../types/shared";
+import { PermissionErrorResponse } from "../types/shared-permission";
 import { ErrorResponse } from "../types/shared-error";
 import { decodeResponseEnums } from "../response-enum-validation";
 import type { ClientConfig, RequestOptions } from "../client";
