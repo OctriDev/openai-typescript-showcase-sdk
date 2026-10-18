@@ -30,7 +30,7 @@ export type Input = LiveInitialItem[];
 
 export type Instructions = string | null;
 
-export type ModelIdsLive = string | "gpt-live-1" | (string & {});
+export type ModelIdsLive = string;
 
 export type PropertiesStore = boolean;
 

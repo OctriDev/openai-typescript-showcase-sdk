@@ -76,8 +76,10 @@ export interface DecisionsUsagePermissionErrorResponse {
   /**
    * Details about the permission error.
    */
-  error: DecisionsUsageErrorDetails | string;
+  error: DecisionsUsagePermissionErrorResponseError;
 }
+
+export type DecisionsUsagePermissionErrorResponseError = DecisionsUsageErrorDetails | string;
 
 /**
  * The aggregated Decisions API usage details of the specific time bucket.

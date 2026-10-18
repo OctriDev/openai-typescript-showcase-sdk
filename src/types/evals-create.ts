@@ -13,8 +13,6 @@ import type {
 
 import type { EvalStoredCompletionsSource } from "./evals-eval.part002";
 
-import type { TemplateItem, TemplateItem2 } from "./evals-template";
-
 import type { ChatCompletionTool } from "./shared-chat";
 
 import type { EvalItem } from "./shared-eval";
@@ -31,7 +29,7 @@ import type { TextResponseFormatConfiguration } from "./shared-text";
 
 import type { Tool } from "./shared-tool";
 
-import type { Metadata } from "./shared.part001";
+import type { EasyInputMessage, Metadata } from "./shared.part001";
 
 /**
  * A CompletionsRunDataSource object describing a model sampling configuration.
@@ -106,7 +104,7 @@ export type CreateEvalCompletionsRunDataSourceInputMessages =
       /**
        * A list of chat messages forming the prompt or context. May include variable references to the `item` namespace, ie {{item.name}}.
        */
-      template: TemplateItem[];
+      template: (EasyInputMessage | EvalItem)[];
     }
   | {
       /**
@@ -410,7 +408,19 @@ export type CreateEvalResponsesRunDataSourceInputMessages =
       /**
        * A list of chat messages forming the prompt or context. May include variable references to the `item` namespace, ie {{item.name}}.
        */
-      template: TemplateItem2[];
+      template: (
+        | {
+            /**
+             * The role of the message (e.g. "system", "assistant", "user").
+             */
+            role: string;
+            /**
+             * The content of the message.
+             */
+            content: string;
+          }
+        | EvalItem
+      )[];
     }
   | {
       /**

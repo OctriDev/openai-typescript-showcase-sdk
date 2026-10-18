@@ -4,6 +4,20 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart19: Record<string, WireSchema> = {
+  LiveOutputTranscriptDelta: {
+    eventId: { wire: "event_id" },
+    clientEventId: { wire: "client_event_id" },
+    startMs: { wire: "start_ms" },
+    endMs: { wire: "end_ms" },
+    delta: { wire: "delta" },
+    ["type"]: { wire: "type" },
+  },
+  LiveDelegationItem: {
+    id: { wire: "id" },
+    ["type"]: { wire: "type" },
+    target: { wire: "target" },
+    responseId: { wire: "response_id" },
+  },
   LiveDelegationCreated: {
     eventId: { wire: "event_id" },
     clientEventId: { wire: "client_event_id" },
@@ -325,21 +339,5 @@ export const wireSchemasPart19: Record<string, WireSchema> = {
     callId: { wire: "call_id" },
     caller: { wire: "caller" },
     output: { wire: "output" },
-  },
-  BetaInputFileContent: {
-    ["type"]: { wire: "type" },
-    fileId: { wire: "file_id" },
-    filename: { wire: "filename" },
-    fileData: { wire: "file_data" },
-    promptCacheBreakpoint: { wire: "prompt_cache_breakpoint" },
-    fileUrl: { wire: "file_url" },
-    detail: { wire: "detail" },
-  },
-  BetaInputImageContent: {
-    ["type"]: { wire: "type" },
-    imageUrl: { wire: "image_url" },
-    fileId: { wire: "file_id" },
-    detail: { wire: "detail" },
-    promptCacheBreakpoint: { wire: "prompt_cache_breakpoint" },
   },
 };

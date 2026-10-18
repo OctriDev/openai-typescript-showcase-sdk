@@ -2,25 +2,13 @@
 // This file is machine-generated from your OpenAPI spec.
 
 import { ErrorResponse } from "../../types/shared-error";
-import { AssistantStreamEvent, AssistantSupportedModels } from "../../types/assistants-assistant";
-import {
-  CreateMessageRequest,
-  CreateRunRequest,
-  CreateRunRequestToolsItem,
-} from "../../types/assistants-create";
+import { CreateMessageRequest, CreateRunRequest } from "../../types/assistants-create";
 import { ThreadObject } from "../../types/assistants-thread";
-import { TruncationObject } from "../../types/assistants";
-import {
-  AssistantsApiResponseFormatOption,
-  AssistantsApiToolChoiceOption,
-} from "../../types/assistants-assistants";
 import { RunObject } from "../../types/assistants-run";
-import { Metadata, ParallelToolCalls } from "../../types/shared";
 import { ModifyMessageRequest, ModifyThreadRequest } from "../../types/assistants-modify";
 import { DeleteMessageResponse, DeleteThreadResponse } from "../../types/assistants-delete";
 import { ListMessagesResponse, ListRunsResponse } from "../../types/assistants-list";
 import { MessageObject } from "../../types/assistants-message";
-import { ReasoningEffort } from "../../types/shared-reasoning";
 import { decodeResponseEnums } from "../../response-enum-validation";
 import type { ClientConfig, RequestOptions } from "../../client";
 import {
@@ -30,7 +18,6 @@ import {
   sdkDecode,
   SdkPage,
   sdkRequest,
-  sdkStream,
 } from "../../client";
 import { validateItems, validateRange } from "../../validation";
 
@@ -126,29 +113,7 @@ export interface ListMessagesParams {
   runId?: string;
 }
 
-/**
- * Lists messages belonging to a thread. Use `run_id` to filter by the run that generated the messages and `order` to control their creation-time order. Use `after` or `before` cursors to navigate the results.
- *
- * Returns a list of messages for a given thread.
- *
- * @param threadId - The ID of the
- *   [thread](https://developers.openai.com/api/docs/assistants/migration) the
- *   messages belong to.
- * @param limit - A limit on the number of objects to be returned. Limit can
- *   range between 1 and 100, and the default is 20.
- * @param order - Sort order by the `created_at` timestamp of the objects. `asc`
- *   for ascending order and `desc` for descending order.
- * @param after - A cursor for use in pagination. `after` is an object ID that
- *   defines your place in the list. For instance, if you make a list request and
- *   receive 100 objects, ending with obj_foo, your subsequent call can include
- *   after=obj_foo in order to fetch the next page of the list.
- * @param before - A cursor for use in pagination. `before` is an object ID that
- *   defines your place in the list. For instance, if you make a list request and
- *   receive 100 objects, starting with obj_foo, your subsequent call can include
- *   before=obj_foo in order to fetch the previous page of the list.
- * @param runId - Filter messages by the run ID that generated them.
- */
-export async function listMessages(
+async function _listMessages(
   config: ClientConfig,
   { threadId, limit, order, after, before, runId }: ListMessagesParams,
   requestOptions?: RequestOptions,
@@ -177,6 +142,65 @@ export async function listMessages(
         "ListMessagesResponse",
       ) as ListMessagesResponse,
   );
+}
+
+/**
+ * Lists messages belonging to a thread. Use `run_id` to filter by the run that generated the messages and `order` to control their creation-time order. Use `after` or `before` cursors to navigate the results.
+ *
+ * Returns a list of messages for a given thread.
+ *
+ * @param threadId - The ID of the
+ *   [thread](https://developers.openai.com/api/docs/assistants/migration) the
+ *   messages belong to.
+ * @param limit - A limit on the number of objects to be returned. Limit can
+ *   range between 1 and 100, and the default is 20.
+ * @param order - Sort order by the `created_at` timestamp of the objects. `asc`
+ *   for ascending order and `desc` for descending order.
+ * @param after - A cursor for use in pagination. `after` is an object ID that
+ *   defines your place in the list. For instance, if you make a list request and
+ *   receive 100 objects, ending with obj_foo, your subsequent call can include
+ *   after=obj_foo in order to fetch the next page of the list.
+ * @param before - A cursor for use in pagination. `before` is an object ID that
+ *   defines your place in the list. For instance, if you make a list request and
+ *   receive 100 objects, starting with obj_foo, your subsequent call can include
+ *   before=obj_foo in order to fetch the previous page of the list.
+ * @param runId - Filter messages by the run ID that generated them.
+ */
+export async function* listMessages(
+  config: ClientConfig,
+  params: ListMessagesParams,
+  requestOptions?: RequestOptions,
+): AsyncGenerator<MessageObject> {
+  let _cursor = params.after;
+  while (true) {
+    const _page = await _listMessages(config, { ...params, after: _cursor }, requestOptions);
+    const _items = _page.data ?? [];
+    if (_items.length === 0) break;
+    for (const item of _items) yield item;
+    if (!_page.hasMore) break;
+
+    const _next = _page.lastId;
+    if (_next == null || _next === _cursor) break;
+    _cursor = _next;
+  }
+}
+
+export async function* listMessagesPages(
+  config: ClientConfig,
+  params: ListMessagesParams,
+  requestOptions?: RequestOptions,
+): AsyncGenerator<SdkPage<ListMessagesResponse, MessageObject>> {
+  let _cursor = params.after;
+  while (true) {
+    const _page = await _listMessages(config, { ...params, after: _cursor }, requestOptions);
+    const _items = _page.data ?? [];
+    if (_items.length === 0) break;
+    const _next = _page.lastId;
+    const _hasMore = !(!_page.hasMore || _next == null || _next === _cursor);
+    yield new SdkPage(_page, _items, _hasMore);
+    if (!_hasMore || _next == null) break;
+    _cursor = _next;
+  }
 }
 
 export type CreateMessageError = ErrorResponse;
@@ -626,172 +650,4 @@ export async function createRun(
     _resp,
     () => fromWire(decodeResponseEnums(_resp.data, { ref: "RunObject" }), "RunObject") as RunObject,
   );
-}
-
-export type CreateRunStreamError = ErrorResponse;
-
-export interface CreateRunStreamParams {
-  threadId: string;
-  assistantId: string;
-  include?: ("step_details.tool_calls[*].file_search.results[*].content" | (string & {}))[];
-  model?: string | AssistantSupportedModels | null;
-  reasoningEffort?: ReasoningEffort;
-  instructions?: string | null;
-  additionalInstructions?: string | null;
-  additionalMessages?: CreateMessageRequest[] | null;
-  tools?: CreateRunRequestToolsItem[] | null;
-  metadata?: Metadata;
-  temperature?: number | null;
-  topP?: number | null;
-  maxPromptTokens?: number | null;
-  maxCompletionTokens?: number | null;
-  truncationStrategy?: (TruncationObject & unknown) | null;
-  toolChoice?: (AssistantsApiToolChoiceOption & unknown) | null;
-  parallelToolCalls?: ParallelToolCalls;
-  responseFormat?: AssistantsApiResponseFormatOption;
-}
-
-/**
- * Creates a run on a thread using the specified assistant. Supply `assistant_id` and optionally override the assistant’s model, instructions, tools, or generation settings for this run. If the run requires tool outputs, submit them with POST /threads/{thread_id}/runs/{run_id}/submit_tool_outputs.
- *
- * Create a run.
- *
- * @param threadId - The ID of the thread to run.
- * @param assistantId - The ID of the
- *   [assistant](https://developers.openai.com/api/docs/assistants/migration) to
- *   use to execute this run.
- * @param include - A list of additional fields to include in the response.
- *   Currently the only supported value is
- *   `step_details.tool_calls[*].file_search.results[*].content` to fetch the file
- *   search result content. See the [file search tool
- *   documentation](https://developers.openai.com/api/docs/guides/tools-file-search
- *   #retrieval-customization) for more information.
- * @param model - The ID of the
- *   [Model](https://developers.openai.com/api/reference/resources/models) to be
- *   used to execute this run. If a value is provided here, it will override the
- *   model associated with the assistant. If not, the model associated with the
- *   assistant will be used.
- * @param reasoningEffort - Optional API value serialized in the
- *   `reasoning_effort` wire field.
- * @param instructions - Overrides the
- *   [instructions](https://developers.openai.com/api/docs/assistants/migration) of
- *   the assistant. This is useful for modifying the behavior on a per-run basis.
- * @param additionalInstructions - Appends additional instructions at the end of
- *   the instructions for the run. This is useful for modifying the behavior on a
- *   per-run basis without overriding other instructions.
- * @param additionalMessages - Adds additional messages to the thread before
- *   creating the run.
- * @param tools - Override the tools the assistant can use for this run. This is
- *   useful for modifying the behavior on a per-run basis.
- * @param metadata - Set of 16 key-value pairs that can be attached to an object.
- *   This can be useful for storing additional information about the object in a
- *   structured format, and querying for objects via API or the dashboard. Keys are
- *   strings with a maximum length of 64 characters. Values are strings with a
- *   maximum length of 512 characters.
- * @param temperature - What sampling temperature to use, between 0 and 2. Higher
- *   values like 0.8 will make the output more random, while lower values like 0.2
- *   will make it more focused and deterministic.
- * @param topP - An alternative to sampling with temperature, called nucleus
- *   sampling, where the model considers the results of the tokens with top_p
- *   probability mass. So 0.1 means only the tokens comprising the top 10%
- *   probability mass are considered. We generally recommend altering this or
- *   temperature but not both.
- * @param maxPromptTokens - The maximum number of prompt tokens that may be used
- *   over the course of the run. The run will make a best effort to use only the
- *   number of prompt tokens specified, across multiple turns of the run. If the
- *   run exceeds the number of prompt tokens specified, the run will end with
- *   status `incomplete`. See `incomplete_details` for more info.
- * @param maxCompletionTokens - The maximum number of completion tokens that may
- *   be used over the course of the run. The run will make a best effort to use
- *   only the number of completion tokens specified, across multiple turns of the
- *   run. If the run exceeds the number of completion tokens specified, the run
- *   will end with status `incomplete`. See `incomplete_details` for more info.
- * @param truncationStrategy - Optional API value serialized in the
- *   `truncation_strategy` wire field.
- * @param toolChoice - Optional API value serialized in the `tool_choice` wire
- *   field.
- * @param parallelToolCalls - Whether to enable [parallel function
- *   calling](https://developers.openai.com/api/docs/guides/function-calling#parall
- *   el-function-calling) during tool use.
- * @param responseFormat - Specifies the format that the model must output.
- *   Compatible with
- *   [GPT-4o](https://developers.openai.com/api/docs/models/gpt-4o), [GPT-4
- *   Turbo](https://developers.openai.com/api/docs/models/gpt-4-turbo), and all
- *   GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`. Setting to `{ "type":
- *   "json_schema", "json_schema": {...} }` enables Structured Outputs which
- *   ensures the model will match your supplied JSON schema. Learn more in the
- *   [Structured Outputs
- *   guide](https://developers.openai.com/api/docs/guides/structured-outputs).
- *   Setting to `{ "type": "json_object" }` enables JSON mode, which ensures the
- *   message the model generates is valid JSON. **Important:** when using JSON
- *   mode, you **must** also instruct the model to produce JSON yourself via a
- *   system or user message. Without this, the model may generate an unending
- *   stream of whitespace until the generation reaches the token limit, resulting
- *   in a long-running and seemingly "stuck" request. Also note that the message
- *   content may be partially cut off if `finish_reason="length"`, which indicates
- *   the generation exceeded `max_tokens` or the conversation exceeded the max
- *   context length.
- */
-export async function* createRunStream(
-  config: ClientConfig,
-  params: CreateRunStreamParams,
-  requestOptions?: Pick<RequestOptions, "headers" | "signal">,
-): AsyncIterable<AssistantStreamEvent> {
-  const {
-    threadId,
-    assistantId,
-    include,
-    model,
-    reasoningEffort,
-    instructions,
-    additionalInstructions,
-    additionalMessages,
-    tools,
-    metadata,
-    temperature,
-    topP,
-    maxPromptTokens,
-    maxCompletionTokens,
-    truncationStrategy,
-    toolChoice,
-    parallelToolCalls,
-    responseFormat,
-  } = params;
-  for await (const _ev of sdkStream<AssistantStreamEvent>({
-    method: "POST",
-    path: `/threads/${encodePathSegment(threadId)}/runs`,
-    operationId: "createRunStream",
-    errors: { "429": "ErrorResponse" },
-    ...requestOptions,
-    query: {
-      "include[]": queryValue("include[]", include, "form", true),
-    },
-    body: {
-      assistant_id: assistantId,
-      model,
-      reasoning_effort: reasoningEffort,
-      instructions,
-      additional_instructions: additionalInstructions,
-      additional_messages: additionalMessages,
-      tools,
-      metadata,
-      temperature,
-      top_p: topP,
-      max_prompt_tokens: maxPromptTokens,
-      max_completion_tokens: maxCompletionTokens,
-      truncation_strategy: truncationStrategy,
-      tool_choice: toolChoice,
-      parallel_tool_calls: parallelToolCalls,
-      response_format: responseFormat,
-      stream: true,
-    },
-    config,
-    accept: "text/event-stream",
-  })) {
-    if ((_ev.data as unknown) === "[DONE]") return;
-    yield sdkDecode(
-      _ev,
-      () => decodeResponseEnums(_ev.data, { ref: "AssistantStreamEvent" }) as AssistantStreamEvent,
-    );
-  }
 }

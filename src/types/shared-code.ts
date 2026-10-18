@@ -46,7 +46,7 @@ export interface CodeInterpreterTool {
    * specifies uploaded file IDs to make available to your code, along with an
    * optional `memory_limit` setting.
    */
-  container: string | AutoCodeInterpreterToolParam;
+  container: CodeInterpreterToolContainer;
   /**
    * The tool invocation context(s).
    */
@@ -96,3 +96,5 @@ export type CodeInterpreterToolCallOutputsItem =
   | CodeInterpreterOutputLogs
   | CodeInterpreterOutputImage
   | UnknownCodeInterpreterToolCallOutputsItem;
+
+export type CodeInterpreterToolContainer = string | AutoCodeInterpreterToolParam;

@@ -8,7 +8,7 @@ import {
   ProjectGroupListResource,
 } from "../types/project-groups";
 import { ErrorResponse } from "../types/shared-error";
-import { PermissionErrorResponse } from "../types/shared";
+import { PermissionErrorResponse } from "../types/shared-permission";
 import { decodeResponseEnums } from "../response-enum-validation";
 import type { ClientConfig, RequestOptions } from "../client";
 import { encodePathSegment, fromWire, queryValue, sdkDecode, SdkPage, sdkRequest } from "../client";

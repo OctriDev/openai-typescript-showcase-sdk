@@ -326,6 +326,20 @@ export function createProvider(value: Types.Provider): Types.Provider {
   return modelRuntime.validate(value, "Provider");
 }
 
+/** Constructs a validated CreateTranscriptionResponse model value. */
+export function createCreateTranscriptionResponse(
+  value: Types.CreateTranscriptionResponse,
+): Types.CreateTranscriptionResponse {
+  return modelRuntime.validate(value, "CreateTranscriptionResponse");
+}
+
+/** Constructs a validated CreateTranslationResponse model value. */
+export function createCreateTranslationResponse(
+  value: Types.CreateTranslationResponse,
+): Types.CreateTranslationResponse {
+  return modelRuntime.validate(value, "CreateTranslationResponse");
+}
+
 /** Constructs a validated AssistantObjectToolsItem model value. */
 export function createAssistantObjectToolsItem(
   value: Types.AssistantObjectToolsItem,
@@ -444,6 +458,13 @@ export function createChatCompletionModerationOutput(
   return modelRuntime.validate(value, "ChatCompletionModerationOutput");
 }
 
+/** Constructs a validated CodeInterpreterToolContainer model value. */
+export function createCodeInterpreterToolContainer(
+  value: Types.CodeInterpreterToolContainer,
+): Types.CodeInterpreterToolContainer {
+  return modelRuntime.validate(value, "CodeInterpreterToolContainer");
+}
+
 /** Constructs a validated AutoCodeInterpreterToolParamNetworkPolicy model value. */
 export function createAutoCodeInterpreterToolParamNetworkPolicy(
   value: Types.AutoCodeInterpreterToolParamNetworkPolicy,
@@ -477,6 +498,13 @@ export function createWebSearchToolCallAction(
   value: Types.WebSearchToolCallAction,
 ): Types.WebSearchToolCallAction {
   return modelRuntime.validate(value, "WebSearchToolCallAction");
+}
+
+/** Constructs a validated MCPToolRequireApproval model value. */
+export function createMCPToolRequireApproval(
+  value: Types.MCPToolRequireApproval,
+): Types.MCPToolRequireApproval {
+  return modelRuntime.validate(value, "MCPToolRequireApproval");
 }
 
 /** Constructs a validated FunctionShellToolParamEnvironment model value. */
@@ -552,16 +580,6 @@ export function createCreateAssistantRequestToolResourcesFileSearchVectorStoresI
   );
 }
 
-/** Constructs a validated ResponseFormat model value. */
-export function createResponseFormat(value: Types.ResponseFormat): Types.ResponseFormat {
-  return modelRuntime.validate(value, "ResponseFormat");
-}
-
-/** Constructs a validated ToolsItem model value. */
-export function createToolsItem(value: Types.ToolsItem): Types.ToolsItem {
-  return modelRuntime.validate(value, "ToolsItem");
-}
-
 /** Constructs a validated CustomToolChatCompletionsCustomFormat model value. */
 export function createCustomToolChatCompletionsCustomFormat(
   value: Types.CustomToolChatCompletionsCustomFormat,
@@ -588,11 +606,6 @@ export function createCreateEvalCompletionsRunDataSourceInputMessages(
   value: Types.CreateEvalCompletionsRunDataSourceInputMessages,
 ): Types.CreateEvalCompletionsRunDataSourceInputMessages {
   return modelRuntime.validate(value, "CreateEvalCompletionsRunDataSourceInputMessages");
-}
-
-/** Constructs a validated TemplateItem model value. */
-export function createTemplateItem(value: Types.TemplateItem): Types.TemplateItem {
-  return modelRuntime.validate(value, "TemplateItem");
 }
 
 /** Constructs a validated CreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat model value. */
@@ -638,11 +651,6 @@ export function createCreateEvalResponsesRunDataSourceInputMessages(
   value: Types.CreateEvalResponsesRunDataSourceInputMessages,
 ): Types.CreateEvalResponsesRunDataSourceInputMessages {
   return modelRuntime.validate(value, "CreateEvalResponsesRunDataSourceInputMessages");
-}
-
-/** Constructs a validated TemplateItem2 model value. */
-export function createTemplateItem2(value: Types.TemplateItem2): Types.TemplateItem2 {
-  return modelRuntime.validate(value, "TemplateItem2");
 }
 
 /** Constructs a validated CreateEvalResponsesRunDataSourceSource model value. */

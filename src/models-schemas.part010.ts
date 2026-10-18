@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart010: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "VideoListResource",
+    parseRuntimeSchema(
+      '{"type":"object","required":["object","data","firstId","lastId","hasMore"],"properties":{"object":{"type":"string"},"data":{"type":"array","items":{"ref":"VideoResource"}},"firstId":{"type":"string","nullable":true},"lastId":{"type":"string","nullable":true},"hasMore":{"type":"boolean"}}}',
+    ),
+  ],
+
+  [
+    "ImageRefParam2",
+    parseRuntimeSchema(
+      '{"type":"object","properties":{"imageUrl":{"type":"string","maxLength":20971520,"format":"uri"},"fileId":{"type":"string"}}}',
+    ),
+  ],
+
+  [
     "CreateVideoMultipartBody",
     parseRuntimeSchema(
       '{"type":"object","required":["prompt"],"properties":{"model":{"ref":"VideoModel"},"prompt":{"type":"string","minLength":1,"maxLength":32000},"inputReference":{"oneOf":[{"type":"string"},{"ref":"ImageRefParam2"}]},"seconds":{"ref":"VideoSeconds"},"size":{"ref":"VideoSize"}}}',
@@ -685,20 +699,6 @@ export const modelSchemasPart010: readonly (readonly [string, RuntimeSchema])[] 
     "ErrorResponse2",
     parseRuntimeSchema(
       '{"type":"object","required":["error"],"properties":{"error":{"ref":"ErrorBodyResource"}}}',
-    ),
-  ],
-
-  [
-    "EnvironmentPackagesParam",
-    parseRuntimeSchema(
-      '{"type":"object","properties":{"python":{"type":["array","null"],"minItems":0,"maxItems":16384,"items":{"type":"string","minLength":0,"maxLength":1048576}},"system":{"type":["array","null"],"minItems":0,"maxItems":16384,"items":{"type":"string","minLength":0,"maxLength":1048576}},"npm":{"type":["array","null"],"minItems":0,"maxItems":16384,"items":{"type":"string","minLength":0,"maxLength":1048576}}}}',
-    ),
-  ],
-
-  [
-    "SetupCommandParam",
-    parseRuntimeSchema(
-      '{"type":"object","required":["command"],"properties":{"command":{"type":"string","minLength":0,"maxLength":65536},"cwd":{"type":["string","null"],"minLength":0,"maxLength":4096}}}',
     ),
   ],
 ];

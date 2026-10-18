@@ -19,8 +19,6 @@ import type {
   ListVectorStoreFilesParams,
   ListVectorStoresParams,
   ModifyVectorStoreParams,
-  RetrieveVectorStoreFileContentParams,
-  UpdateVectorStoreFileAttributesParams,
 } from "./vectorStores/part1";
 import {
   cancelVectorStoreFileBatch,
@@ -33,14 +31,23 @@ import {
   getVectorStoreFile,
   getVectorStoreFileBatch,
   listFilesInVectorStoreBatch,
+  listFilesInVectorStoreBatchPages,
   listVectorStoreFiles,
+  listVectorStoreFilesPages,
   listVectorStores,
+  listVectorStoresPages,
   modifyVectorStore,
-  retrieveVectorStoreFileContent,
-  updateVectorStoreFileAttributes,
 } from "./vectorStores/part1";
-import type { SearchVectorStoreParams } from "./vectorStores/part2";
-import { searchVectorStore } from "./vectorStores/part2";
+import type {
+  RetrieveVectorStoreFileContentParams,
+  SearchVectorStoreParams,
+  UpdateVectorStoreFileAttributesParams,
+} from "./vectorStores/part2";
+import {
+  retrieveVectorStoreFileContent,
+  searchVectorStore,
+  updateVectorStoreFileAttributes,
+} from "./vectorStores/part2";
 
 export class VectorStoresNamespace {
   constructor(private readonly _config: ClientConfig) {}
@@ -55,6 +62,12 @@ export class VectorStoresNamespace {
     requestOptions?: RequestOptions,
   ): ReturnType<typeof listVectorStores> {
     return listVectorStores(this._config, params, requestOptions);
+  }
+  listPages(
+    params: ListVectorStoresParams = {},
+    requestOptions?: RequestOptions,
+  ): ReturnType<typeof listVectorStoresPages> {
+    return listVectorStoresPages(this._config, params, requestOptions);
   }
   /**
    * Creates a vector store to collect processed files for use with the `file_search` tool. Supply `file_ids` to add files at creation, and optionally set a name, description, expiration policy, chunking strategy, or metadata.
@@ -144,6 +157,12 @@ export class VectorStoresNamespace {
   ): ReturnType<typeof listFilesInVectorStoreBatch> {
     return listFilesInVectorStoreBatch(this._config, params, requestOptions);
   }
+  listFilesInBatchPages(
+    params: ListFilesInVectorStoreBatchParams,
+    requestOptions?: RequestOptions,
+  ): ReturnType<typeof listFilesInVectorStoreBatchPages> {
+    return listFilesInVectorStoreBatchPages(this._config, params, requestOptions);
+  }
   /**
    * Lists files attached to a vector store, with pagination and an optional status filter. Use `after` or `before` to navigate the list, and `filter` to select files by processing status.
    *
@@ -154,6 +173,12 @@ export class VectorStoresNamespace {
     requestOptions?: RequestOptions,
   ): ReturnType<typeof listVectorStoreFiles> {
     return listVectorStoreFiles(this._config, params, requestOptions);
+  }
+  listFilesPages(
+    params: ListVectorStoreFilesParams,
+    requestOptions?: RequestOptions,
+  ): ReturnType<typeof listVectorStoreFilesPages> {
+    return listVectorStoreFilesPages(this._config, params, requestOptions);
   }
   /**
    * Creates an attachment between a file and a vector store. Supply the file's `file_id` and optionally configure `chunking_strategy` or attach `attributes`; use file batches for multi-file ingestion. The response includes the attached file's processing status.

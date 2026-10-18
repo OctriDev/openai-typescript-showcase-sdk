@@ -4,6 +4,22 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart20: Record<string, WireSchema> = {
+  BetaInputFileContent: {
+    ["type"]: { wire: "type" },
+    fileId: { wire: "file_id" },
+    filename: { wire: "filename" },
+    fileData: { wire: "file_data" },
+    promptCacheBreakpoint: { wire: "prompt_cache_breakpoint" },
+    fileUrl: { wire: "file_url" },
+    detail: { wire: "detail" },
+  },
+  BetaInputImageContent: {
+    ["type"]: { wire: "type" },
+    imageUrl: { wire: "image_url" },
+    fileId: { wire: "file_id" },
+    detail: { wire: "detail" },
+    promptCacheBreakpoint: { wire: "prompt_cache_breakpoint" },
+  },
   BetaInputTextContent: {
     ["type"]: { wire: "type" },
     text: { wire: "text" },
@@ -387,28 +403,5 @@ export const wireSchemasPart20: Record<string, WireSchema> = {
     hasMore: { wire: "has_more" },
     firstId: { wire: "first_id" },
     lastId: { wire: "last_id" },
-  },
-  BetaCustomToolCallOutputResource: {
-    agent: { wire: "agent", type: "BetaAgentTag" },
-    ["type"]: { wire: "type" },
-    id: { wire: "id" },
-    callId: { wire: "call_id" },
-    caller: { wire: "caller" },
-    output: { wire: "output" },
-    status: { wire: "status" },
-    createdBy: { wire: "created_by" },
-  },
-  BetaCustomToolCallResource: {
-    agent: { wire: "agent", type: "BetaAgentTag" },
-    ["type"]: { wire: "type" },
-    id: { wire: "id" },
-    callId: { wire: "call_id" },
-    caller: { wire: "caller" },
-    namespace: { wire: "namespace" },
-    name: { wire: "name" },
-    input: { wire: "input" },
-    ["async"]: { wire: "async" },
-    status: { wire: "status" },
-    createdBy: { wire: "created_by" },
   },
 };

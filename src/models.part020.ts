@@ -25,6 +25,13 @@ export function createCreateRunRequestToolsItem(
   return modelRuntime.validate(value, "CreateRunRequestToolsItem");
 }
 
+/** Constructs a validated CreateSpeechRequestVoice model value. */
+export function createCreateSpeechRequestVoice(
+  value: Types.CreateSpeechRequestVoice,
+): Types.CreateSpeechRequestVoice {
+  return modelRuntime.validate(value, "CreateSpeechRequestVoice");
+}
+
 /** Constructs a validated CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategy model value. */
 export function createCreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategy(
   value: Types.CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategy,
@@ -40,6 +47,13 @@ export function createCreateThreadAndRunRequestToolsItem(
   value: Types.CreateThreadAndRunRequestToolsItem,
 ): Types.CreateThreadAndRunRequestToolsItem {
   return modelRuntime.validate(value, "CreateThreadAndRunRequestToolsItem");
+}
+
+/** Constructs a validated CreateTranscriptionRequestChunkingStrategy model value. */
+export function createCreateTranscriptionRequestChunkingStrategy(
+  value: Types.CreateTranscriptionRequestChunkingStrategy,
+): Types.CreateTranscriptionRequestChunkingStrategy {
+  return modelRuntime.validate(value, "CreateTranscriptionRequestChunkingStrategy");
 }
 
 /** Constructs a validated CreateTranscriptionResponseDiarizedJsonUsage model value. */
@@ -89,6 +103,13 @@ export function createVectorStoreFileObjectChunkingStrategy(
   return modelRuntime.validate(value, "VectorStoreFileObjectChunkingStrategy");
 }
 
+/** Constructs a validated LiveInitialSessionAudioOutputParamVoice model value. */
+export function createLiveInitialSessionAudioOutputParamVoice(
+  value: Types.LiveInitialSessionAudioOutputParamVoice,
+): Types.LiveInitialSessionAudioOutputParamVoice {
+  return modelRuntime.validate(value, "LiveInitialSessionAudioOutputParamVoice");
+}
+
 /** Constructs a validated LiveResponsesDelegationSettingsInputParamToolsItem model value. */
 export function createLiveResponsesDelegationSettingsInputParamToolsItem(
   value: Types.LiveResponsesDelegationSettingsInputParamToolsItem,
@@ -115,6 +136,13 @@ export function createLiveHostedShellContainerAutoParamSkillsItem(
   value: Types.LiveHostedShellContainerAutoParamSkillsItem,
 ): Types.LiveHostedShellContainerAutoParamSkillsItem {
   return modelRuntime.validate(value, "LiveHostedShellContainerAutoParamSkillsItem");
+}
+
+/** Constructs a validated LiveResponsesDelegationSettingsInputParamToolChoice model value. */
+export function createLiveResponsesDelegationSettingsInputParamToolChoice(
+  value: Types.LiveResponsesDelegationSettingsInputParamToolChoice,
+): Types.LiveResponsesDelegationSettingsInputParamToolChoice {
+  return modelRuntime.validate(value, "LiveResponsesDelegationSettingsInputParamToolChoice");
 }
 
 /** Constructs a validated LiveAllowedToolsChoiceParamToolsItem model value. */
@@ -150,6 +178,13 @@ export function createLiveResponsesDelegationSettingsUpdateInputParamToolsItem(
   value: Types.LiveResponsesDelegationSettingsUpdateInputParamToolsItem,
 ): Types.LiveResponsesDelegationSettingsUpdateInputParamToolsItem {
   return modelRuntime.validate(value, "LiveResponsesDelegationSettingsUpdateInputParamToolsItem");
+}
+
+/** Constructs a validated LiveResponsesDelegationSettingsUpdateInputParamToolChoice model value. */
+export function createLiveResponsesDelegationSettingsUpdateInputParamToolChoice(
+  value: Types.LiveResponsesDelegationSettingsUpdateInputParamToolChoice,
+): Types.LiveResponsesDelegationSettingsUpdateInputParamToolChoice {
+  return modelRuntime.validate(value, "LiveResponsesDelegationSettingsUpdateInputParamToolChoice");
 }
 
 /** Constructs a validated LiveDecisionInputItemParamContentItem model value. */
@@ -194,6 +229,13 @@ export function createModifyAssistantRequestToolsItem(
   return modelRuntime.validate(value, "ModifyAssistantRequestToolsItem");
 }
 
+/** Constructs a validated PermissionErrorResponseError model value. */
+export function createPermissionErrorResponseError(
+  value: Types.PermissionErrorResponseError,
+): Types.PermissionErrorResponseError {
+  return modelRuntime.validate(value, "PermissionErrorResponseError");
+}
+
 /** Constructs a validated RealtimeMCPToolCallError model value. */
 export function createRealtimeMCPToolCallError(
   value: Types.RealtimeMCPToolCallError,
@@ -208,6 +250,13 @@ export function createRealtimeBetaResponseCreateParamsToolChoice(
   return modelRuntime.validate(value, "RealtimeBetaResponseCreateParamsToolChoice");
 }
 
+/** Constructs a validated RealtimeSessionCreateRequestTracing model value. */
+export function createRealtimeSessionCreateRequestTracing(
+  value: Types.RealtimeSessionCreateRequestTracing,
+): Types.RealtimeSessionCreateRequestTracing {
+  return modelRuntime.validate(value, "RealtimeSessionCreateRequestTracing");
+}
+
 /** Constructs a validated RealtimeBetaServerEventConversationItemInputAudioTranscriptionCompletedUsage model value. */
 export function createRealtimeBetaServerEventConversationItemInputAudioTranscriptionCompletedUsage(
   value: Types.RealtimeBetaServerEventConversationItemInputAudioTranscriptionCompletedUsage,
@@ -216,6 +265,13 @@ export function createRealtimeBetaServerEventConversationItemInputAudioTranscrip
     value,
     "RealtimeBetaServerEventConversationItemInputAudioTranscriptionCompletedUsage",
   );
+}
+
+/** Constructs a validated RealtimeSessionTracing model value. */
+export function createRealtimeSessionTracing(
+  value: Types.RealtimeSessionTracing,
+): Types.RealtimeSessionTracing {
+  return modelRuntime.validate(value, "RealtimeSessionTracing");
 }
 
 /** Constructs a validated RealtimeSessionCreateRequestGAToolsItem model value. */
@@ -267,6 +323,13 @@ export function createRealtimeCreateClientSecretResponseSession(
   return modelRuntime.validate(value, "RealtimeCreateClientSecretResponseSession");
 }
 
+/** Constructs a validated RealtimeSessionCreateResponseGATracing model value. */
+export function createRealtimeSessionCreateResponseGATracing(
+  value: Types.RealtimeSessionCreateResponseGATracing,
+): Types.RealtimeSessionCreateResponseGATracing {
+  return modelRuntime.validate(value, "RealtimeSessionCreateResponseGATracing");
+}
+
 /** Constructs a validated RealtimeSessionCreateResponseGAToolsItem model value. */
 export function createRealtimeSessionCreateResponseGAToolsItem(
   value: Types.RealtimeSessionCreateResponseGAToolsItem,
@@ -303,6 +366,13 @@ export function createRealtimeServerEventSessionUpdatedSession(
   value: Types.RealtimeServerEventSessionUpdatedSession,
 ): Types.RealtimeServerEventSessionUpdatedSession {
   return modelRuntime.validate(value, "RealtimeServerEventSessionUpdatedSession");
+}
+
+/** Constructs a validated RealtimeSessionCreateResponseTracing model value. */
+export function createRealtimeSessionCreateResponseTracing(
+  value: Types.RealtimeSessionCreateResponseTracing,
+): Types.RealtimeSessionCreateResponseTracing {
+  return modelRuntime.validate(value, "RealtimeSessionCreateResponseTracing");
 }
 
 /** Constructs a validated ModerationInput model value. */
@@ -355,6 +425,13 @@ export function createVectorStoreSearchRequestFilters(
   value: Types.VectorStoreSearchRequestFilters,
 ): Types.VectorStoreSearchRequestFilters {
   return modelRuntime.validate(value, "VectorStoreSearchRequestFilters");
+}
+
+/** Constructs a validated DecisionsUsagePermissionErrorResponseError model value. */
+export function createDecisionsUsagePermissionErrorResponseError(
+  value: Types.DecisionsUsagePermissionErrorResponseError,
+): Types.DecisionsUsagePermissionErrorResponseError {
+  return modelRuntime.validate(value, "DecisionsUsagePermissionErrorResponseError");
 }
 
 /** Constructs a validated ExternalStorageResponseProvider model value. */
@@ -451,6 +528,20 @@ export function createBetaCompoundFilterFiltersItem(
   value: Types.BetaCompoundFilterFiltersItem,
 ): Types.BetaCompoundFilterFiltersItem {
   return modelRuntime.validate(value, "BetaCompoundFilterFiltersItem");
+}
+
+/** Constructs a validated BetaMCPToolRequireApproval model value. */
+export function createBetaMCPToolRequireApproval(
+  value: Types.BetaMCPToolRequireApproval,
+): Types.BetaMCPToolRequireApproval {
+  return modelRuntime.validate(value, "BetaMCPToolRequireApproval");
+}
+
+/** Constructs a validated BetaCodeInterpreterToolContainer model value. */
+export function createBetaCodeInterpreterToolContainer(
+  value: Types.BetaCodeInterpreterToolContainer,
+): Types.BetaCodeInterpreterToolContainer {
+  return modelRuntime.validate(value, "BetaCodeInterpreterToolContainer");
 }
 
 /** Constructs a validated BetaAutoCodeInterpreterToolParamNetworkPolicy model value. */

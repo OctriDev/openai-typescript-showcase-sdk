@@ -4,6 +4,18 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart16: Record<string, WireSchema> = {
+  PersistedAgentToolConfigParamFunction: {
+    ["type"]: { wire: "type" },
+    name: { wire: "name" },
+    description: { wire: "description" },
+    parameters: { wire: "parameters" },
+    deferLoading: { wire: "defer_loading" },
+  },
+  PersistedMcpTransportConfigParamHttp: {
+    ["type"]: { wire: "type" },
+    serverUrl: { wire: "server_url" },
+    headers: { wire: "headers" },
+  },
   PersistedMcpTransportConfigParamStdio: {
     ["type"]: { wire: "type" },
     command: { wire: "command" },
@@ -375,17 +387,5 @@ export const wireSchemasPart16: Record<string, WireSchema> = {
     itemId: { wire: "item_id" },
     outputIndex: { wire: "output_index" },
     delta: { wire: "delta" },
-  },
-  SessionEventAgentSessionCreated: {
-    ["type"]: { wire: "type" },
-    eventId: { wire: "event_id" },
-    session: { wire: "session", type: "SessionResource" },
-  },
-  SessionEventAgentSessionTurnCreated: {
-    ["type"]: { wire: "type" },
-    eventId: { wire: "event_id" },
-    sessionId: { wire: "session_id" },
-    turnId: { wire: "turn_id" },
-    turn: { wire: "turn", type: "TurnResource" },
   },
 };

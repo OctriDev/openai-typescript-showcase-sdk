@@ -141,26 +141,7 @@ export interface RealtimeSessionCreateResponse {
    * `auto` will create a trace for the session with default values for the
    * workflow name, group id, and metadata.
    */
-  tracing?:
-    | "auto"
-    | (string & {})
-    | {
-        /**
-         * The name of the workflow to attach to this trace. This is used to
-         * name the trace in the traces dashboard.
-         */
-        workflowName?: string;
-        /**
-         * The group id to attach to this trace to enable filtering and
-         * grouping in the traces dashboard.
-         */
-        groupId?: string;
-        /**
-         * The arbitrary metadata to attach to this trace to enable
-         * filtering in the traces dashboard.
-         */
-        metadata?: { [key: string]: unknown };
-      };
+  tracing?: RealtimeSessionCreateResponseTracing;
   /**
    * Configuration for turn detection. Can be set to `null` to turn off. Server
    * VAD means that the model will detect the start and end of speech based on
@@ -323,27 +304,7 @@ export interface RealtimeSessionCreateResponseGA {
    * `auto` will create a trace for the session with default values for the
    * workflow name, group id, and metadata.
    */
-  tracing?:
-    | "auto"
-    | (string & {})
-    | {
-        /**
-         * The name of the workflow to attach to this trace. This is used to
-         * name the trace in the Traces Dashboard.
-         */
-        workflowName?: string;
-        /**
-         * The group id to attach to this trace to enable filtering and
-         * grouping in the Traces Dashboard.
-         */
-        groupId?: string;
-        /**
-         * The arbitrary metadata to attach to this trace to enable
-         * filtering in the Traces Dashboard.
-         */
-        metadata?: { [key: string]: unknown };
-      }
-    | null;
+  tracing?: RealtimeSessionCreateResponseGATracing | null;
   /**
    * Tools available to the model.
    */
@@ -396,3 +357,68 @@ export type RealtimeSessionCreateResponseGAToolChoice =
   | UnknownRealtimeSessionCreateResponseGAToolChoice;
 
 export type RealtimeSessionCreateResponseGAToolsItem = RealtimeFunctionTool | MCPTool;
+
+export type RealtimeSessionCreateResponseGATracing =
+  | "auto"
+  | (string & {})
+  | {
+      /**
+       * The name of the workflow to attach to this trace. This is used to
+       * name the trace in the Traces Dashboard.
+       */
+      workflowName?: string;
+      /**
+       * The group id to attach to this trace to enable filtering and
+       * grouping in the Traces Dashboard.
+       */
+      groupId?: string;
+      /**
+       * The arbitrary metadata to attach to this trace to enable
+       * filtering in the Traces Dashboard.
+       */
+      metadata?: { [key: string]: unknown };
+    }
+  | null;
+
+export type RealtimeSessionCreateResponseTracing =
+  | "auto"
+  | (string & {})
+  | {
+      /**
+       * The name of the workflow to attach to this trace. This is used to
+       * name the trace in the traces dashboard.
+       */
+      workflowName?: string;
+      /**
+       * The group id to attach to this trace to enable filtering and
+       * grouping in the traces dashboard.
+       */
+      groupId?: string;
+      /**
+       * The arbitrary metadata to attach to this trace to enable
+       * filtering in the traces dashboard.
+       */
+      metadata?: { [key: string]: unknown };
+    };
+
+export type RealtimeSessionTracing =
+  | "auto"
+  | (string & {})
+  | {
+      /**
+       * The name of the workflow to attach to this trace. This is used to
+       * name the trace in the traces dashboard.
+       */
+      workflowName?: string;
+      /**
+       * The group id to attach to this trace to enable filtering and
+       * grouping in the traces dashboard.
+       */
+      groupId?: string;
+      /**
+       * The arbitrary metadata to attach to this trace to enable
+       * filtering in the traces dashboard.
+       */
+      metadata?: { [key: string]: unknown };
+    }
+  | null;

@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart013: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "VaultCredentialAuthResourceMcpOauth",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type","mcpServerUrl","expiresAt","refresh"],"properties":{"type":{"type":"string","enum":["mcp_oauth"]},"mcpServerUrl":{"type":"string","minLength":0},"expiresAt":{"type":["string","null"],"minLength":0},"refresh":{"ref":"McpOauthRefreshResource"}}}',
+    ),
+  ],
+
+  [
+    "VaultCredentialAuthResourceStaticBearer",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type","mcpServerUrl"],"properties":{"type":{"type":"string","enum":["static_bearer"]},"mcpServerUrl":{"type":"string","minLength":0}}}',
+    ),
+  ],
+
+  [
     "VaultCredentialNetworkingResourceUnrestricted",
     parseRuntimeSchema(
       '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["unrestricted"]}}}',
@@ -689,20 +703,6 @@ export const modelSchemasPart013: readonly (readonly [string, RuntimeSchema])[] 
     "LiveErrorEvent",
     parseRuntimeSchema(
       '{"type":"object","required":["eventId","type","error"],"properties":{"eventId":{"type":"string"},"clientEventId":{"type":"string"},"type":{"type":"string","enum":["error"]},"error":{"ref":"LiveLiveError"}}}',
-    ),
-  ],
-
-  [
-    "LiveInfoEvent",
-    parseRuntimeSchema(
-      '{"type":"object","required":["eventId","type","code","message"],"properties":{"eventId":{"type":"string"},"clientEventId":{"type":"string"},"type":{"type":"string","enum":["info"]},"code":{"type":"string"},"message":{"type":"string"}}}',
-    ),
-  ],
-
-  [
-    "LiveTransportDTMFReceived",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type","eventId","event"],"properties":{"type":{"type":"string","enum":["transport.dtmf.received"]},"eventId":{"type":"string"},"event":{"type":"string","minLength":1,"maxLength":1,"pattern":"^[0-9A-D*#]$"}}}',
     ),
   ],
 ];

@@ -4,6 +4,17 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart23: Record<string, WireSchema> = {
+  BetaResponseWsError: {
+    agent: { wire: "agent", type: "BetaAgentTag" },
+    ["type"]: { wire: "type" },
+    status: { wire: "status" },
+    sequenceNumber: { wire: "sequence_number" },
+    error: { wire: "error", type: "BetaErrorPayload" },
+    streamId: { wire: "stream_id" },
+  },
+  BetaResponsesWebSocketStreamEvent: {
+    streamId: { wire: "stream_id" },
+  },
   BetaResponseInjectEvent: {
     ["type"]: { wire: "type" },
     responseId: { wire: "response_id" },
@@ -223,6 +234,11 @@ export const wireSchemasPart23: Record<string, WireSchema> = {
     ["type"]: { wire: "type" },
     ["static"]: { wire: "static", type: "StaticChunkingStrategy" },
   },
+  ThreadStreamEvent: {
+    enabled: { wire: "enabled" },
+    event: { wire: "event" },
+    data: { wire: "data", type: "ThreadObject" },
+  },
   TranscriptTextDoneEvent: {
     ["type"]: { wire: "type" },
     text: { wire: "text" },
@@ -321,25 +337,5 @@ export const wireSchemasPart23: Record<string, WireSchema> = {
     agent: { wire: "agent", type: "Beta_AgentTagParam" },
     id: { wire: "id" },
     ["type"]: { wire: "type" },
-  },
-  BetaLocalShellToolCallOutput: {
-    agent: { wire: "agent", type: "BetaAgentTag" },
-    ["type"]: { wire: "type" },
-    id: { wire: "id" },
-    output: { wire: "output" },
-    status: { wire: "status" },
-  },
-  BetaResponseConfigurationUpdateItemParam: {
-    agent: { wire: "agent", type: "Beta_AgentTagParam" },
-    id: { wire: "id" },
-    ["type"]: { wire: "type" },
-    reasoning: { wire: "reasoning" },
-  },
-  BetaAdditionalToolsItemParam: {
-    agent: { wire: "agent", type: "Beta_AgentTagParam" },
-    id: { wire: "id" },
-    ["type"]: { wire: "type" },
-    role: { wire: "role" },
-    tools: { wire: "tools" },
   },
 };

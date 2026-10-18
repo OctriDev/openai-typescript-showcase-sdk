@@ -2,11 +2,114 @@
 // This file is machine-generated from your OpenAPI spec.
 
 import { ErrorResponse } from "../../types/shared-error";
-import { VectorStoreSearchRequest, VectorStoreSearchResultsPage } from "../../types/vector-stores";
+import {
+  UpdateVectorStoreFileAttributesRequest,
+  VectorStoreFileContentResponse,
+  VectorStoreFileObject,
+  VectorStoreSearchRequest,
+  VectorStoreSearchResultsPage,
+} from "../../types/vector-stores";
 import { decodeResponseEnums } from "../../response-enum-validation";
 import type { ClientConfig, RequestOptions } from "../../client";
 import { encodePathSegment, fromWire, sdkDecode, sdkRequest } from "../../client";
 import { validateRange } from "../../validation";
+
+export type UpdateVectorStoreFileAttributesError = ErrorResponse;
+
+export type UpdateVectorStoreFileAttributesParams = UpdateVectorStoreFileAttributesRequest & {
+  vectorStoreId: string;
+  fileId: string;
+};
+
+/**
+ * Updates the attributes attached to a file in a vector store. Supply `attributes` to replace the file's attribute set, or use `null` to clear it.
+ *
+ * Update attributes on a vector store file.
+ *
+ * @param vectorStoreId - The ID of the vector store the file belongs to.
+ * @param fileId - The ID of the file to update attributes.
+ * @param attributes - Set of 16 key-value pairs that can be attached to an
+ *   object. This can be useful for storing additional information about the object
+ *   in a structured format, and querying for objects via API or the dashboard.
+ *   Keys are strings with a maximum length of 64 characters. Values are strings
+ *   with a maximum length of 512 characters, booleans, or numbers.
+ */
+export async function updateVectorStoreFileAttributes(
+  config: ClientConfig,
+  { vectorStoreId, fileId, attributes }: UpdateVectorStoreFileAttributesParams,
+  requestOptions?: RequestOptions,
+): Promise<VectorStoreFileObject> {
+  const _resp = await sdkRequest<VectorStoreFileObject>({
+    method: "POST",
+    path: `/vector_stores/${encodePathSegment(vectorStoreId)}/files/${encodePathSegment(fileId)}`,
+    operationId: "updateVectorStoreFileAttributes",
+    errors: {
+      "400": "ErrorResponse",
+      "404": "ErrorResponse",
+      "409": "ErrorResponse",
+      "429": "ErrorResponse",
+      "500": "ErrorResponse",
+    },
+    responseDecoder: "json",
+    ...requestOptions,
+    body: {
+      attributes,
+    },
+    config,
+  });
+  return sdkDecode(
+    _resp,
+    () =>
+      fromWire(
+        decodeResponseEnums(_resp.data, { ref: "VectorStoreFileObject" }),
+        "VectorStoreFileObject",
+      ) as VectorStoreFileObject,
+  );
+}
+
+export type RetrieveVectorStoreFileContentError = ErrorResponse;
+
+export interface RetrieveVectorStoreFileContentParams {
+  vectorStoreId: string;
+  fileId: string;
+}
+
+/**
+ * Retrieves parsed content from a file attached to a vector store. Use `vector_store_id` and `file_id` to identify the file, then follow `next_page` when `has_more` indicates that additional content pages are available.
+ *
+ * Retrieve the parsed contents of a vector store file.
+ *
+ * @param vectorStoreId - The ID of the vector store.
+ * @param fileId - The ID of the file within the vector store.
+ */
+export async function retrieveVectorStoreFileContent(
+  config: ClientConfig,
+  { vectorStoreId, fileId }: RetrieveVectorStoreFileContentParams,
+  requestOptions?: RequestOptions,
+): Promise<VectorStoreFileContentResponse> {
+  const _resp = await sdkRequest<VectorStoreFileContentResponse>({
+    method: "GET",
+    path: `/vector_stores/${encodePathSegment(vectorStoreId)}/files/${encodePathSegment(fileId)}/content`,
+    operationId: "retrieveVectorStoreFileContent",
+    errors: {
+      "400": "ErrorResponse",
+      "404": "ErrorResponse",
+      "429": "ErrorResponse",
+      "500": "ErrorResponse",
+    },
+    responseDecoder: "json",
+    ...requestOptions,
+    config,
+  });
+  return sdkDecode(
+    _resp,
+    () =>
+      fromWire(
+        decodeResponseEnums(_resp.data, { ref: "VectorStoreFileContentResponse" }),
+        "VectorStoreFileContentResponse",
+      ) as VectorStoreFileContentResponse,
+  );
+}
 
 export type SearchVectorStoreError = ErrorResponse;
 

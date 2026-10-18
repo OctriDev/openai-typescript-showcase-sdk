@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart008: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "TypeParam",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type","text"],"properties":{"type":{"type":"string","enum":["type"]},"text":{"type":"string"}}}',
+    ),
+  ],
+
+  [
+    "WaitParam",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["wait"]}}}',
+    ),
+  ],
+
+  [
     "ComputerCallSafetyCheckParam",
     parseRuntimeSchema(
       '{"type":"object","required":["id"],"properties":{"id":{"type":"string"},"code":{"type":"string","nullable":true},"message":{"type":"string","nullable":true}}}',
@@ -689,20 +703,6 @@ export const modelSchemasPart008: readonly (readonly [string, RuntimeSchema])[] 
     "LiveHostedShellToolInputParam",
     parseRuntimeSchema(
       '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["shell"]},"environment":{"ref":"LiveHostedShellToolInputParamEnvironment"}}}',
-    ),
-  ],
-
-  [
-    "LiveImageGenerationToolInputParam",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["image_generation"]}}}',
-    ),
-  ],
-
-  [
-    "LiveMCPToolInputParam",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["mcp"]}}}',
     ),
   ],
 ];

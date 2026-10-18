@@ -32,8 +32,6 @@ import {
   createVectorStoreFile,
   getVectorStoreFile,
   deleteVectorStoreFile,
-  updateVectorStoreFileAttributes,
-  retrieveVectorStoreFileContent,
 } from "../../../dist/methods/vectorStores/part1.js";
 
 // Assigned once the mock server has a port. Declared at module scope because
@@ -227,35 +225,6 @@ const CALL = {
     mediaType: null,
     invoke: (bag) =>
       deleteVectorStoreFile(config, {
-        vectorStoreId: bag["vector_store_id"],
-        fileId: bag["file_id"],
-      }),
-  },
-  updateVectorStoreFileAttributes: {
-    route: "updateVectorStoreFileAttributes",
-    endpoint: "POST /vector_stores/{vector_store_id}/files/{file_id}",
-    mediaType: "application/json",
-    renamedKeys: [
-      "usage_bytes",
-      "created_at",
-      "vector_store_id",
-      "last_error",
-      "chunking_strategy",
-    ],
-    invoke: (bag) =>
-      updateVectorStoreFileAttributes(config, {
-        attributes: bag.__body?.["attributes"],
-        vectorStoreId: bag["vector_store_id"],
-        fileId: bag["file_id"],
-      }),
-  },
-  retrieveVectorStoreFileContent: {
-    route: "retrieveVectorStoreFileContent",
-    endpoint: "GET /vector_stores/{vector_store_id}/files/{file_id}/content",
-    mediaType: null,
-    renamedKeys: ["has_more", "next_page"],
-    invoke: (bag) =>
-      retrieveVectorStoreFileContent(config, {
         vectorStoreId: bag["vector_store_id"],
         fileId: bag["file_id"],
       }),

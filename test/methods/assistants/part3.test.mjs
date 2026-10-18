@@ -19,6 +19,7 @@ import {
 import { configureClient } from "../../../dist/client.js";
 import { SdkHttpError, SdkNetworkError, SdkResponseDecodeError } from "../../../dist/errors.js";
 import {
+  createRunStream,
   getRun,
   modifyRun,
   cancelRun,
@@ -38,6 +39,33 @@ let config;
 // the generated part: it encodes each method's real signature (argument order
 // for positional style, the params object otherwise).
 const CALL = {
+  createRunStream: {
+    route: "createRun",
+    endpoint: "POST /threads/{thread_id}/runs",
+    mediaType: "application/json",
+    invoke: (bag) =>
+      createRunStream(config, {
+        assistantId: bag.__body?.["assistant_id"],
+        stream: bag.__body?.["stream"],
+        model: bag.__body?.["model"],
+        reasoningEffort: bag.__body?.["reasoning_effort"],
+        instructions: bag.__body?.["instructions"],
+        additionalInstructions: bag.__body?.["additional_instructions"],
+        additionalMessages: bag.__body?.["additional_messages"],
+        tools: bag.__body?.["tools"],
+        metadata: bag.__body?.["metadata"],
+        temperature: bag.__body?.["temperature"],
+        topP: bag.__body?.["top_p"],
+        maxPromptTokens: bag.__body?.["max_prompt_tokens"],
+        maxCompletionTokens: bag.__body?.["max_completion_tokens"],
+        truncationStrategy: bag.__body?.["truncation_strategy"],
+        toolChoice: bag.__body?.["tool_choice"],
+        parallelToolCalls: bag.__body?.["parallel_tool_calls"],
+        responseFormat: bag.__body?.["response_format"],
+        threadId: bag["thread_id"],
+        include: bag["include[]"],
+      }),
+  },
   getRun: {
     route: "getRun",
     endpoint: "GET /threads/{thread_id}/runs/{run_id}",

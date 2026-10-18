@@ -4,6 +4,18 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart9: Record<string, WireSchema> = {
+  ResponseLogProb: {
+    token: { wire: "token" },
+    logprob: { wire: "logprob" },
+    topLogprobs: { wire: "top_logprobs" },
+  },
+  ResponseMCPCallArgumentsDeltaEvent: {
+    ["type"]: { wire: "type" },
+    outputIndex: { wire: "output_index" },
+    itemId: { wire: "item_id" },
+    delta: { wire: "delta" },
+    sequenceNumber: { wire: "sequence_number" },
+  },
   ResponseMCPCallArgumentsDoneEvent: {
     ["type"]: { wire: "type" },
     outputIndex: { wire: "output_index" },
@@ -432,14 +444,5 @@ export const wireSchemasPart9: Record<string, WireSchema> = {
   RunStepDetailsMessageCreationObject: {
     ["type"]: { wire: "type" },
     messageCreation: { wire: "message_creation", fields: { messageId: { wire: "message_id" } } },
-  },
-  RunStepDetailsToolCallsCodeObject: {
-    id: { wire: "id" },
-    ["type"]: { wire: "type" },
-    codeInterpreter: { wire: "code_interpreter" },
-  },
-  RunStepDetailsToolCallsCodeOutputImageObject: {
-    ["type"]: { wire: "type" },
-    image: { wire: "image", fields: { fileId: { wire: "file_id" } } },
   },
 };

@@ -4,6 +4,23 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart12: Record<string, WireSchema> = {
+  ScrollParam: {
+    ["type"]: { wire: "type" },
+    x: { wire: "x" },
+    y: { wire: "y" },
+    scrollX: { wire: "scroll_x" },
+    scrollY: { wire: "scroll_y" },
+    keys: { wire: "keys" },
+  },
+  ToolSearchCall: {
+    ["type"]: { wire: "type" },
+    id: { wire: "id" },
+    callId: { wire: "call_id" },
+    execution: { wire: "execution" },
+    ["arguments"]: { wire: "arguments" },
+    status: { wire: "status" },
+    createdBy: { wire: "created_by" },
+  },
   FunctionTool: {
     ["type"]: { wire: "type" },
     name: { wire: "name" },
@@ -341,16 +358,5 @@ export const wireSchemasPart12: Record<string, WireSchema> = {
   ImageGenOutputTokensDetails: {
     imageTokens: { wire: "image_tokens" },
     textTokens: { wire: "text_tokens" },
-  },
-  ImageGenInputUsageDetails: {
-    textTokens: { wire: "text_tokens" },
-    imageTokens: { wire: "image_tokens" },
-  },
-  ImageGenUsage: {
-    inputTokens: { wire: "input_tokens" },
-    totalTokens: { wire: "total_tokens" },
-    outputTokens: { wire: "output_tokens" },
-    outputTokensDetails: { wire: "output_tokens_details", type: "ImageGenOutputTokensDetails" },
-    inputTokensDetails: { wire: "input_tokens_details", type: "ImageGenInputUsageDetails" },
   },
 };

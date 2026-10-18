@@ -4,6 +4,17 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart13: Record<string, WireSchema> = {
+  ImageGenInputUsageDetails: {
+    textTokens: { wire: "text_tokens" },
+    imageTokens: { wire: "image_tokens" },
+  },
+  ImageGenUsage: {
+    inputTokens: { wire: "input_tokens" },
+    totalTokens: { wire: "total_tokens" },
+    outputTokens: { wire: "output_tokens" },
+    outputTokensDetails: { wire: "output_tokens_details", type: "ImageGenOutputTokensDetails" },
+    inputTokensDetails: { wire: "input_tokens_details", type: "ImageGenInputUsageDetails" },
+  },
   LiveHostedShellNetworkPolicyAllowlistParam: {
     ["type"]: { wire: "type" },
     allowedDomains: { wire: "allowed_domains" },
@@ -332,27 +343,5 @@ export const wireSchemasPart13: Record<string, WireSchema> = {
     object: { wire: "object" },
     createdAt: { wire: "created_at" },
     results: { wire: "results" },
-  },
-  VideoResource: {
-    id: { wire: "id" },
-    object: { wire: "object" },
-    model: { wire: "model" },
-    status: { wire: "status" },
-    progress: { wire: "progress" },
-    createdAt: { wire: "created_at" },
-    completedAt: { wire: "completed_at" },
-    expiresAt: { wire: "expires_at" },
-    prompt: { wire: "prompt" },
-    size: { wire: "size" },
-    seconds: { wire: "seconds" },
-    remixedFromVideoId: { wire: "remixed_from_video_id" },
-    error: { wire: "error", type: "Error2" },
-  },
-  VideoListResource: {
-    object: { wire: "object" },
-    data: { wire: "data", type: "VideoResource" },
-    firstId: { wire: "first_id" },
-    lastId: { wire: "last_id" },
-    hasMore: { wire: "has_more" },
   },
 };

@@ -74,7 +74,34 @@ export interface CreateAssistantRequest {
     /**
      * Optional object value serialized in the `file_search` wire field.
      */
-    fileSearch?: unknown;
+    fileSearch?: {
+      /**
+       * The [vector store](https://developers.openai.com/api/reference/resources/vector_stores) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.
+       */
+      vectorStoreIds?: string[];
+      /**
+       * A helper to create a [vector store](https://developers.openai.com/api/reference/resources/vector_stores) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant.
+       */
+      vectorStores?: {
+        /**
+         * A list of [file](https://developers.openai.com/api/reference/resources/files) IDs to add to the vector store. For vector stores created before Nov 2025, there can be a maximum of 10,000 files in a vector store. For vector stores created starting in Nov 2025, the limit is 100,000,000 files.
+         */
+        fileIds?: string[];
+        /**
+         * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
+         */
+        chunkingStrategy?: CreateAssistantRequestToolResourcesFileSearchVectorStoresItemChunkingStrategy;
+        /**
+         * Set of 16 key-value pairs that can be attached to an object. This can be
+         * useful for storing additional information about the object in a structured
+         * format, and querying for objects via API or the dashboard.
+         *
+         * Keys are strings with a maximum length of 64 characters. Values are strings
+         * with a maximum length of 512 characters.
+         */
+        metadata?: Metadata | null;
+      }[];
+    };
   } | null;
   /**
    * Set of 16 key-value pairs that can be attached to an object. This can be
@@ -464,7 +491,34 @@ export interface CreateThreadRequest {
     /**
      * Optional object value serialized in the `file_search` wire field.
      */
-    fileSearch?: unknown;
+    fileSearch?: {
+      /**
+       * The [vector store](https://developers.openai.com/api/reference/resources/vector_stores) attached to this thread. There can be a maximum of 1 vector store attached to the thread.
+       */
+      vectorStoreIds?: string[];
+      /**
+       * A helper to create a [vector store](https://developers.openai.com/api/reference/resources/vector_stores) with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread.
+       */
+      vectorStores?: {
+        /**
+         * A list of [file](https://developers.openai.com/api/reference/resources/files) IDs to add to the vector store. For vector stores created before Nov 2025, there can be a maximum of 10,000 files in a vector store. For vector stores created starting in Nov 2025, the limit is 100,000,000 files.
+         */
+        fileIds?: string[];
+        /**
+         * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
+         */
+        chunkingStrategy?: CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategy;
+        /**
+         * Set of 16 key-value pairs that can be attached to an object. This can be
+         * useful for storing additional information about the object in a structured
+         * format, and querying for objects via API or the dashboard.
+         *
+         * Keys are strings with a maximum length of 64 characters. Values are strings
+         * with a maximum length of 512 characters.
+         */
+        metadata?: Metadata | null;
+      }[];
+    };
   } | null;
   /**
    * Set of 16 key-value pairs that can be attached to an object. This can be

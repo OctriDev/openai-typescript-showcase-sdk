@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart015: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "BetaImageGenToolCallModerationDetails",
+    parseRuntimeSchema(
+      '{"type":"object","required":["moderationStage","categories"],"properties":{"moderationStage":{"type":"string"},"categories":{"type":"array","items":{"type":"string"}}}}',
+    ),
+  ],
+
+  [
+    "BetaCompactionSummaryItemParam",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type","encryptedContent"],"properties":{"agent":{"ref":"Beta_AgentTagParam"},"id":{"type":"string","nullable":true},"type":{"type":"string","enum":["compaction"]},"encryptedContent":{"type":"string","maxLength":104857600}}}',
+    ),
+  ],
+
+  [
     "BetaReasoningItem",
     parseRuntimeSchema(
       '{"type":"object","required":["id","summary","type"],"properties":{"agent":{"ref":"BetaAgentTag"},"type":{"type":"string","enum":["reasoning"]},"id":{"type":"string"},"encryptedContent":{"type":"string","nullable":true},"summary":{"type":"array","items":{"ref":"BetaSummaryTextContent"}},"content":{"type":"array","items":{"ref":"BetaReasoningTextContent"}},"status":{"type":"string"}}}',
@@ -687,20 +701,6 @@ export const modelSchemasPart015: readonly (readonly [string, RuntimeSchema])[] 
     "BetaModerationErrorBody",
     parseRuntimeSchema(
       '{"type":"object","required":["type","code","message"],"properties":{"type":{"type":"string","enum":["error"]},"code":{"type":"string"},"message":{"type":"string"}}}',
-    ),
-  ],
-
-  [
-    "BetaModerationResultBody",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type","model","flagged","categories","categoryScores","categoryAppliedInputTypes"],"properties":{"type":{"type":"string","enum":["moderation_result"]},"model":{"type":"string"},"flagged":{"type":"boolean"},"categories":{"type":"object","additionalProperties":{"type":"boolean"}},"categoryScores":{"type":"object","additionalProperties":{"type":"number"}},"categoryAppliedInputTypes":{"type":"object","additionalProperties":{"type":"array","items":{"ref":"BetaModerationInputType"}}}}}',
-    ),
-  ],
-
-  [
-    "BetaPromptCacheUnavailableDiagnosticsBody",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["unavailable"]}}}',
     ),
   ],
 ];

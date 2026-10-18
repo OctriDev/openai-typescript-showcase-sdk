@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart016: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "BetaModerationResultBody",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type","model","flagged","categories","categoryScores","categoryAppliedInputTypes"],"properties":{"type":{"type":"string","enum":["moderation_result"]},"model":{"type":"string"},"flagged":{"type":"boolean"},"categories":{"type":"object","additionalProperties":{"type":"boolean"}},"categoryScores":{"type":"object","additionalProperties":{"type":"number"}},"categoryAppliedInputTypes":{"type":"object","additionalProperties":{"type":"array","items":{"ref":"BetaModerationInputType"}}}}}',
+    ),
+  ],
+
+  [
+    "BetaPromptCacheUnavailableDiagnosticsBody",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["unavailable"]}}}',
+    ),
+  ],
+
+  [
     "BetaPromptCacheComparisonResponseNotFoundDiagnosticsBody",
     parseRuntimeSchema(
       '{"type":"object","required":["type"],"properties":{"type":{"type":"string","enum":["comparison_response_not_found"]}}}',

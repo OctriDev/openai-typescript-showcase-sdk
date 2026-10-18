@@ -92,26 +92,28 @@ export interface LiveResponsesDelegationSettingsInputParam {
   /**
    * Controls which tool the Responses backend uses when handling a task delegated by the Live model.
    */
-  toolChoice?:
-    | LiveToolChoiceEnum
-    | LiveFunctionToolChoiceParam
-    | LiveMCPToolChoiceParam
-    | LiveSpecificFileSearchParam
-    | LiveSpecificWebSearchParam
-    | LiveSpecificWebSearchPreviewParam
-    | LiveSpecificImageGenParam
-    | LiveSpecificComputerParam
-    | LiveSpecificCodeInterpreterParam
-    | LiveSpecificProgrammaticToolCallingParam
-    | LiveSpecificFunctionShellParam
-    | LiveSpecificCustomToolParam
-    | LiveSpecificApplyPatchParam
-    | LiveAllowedToolsChoiceParam;
+  toolChoice?: LiveResponsesDelegationSettingsInputParamToolChoice;
   /**
    * Optional `boolean` value serialized in the `parallel_tool_calls` wire field.
    */
   parallelToolCalls?: boolean | null;
 }
+
+export type LiveResponsesDelegationSettingsInputParamToolChoice =
+  | LiveToolChoiceEnum
+  | LiveFunctionToolChoiceParam
+  | LiveMCPToolChoiceParam
+  | LiveSpecificFileSearchParam
+  | LiveSpecificWebSearchParam
+  | LiveSpecificWebSearchPreviewParam
+  | LiveSpecificImageGenParam
+  | LiveSpecificComputerParam
+  | LiveSpecificCodeInterpreterParam
+  | LiveSpecificProgrammaticToolCallingParam
+  | LiveSpecificFunctionShellParam
+  | LiveSpecificCustomToolParam
+  | LiveSpecificApplyPatchParam
+  | LiveAllowedToolsChoiceParam;
 
 /**
  * A `LiveResponsesDelegationSettingsInputParamToolsItem` whose `type` names no branch this SDK knows, kept as received.
@@ -172,26 +174,28 @@ export interface LiveResponsesDelegationSettingsUpdateInputParam {
   /**
    * Controls which tool the Responses backend uses when handling a task delegated by the Live model.
    */
-  toolChoice?:
-    | LiveToolChoiceEnum
-    | LiveFunctionToolChoiceParam
-    | LiveMCPToolChoiceParam
-    | LiveSpecificFileSearchParam
-    | LiveSpecificWebSearchParam
-    | LiveSpecificWebSearchPreviewParam
-    | LiveSpecificImageGenParam
-    | LiveSpecificComputerParam
-    | LiveSpecificCodeInterpreterParam
-    | LiveSpecificProgrammaticToolCallingParam
-    | LiveSpecificFunctionShellParam
-    | LiveSpecificCustomToolParam
-    | LiveSpecificApplyPatchParam
-    | LiveAllowedToolsChoiceParam;
+  toolChoice?: LiveResponsesDelegationSettingsUpdateInputParamToolChoice;
   /**
    * Optional `boolean` value serialized in the `parallel_tool_calls` wire field.
    */
   parallelToolCalls?: boolean | null;
 }
+
+export type LiveResponsesDelegationSettingsUpdateInputParamToolChoice =
+  | LiveToolChoiceEnum
+  | LiveFunctionToolChoiceParam
+  | LiveMCPToolChoiceParam
+  | LiveSpecificFileSearchParam
+  | LiveSpecificWebSearchParam
+  | LiveSpecificWebSearchPreviewParam
+  | LiveSpecificImageGenParam
+  | LiveSpecificComputerParam
+  | LiveSpecificCodeInterpreterParam
+  | LiveSpecificProgrammaticToolCallingParam
+  | LiveSpecificFunctionShellParam
+  | LiveSpecificCustomToolParam
+  | LiveSpecificApplyPatchParam
+  | LiveAllowedToolsChoiceParam;
 
 /**
  * A `LiveResponsesDelegationSettingsUpdateInputParamToolsItem` whose `type` names no branch this SDK knows, kept as received.

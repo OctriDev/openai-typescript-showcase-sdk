@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart014: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "LiveInfoEvent",
+    parseRuntimeSchema(
+      '{"type":"object","required":["eventId","type","code","message"],"properties":{"eventId":{"type":"string"},"clientEventId":{"type":"string"},"type":{"type":"string","enum":["info"]},"code":{"type":"string"},"message":{"type":"string"}}}',
+    ),
+  ],
+
+  [
+    "LiveTransportDTMFReceived",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type","eventId","event"],"properties":{"type":{"type":"string","enum":["transport.dtmf.received"]},"eventId":{"type":"string"},"event":{"type":"string","minLength":1,"maxLength":1,"pattern":"^[0-9A-D*#]$"}}}',
+    ),
+  ],
+
+  [
     "LiveTransportDTMFSend",
     parseRuntimeSchema(
       '{"type":"object","required":["type","eventId","event"],"properties":{"type":{"type":"string","enum":["transport.dtmf.send"]},"eventId":{"type":"string"},"event":{"type":"string","minLength":1,"maxLength":1,"pattern":"^[0-9A-D*#]$"},"clientEventId":{"type":"string"}}}',
@@ -308,7 +322,7 @@ export const modelSchemasPart014: readonly (readonly [string, RuntimeSchema])[] 
   [
     "BetaCodeInterpreterTool",
     parseRuntimeSchema(
-      '{"type":"object","required":["type","container"],"properties":{"type":{"type":"string","enum":["code_interpreter"]},"container":{"oneOf":[{"type":"string"},{"ref":"BetaAutoCodeInterpreterToolParam"}]},"allowedCallers":{"type":"array","nullable":true,"minItems":1,"items":{"ref":"BetaCallableToolAllowedCaller"}}}}',
+      '{"type":"object","required":["type","container"],"properties":{"type":{"type":"string","enum":["code_interpreter"]},"container":{"ref":"BetaCodeInterpreterToolContainer"},"allowedCallers":{"type":"array","nullable":true,"minItems":1,"items":{"ref":"BetaCallableToolAllowedCaller"}}}}',
     ),
   ],
 
@@ -322,7 +336,7 @@ export const modelSchemasPart014: readonly (readonly [string, RuntimeSchema])[] 
   [
     "BetaMCPTool",
     parseRuntimeSchema(
-      '{"type":"object","required":["type","serverLabel"],"properties":{"type":{"type":"string","enum":["mcp"]},"serverLabel":{"type":"string"},"serverUrl":{"type":"string","format":"uri"},"connectorId":{"type":"string"},"tunnelId":{"type":"string","pattern":"^tunnel_[a-z0-9]{32}$"},"authorization":{"type":"string"},"serverDescription":{"type":"string"},"headers":{"type":"object","nullable":true,"additionalProperties":{"type":"string"}},"allowedTools":{"nullable":true,"oneOf":[{"type":"array","items":{"type":"string"}},{"ref":"BetaMCPToolFilter"}]},"allowedCallers":{"type":"array","nullable":true,"minItems":1,"items":{"ref":"BetaCallableToolAllowedCaller"}},"requireApproval":{"nullable":true,"oneOf":[{"type":"object","properties":{"always":{"ref":"BetaMCPToolFilter"},"never":{"ref":"BetaMCPToolFilter"}}},{"type":"string"}]},"deferLoading":{"type":"boolean"}}}',
+      '{"type":"object","required":["type","serverLabel"],"properties":{"type":{"type":"string","enum":["mcp"]},"serverLabel":{"type":"string"},"serverUrl":{"type":"string","format":"uri"},"connectorId":{"type":"string"},"tunnelId":{"type":"string","pattern":"^tunnel_[a-z0-9]{32}$"},"authorization":{"type":"string"},"serverDescription":{"type":"string"},"headers":{"type":"object","nullable":true,"additionalProperties":{"type":"string"}},"allowedTools":{"nullable":true,"oneOf":[{"type":"array","items":{"type":"string"}},{"ref":"BetaMCPToolFilter"}]},"allowedCallers":{"type":"array","nullable":true,"minItems":1,"items":{"ref":"BetaCallableToolAllowedCaller"}},"requireApproval":{"ref":"BetaMCPToolRequireApproval"},"deferLoading":{"type":"boolean"}}}',
     ),
   ],
 
@@ -687,20 +701,6 @@ export const modelSchemasPart014: readonly (readonly [string, RuntimeSchema])[] 
     "BetaImageGenToolCallError",
     parseRuntimeSchema(
       '{"type":"object","required":["code","type","message","param"],"properties":{"code":{"type":"string","nullable":true},"type":{"type":"string"},"message":{"type":"string"},"param":{"type":"string","nullable":true},"moderationDetails":{"ref":"BetaImageGenToolCallModerationDetails"}}}',
-    ),
-  ],
-
-  [
-    "BetaImageGenToolCallModerationDetails",
-    parseRuntimeSchema(
-      '{"type":"object","required":["moderationStage","categories"],"properties":{"moderationStage":{"type":"string"},"categories":{"type":"array","items":{"type":"string"}}}}',
-    ),
-  ],
-
-  [
-    "BetaCompactionSummaryItemParam",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type","encryptedContent"],"properties":{"agent":{"ref":"Beta_AgentTagParam"},"id":{"type":"string","nullable":true},"type":{"type":"string","enum":["compaction"]},"encryptedContent":{"type":"string","maxLength":104857600}}}',
     ),
   ],
 ];

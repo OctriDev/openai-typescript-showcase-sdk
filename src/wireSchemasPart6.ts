@@ -4,6 +4,24 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart6: Record<string, WireSchema> = {
+  RealtimeBetaServerEventResponseAudioTranscriptDone: {
+    eventId: { wire: "event_id" },
+    ["type"]: { wire: "type" },
+    responseId: { wire: "response_id" },
+    itemId: { wire: "item_id" },
+    outputIndex: { wire: "output_index" },
+    contentIndex: { wire: "content_index" },
+    transcript: { wire: "transcript" },
+  },
+  RealtimeBetaServerEventResponseContentPartAdded: {
+    eventId: { wire: "event_id" },
+    ["type"]: { wire: "type" },
+    responseId: { wire: "response_id" },
+    itemId: { wire: "item_id" },
+    outputIndex: { wire: "output_index" },
+    contentIndex: { wire: "content_index" },
+    part: { wire: "part" },
+  },
   RealtimeBetaServerEventResponseContentPartDone: {
     eventId: { wire: "event_id" },
     ["type"]: { wire: "type" },
@@ -357,21 +375,5 @@ export const wireSchemasPart6: Record<string, WireSchema> = {
     eventId: { wire: "event_id" },
     ["type"]: { wire: "type" },
     itemId: { wire: "item_id" },
-  },
-  RealtimeServerEventConversationItemDone: {
-    eventId: { wire: "event_id" },
-    ["type"]: { wire: "type" },
-    previousItemId: { wire: "previous_item_id" },
-    item: { wire: "item" },
-  },
-  RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: {
-    eventId: { wire: "event_id" },
-    ["type"]: { wire: "type" },
-    itemId: { wire: "item_id" },
-    contentIndex: { wire: "content_index" },
-    transcript: { wire: "transcript" },
-    languages: { wire: "languages" },
-    logprobs: { wire: "logprobs" },
-    usage: { wire: "usage" },
   },
 };

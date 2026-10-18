@@ -5,10 +5,10 @@ import { RoleListResource } from "../types/shared-role";
 import {
   AssignedRoleDetails,
   DeletedRoleAssignmentResource,
-  PermissionErrorResponse,
   PublicAssignOrganizationGroupRoleBody,
 } from "../types/shared";
 import { ErrorResponse } from "../types/shared-error";
+import { PermissionErrorResponse } from "../types/shared-permission";
 import { UserRoleAssignment } from "../types/shared-user";
 import { decodeResponseEnums } from "../response-enum-validation";
 import type { ClientConfig, RequestOptions } from "../client";

@@ -3,10 +3,6 @@
 
 import type { ChatCompletionRequestMessageContentPartText } from "./chat-chat-completion-request";
 
-import type { CustomToolChatCompletions } from "./chat-custom";
-
-import type { ChatCompletionTool } from "./shared-chat";
-
 /**
  * Static predicted output content, such as the content of a text file that is
  * being regenerated.
@@ -25,6 +21,8 @@ export interface PredictionContent {
   content: string | ChatCompletionRequestMessageContentPartText[];
 }
 
+export type ResponseModalities = ("text" | "audio" | (string & {}))[] | null;
+
 export type ServiceTier =
   | "auto"
   | "default"
@@ -34,13 +32,3 @@ export type ServiceTier =
   | "fast"
   | (string & {})
   | null;
-
-/**
- * A `ToolsItem` whose `type` names no branch this SDK knows, kept as received.
- */
-export interface UnknownToolsItem {
-  type: string & {};
-  [key: string]: unknown;
-}
-
-export type ToolsItem = ChatCompletionTool | CustomToolChatCompletions | UnknownToolsItem;

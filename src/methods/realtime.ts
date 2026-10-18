@@ -2,15 +2,15 @@
 // This file is machine-generated from your OpenAPI spec.
 
 import {
-  RealtimeSessionCreateRequest,
-  RealtimeSessionCreateRequestGA,
-  RealtimeSessionCreateResponse,
-} from "../types/realtime-realtime-session";
-import {
   RealtimeCallCreateRequest,
   RealtimeCallReferRequest,
   RealtimeCallRejectRequest,
 } from "../types/realtime-realtime-call";
+import {
+  RealtimeSessionCreateRequest,
+  RealtimeSessionCreateRequestGA,
+  RealtimeSessionCreateResponse,
+} from "../types/realtime-realtime-session";
 import { ErrorResponse } from "../types/shared-error";
 import {
   RealtimeCreateClientSecretRequest,

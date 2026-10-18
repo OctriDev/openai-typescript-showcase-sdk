@@ -336,7 +336,20 @@ export const wireSchemasPart2: Record<string, WireSchema> = {
       wire: "tool_resources",
       fields: {
         codeInterpreter: { wire: "code_interpreter", fields: { fileIds: { wire: "file_ids" } } },
-        fileSearch: { wire: "file_search" },
+        fileSearch: {
+          wire: "file_search",
+          fields: {
+            vectorStoreIds: { wire: "vector_store_ids" },
+            vectorStores: {
+              wire: "vector_stores",
+              fields: {
+                fileIds: { wire: "file_ids" },
+                chunkingStrategy: { wire: "chunking_strategy" },
+                metadata: { wire: "metadata" },
+              },
+            },
+          },
+        },
       },
     },
     metadata: { wire: "metadata" },
@@ -370,6 +383,12 @@ export const wireSchemasPart2: Record<string, WireSchema> = {
     bytes: { wire: "bytes" },
     mimeType: { wire: "mime_type" },
     expiresAfter: { wire: "expires_after" },
+  },
+  CreateVectorStoreFileBatchRequest: {
+    fileIds: { wire: "file_ids" },
+    files: { wire: "files", type: "CreateVectorStoreFileRequest" },
+    chunkingStrategy: { wire: "chunking_strategy" },
+    attributes: { wire: "attributes" },
   },
   CreateVectorStoreFileRequest: {
     fileId: { wire: "file_id" },
@@ -430,8 +449,8 @@ export const wireSchemasPart2: Record<string, WireSchema> = {
   },
   EditImageBodyJsonParam: {
     model: { wire: "model" },
-    images: { wire: "images" },
-    mask: { wire: "mask" },
+    images: { wire: "images", type: "ImageRefParam" },
+    mask: { wire: "mask", type: "ImageRefParam" },
     prompt: { wire: "prompt" },
     n: { wire: "n" },
     quality: { wire: "quality" },
@@ -601,21 +620,5 @@ export const wireSchemasPart2: Record<string, WireSchema> = {
   FileSearchRankingOptions: {
     ranker: { wire: "ranker" },
     scoreThreshold: { wire: "score_threshold" },
-  },
-  FileSearchToolCall: {
-    id: { wire: "id" },
-    ["type"]: { wire: "type" },
-    status: { wire: "status" },
-    queries: { wire: "queries" },
-    results: {
-      wire: "results",
-      fields: {
-        fileId: { wire: "file_id" },
-        text: { wire: "text" },
-        filename: { wire: "filename" },
-        attributes: { wire: "attributes" },
-        score: { wire: "score" },
-      },
-    },
   },
 };

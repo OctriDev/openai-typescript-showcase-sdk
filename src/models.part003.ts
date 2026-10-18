@@ -242,7 +242,7 @@ export function createImageGenTool(value: Types.ImageGenTool): Types.ImageGenToo
 
 /** Constructs a validated ImageRefParam model value. */
 export function createImageRefParam(value: Types.ImageRefParam): Types.ImageRefParam {
-  return modelRuntime.validate(value, "ImageRefParam");
+  return modelRuntime.validate({ ...value }, "ImageRefParam");
 }
 
 /** Constructs a validated ImagesResponse model value. */

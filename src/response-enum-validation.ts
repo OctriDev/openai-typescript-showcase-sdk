@@ -834,7 +834,7 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     required: ["type", "container"],
     properties: {
       type: { type: "string", enum: ["code_interpreter"] },
-      container: { oneOf: [{ type: "string" }, { ref: "BetaAutoCodeInterpreterToolParam" }] },
+      container: { ref: "BetaCodeInterpreterToolContainer" },
     },
   },
   BetaCodeInterpreterToolCall: {
@@ -854,6 +854,9 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
   BetaCodeInterpreterToolCallOutputsItem: {
     oneOf: [{ ref: "BetaCodeInterpreterOutputLogs" }, { ref: "BetaCodeInterpreterOutputImage" }],
     openTag: ["type", ["logs", "image"]],
+  },
+  BetaCodeInterpreterToolContainer: {
+    oneOf: [{ type: "string" }, { ref: "BetaAutoCodeInterpreterToolParam" }],
   },
   BetaCompactResource: {
     type: "object",
@@ -4296,7 +4299,7 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     required: ["type", "container"],
     properties: {
       type: { type: "string", enum: ["code_interpreter"] },
-      container: { oneOf: [{ type: "string" }, { ref: "AutoCodeInterpreterToolParam" }] },
+      container: { ref: "CodeInterpreterToolContainer" },
     },
   },
   CodeInterpreterToolCall: {
@@ -4315,6 +4318,9 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
   CodeInterpreterToolCallOutputsItem: {
     oneOf: [{ ref: "CodeInterpreterOutputLogs" }, { ref: "CodeInterpreterOutputImage" }],
     openTag: ["type", ["logs", "image"]],
+  },
+  CodeInterpreterToolContainer: {
+    oneOf: [{ type: "string" }, { ref: "AutoCodeInterpreterToolParam" }],
   },
   CommandExecutionItemResource: {
     type: "object",
@@ -4528,12 +4534,16 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
   ComputerUseApprovalResponseParamBrowserAuthenticationCancelParam: {
     type: "object",
     required: ["type", "action"],
-    properties: { action: { type: "string", enum: ["cancel"] } },
+    properties: {
+      type: { type: "string", enum: ["browser_authentication"] },
+      action: { type: "string", enum: ["cancel"] },
+    },
   },
   ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParam: {
     type: "object",
     required: ["type", "action", "fields"],
     properties: {
+      type: { type: "string", enum: ["browser_authentication"] },
       action: { type: "string", enum: ["submit"] },
       fields: { type: "array", items: { ref: "BrowserAuthenticationFieldValueParam" } },
     },
@@ -4763,7 +4773,6 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
                 },
               },
             },
-            oneOf: [{ required: ["vector_store_ids"] }, { required: ["vector_stores"] }],
           },
         },
       },
@@ -4814,7 +4823,14 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
               user_location: { type: ["object", "null"], required: ["type", "approximate"] },
             },
           },
-          response_format: { ref: "ResponseFormat" },
+          response_format: {
+            oneOf: [
+              { ref: "ResponseFormatText" },
+              { ref: "ResponseFormatJsonSchema" },
+              { ref: "ResponseFormatJsonObject" },
+            ],
+            openTag: ["type", ["text", "json_schema", "json_object"]],
+          },
           audio: {
             type: ["object", "null"],
             required: ["voice", "format"],
@@ -4822,7 +4838,13 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
           },
           moderation: { ref: "ModerationParam", nullable: true },
           prediction: { ref: "PredictionContent", nullable: true },
-          tools: { type: "array", items: { ref: "ToolsItem" } },
+          tools: {
+            type: "array",
+            items: {
+              oneOf: [{ ref: "ChatCompletionTool" }, { ref: "CustomToolChatCompletions" }],
+              openTag: ["type", ["function", "custom"]],
+            },
+          },
           tool_choice: { ref: "ChatCompletionToolChoiceOption" },
           function_call: {
             oneOf: [{ type: "string" }, { ref: "ChatCompletionFunctionCallOption" }],
@@ -5008,7 +5030,10 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
         required: ["type", "template"],
         properties: {
           type: { type: "string", enum: ["template"] },
-          template: { type: "array", items: { ref: "TemplateItem" } },
+          template: {
+            type: "array",
+            items: { oneOf: [{ ref: "EasyInputMessage" }, { ref: "EvalItem" }] },
+          },
         },
       },
       {
@@ -5121,7 +5146,12 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
         required: ["type", "template"],
         properties: {
           type: { type: "string", enum: ["template"] },
-          template: { type: "array", items: { ref: "TemplateItem2" } },
+          template: {
+            type: "array",
+            items: {
+              oneOf: [{ type: "object", required: ["role", "content"] }, { ref: "EvalItem" }],
+            },
+          },
         },
       },
       {
@@ -5414,7 +5444,10 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
   CreateSpeechRequest: {
     type: "object",
     required: ["model", "input", "voice"],
-    properties: { voice: { anyOf: [{}, { type: "object", required: ["id"] }] } },
+    properties: { voice: { ref: "CreateSpeechRequestVoice" } },
+  },
+  CreateSpeechRequestVoice: {
+    anyOf: [{ type: "string" }, { type: "string" }, { type: "object", required: ["id"] }],
   },
   CreateSpeechResponseStreamEvent: {
     anyOf: [{ ref: "SpeechAudioDeltaEvent" }, { ref: "SpeechAudioDoneEvent" }],
@@ -5485,7 +5518,6 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
                 },
               },
             },
-            oneOf: [{ required: ["vector_store_ids"] }, { required: ["vector_stores"] }],
           },
         },
       },
@@ -5513,8 +5545,19 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     type: "object",
     required: ["file", "model"],
     properties: {
-      chunking_strategy: { nullable: true, anyOf: [{ type: "string" }, { ref: "VadConfig" }] },
+      chunking_strategy: { ref: "CreateTranscriptionRequestChunkingStrategy", nullable: true },
     },
+  },
+  CreateTranscriptionRequestChunkingStrategy: {
+    nullable: true,
+    anyOf: [{ type: "string" }, { ref: "VadConfig" }],
+  },
+  CreateTranscriptionResponse: {
+    anyOf: [
+      { ref: "CreateTranscriptionResponseJson" },
+      { ref: "CreateTranscriptionResponseDiarizedJson" },
+      { ref: "CreateTranscriptionResponseVerboseJson" },
+    ],
   },
   CreateTranscriptionResponseDiarizedJson: {
     type: "object",
@@ -5560,6 +5603,12 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     },
   },
   CreateTranslationRequest: { type: "object", required: ["file", "model"] },
+  CreateTranslationResponse: {
+    oneOf: [
+      { ref: "CreateTranslationResponseJson" },
+      { ref: "CreateTranslationResponseVerboseJson" },
+    ],
+  },
   CreateTranslationResponseJson: { type: "object", required: ["text"] },
   CreateTranslationResponseVerboseJson: {
     type: "object",
@@ -5611,7 +5660,6 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
       files: { type: "array", items: { ref: "CreateVectorStoreFileRequest" } },
       chunking_strategy: { ref: "ChunkingStrategyRequestParam" },
     },
-    anyOf: [{ required: ["file_ids"] }, { required: ["files"] }],
   },
   CreateVectorStoreFileRequest: {
     type: "object",
@@ -5884,7 +5932,10 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
   DecisionsUsagePermissionErrorResponse: {
     type: "object",
     required: ["error"],
-    properties: { error: { oneOf: [{ ref: "DecisionsUsageErrorDetails" }, { type: "string" }] } },
+    properties: { error: { ref: "DecisionsUsagePermissionErrorResponseError" } },
+  },
+  DecisionsUsagePermissionErrorResponseError: {
+    oneOf: [{ ref: "DecisionsUsageErrorDetails" }, { type: "string" }],
   },
   DecisionsUsageResult: {
     type: "object",
@@ -5965,14 +6016,7 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
       type: { type: "string", enum: ["message"] },
     },
   },
-  EditImageBodyJsonParam: {
-    type: "object",
-    required: ["images", "prompt"],
-    properties: {
-      images: { type: "array", items: { ref: "ImageRefParam" } },
-      mask: { ref: "ImageRefParam" },
-    },
-  },
+  EditImageBodyJsonParam: { type: "object", required: ["images", "prompt"] },
   Embedding: { type: "object", required: ["index", "object", "embedding"] },
   EncryptedContentResource: {
     type: "object",
@@ -7049,10 +7093,6 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
       input_tokens_details: { ref: "ImageGenInputUsageDetails" },
     },
   },
-  ImageRefParam: {
-    type: "object",
-    anyOf: [{ required: ["image_url"] }, { required: ["file_id"] }],
-  },
   ImagesResponse: {
     type: "object",
     required: ["created"],
@@ -7478,6 +7518,7 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     properties: { data: { type: "array", items: { ref: "FineTuningJobEvent" } } },
   },
   ListMessagesResponse: {
+    type: "object",
     required: ["object", "data", "first_id", "last_id", "has_more"],
     properties: { data: { type: "array", items: { ref: "MessageObject" } } },
   },
@@ -7498,6 +7539,7 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     properties: { data: { type: "array", items: { ref: "OrganizationProjectCertificate" } } },
   },
   ListRunStepsResponse: {
+    type: "object",
     required: ["object", "data", "first_id", "last_id", "has_more"],
     properties: { data: { type: "array", items: { ref: "RunStepObject" } } },
   },
@@ -7507,10 +7549,12 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     properties: { data: { type: "array", items: { ref: "RunObject" } } },
   },
   ListVectorStoreFilesResponse: {
+    type: "object",
     required: ["object", "data", "first_id", "last_id", "has_more"],
     properties: { data: { type: "array", items: { ref: "VectorStoreFileObject" } } },
   },
   ListVectorStoresResponse: {
+    type: "object",
     required: ["object", "data", "first_id", "last_id", "has_more"],
     properties: { data: { type: "array", items: { ref: "VectorStoreObject" } } },
   },
@@ -8074,7 +8118,10 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
   },
   LiveInitialSessionAudioOutputParam: {
     type: "object",
-    properties: { voice: { oneOf: [{ type: "string" }, { ref: "LiveCustomVoiceParam" }] } },
+    properties: { voice: { ref: "LiveInitialSessionAudioOutputParamVoice" } },
+  },
+  LiveInitialSessionAudioOutputParamVoice: {
+    oneOf: [{ type: "string" }, { type: "string" }, { ref: "LiveCustomVoiceParam" }],
   },
   LiveInitialSessionAudioParam: {
     type: "object",
@@ -8262,46 +8309,47 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
         type: "array",
         items: { ref: "LiveResponsesDelegationSettingsInputParamToolsItem" },
       },
-      tool_choice: {
+      tool_choice: { ref: "LiveResponsesDelegationSettingsInputParamToolChoice" },
+    },
+  },
+  LiveResponsesDelegationSettingsInputParamToolChoice: {
+    oneOf: [
+      { type: "string" },
+      {
         oneOf: [
-          { type: "string" },
-          {
-            oneOf: [
-              { ref: "LiveFunctionToolChoiceParam" },
-              { ref: "LiveMCPToolChoiceParam" },
-              { ref: "LiveSpecificFileSearchParam" },
-              { ref: "LiveSpecificWebSearchParam" },
-              { ref: "LiveSpecificWebSearchPreviewParam" },
-              { ref: "LiveSpecificImageGenParam" },
-              { ref: "LiveSpecificComputerParam" },
-              { ref: "LiveSpecificCodeInterpreterParam" },
-              { ref: "LiveSpecificProgrammaticToolCallingParam" },
-              { ref: "LiveSpecificFunctionShellParam" },
-              { ref: "LiveSpecificCustomToolParam" },
-              { ref: "LiveSpecificApplyPatchParam" },
-            ],
-            openTag: [
-              "type",
-              [
-                "function",
-                "mcp",
-                "file_search",
-                "web_search",
-                "web_search_preview",
-                "image_generation",
-                "computer",
-                "code_interpreter",
-                "programmatic_tool_calling",
-                "shell",
-                "custom",
-                "apply_patch",
-              ],
-            ],
-          },
-          { ref: "LiveAllowedToolsChoiceParam" },
+          { ref: "LiveFunctionToolChoiceParam" },
+          { ref: "LiveMCPToolChoiceParam" },
+          { ref: "LiveSpecificFileSearchParam" },
+          { ref: "LiveSpecificWebSearchParam" },
+          { ref: "LiveSpecificWebSearchPreviewParam" },
+          { ref: "LiveSpecificImageGenParam" },
+          { ref: "LiveSpecificComputerParam" },
+          { ref: "LiveSpecificCodeInterpreterParam" },
+          { ref: "LiveSpecificProgrammaticToolCallingParam" },
+          { ref: "LiveSpecificFunctionShellParam" },
+          { ref: "LiveSpecificCustomToolParam" },
+          { ref: "LiveSpecificApplyPatchParam" },
+        ],
+        openTag: [
+          "type",
+          [
+            "function",
+            "mcp",
+            "file_search",
+            "web_search",
+            "web_search_preview",
+            "image_generation",
+            "computer",
+            "code_interpreter",
+            "programmatic_tool_calling",
+            "shell",
+            "custom",
+            "apply_patch",
+          ],
         ],
       },
-    },
+      { ref: "LiveAllowedToolsChoiceParam" },
+    ],
   },
   LiveResponsesDelegationSettingsInputParamToolsItem: {
     oneOf: [
@@ -8345,46 +8393,47 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
         type: "array",
         items: { ref: "LiveResponsesDelegationSettingsUpdateInputParamToolsItem" },
       },
-      tool_choice: {
+      tool_choice: { ref: "LiveResponsesDelegationSettingsUpdateInputParamToolChoice" },
+    },
+  },
+  LiveResponsesDelegationSettingsUpdateInputParamToolChoice: {
+    oneOf: [
+      { type: "string" },
+      {
         oneOf: [
-          { type: "string" },
-          {
-            oneOf: [
-              { ref: "LiveFunctionToolChoiceParam" },
-              { ref: "LiveMCPToolChoiceParam" },
-              { ref: "LiveSpecificFileSearchParam" },
-              { ref: "LiveSpecificWebSearchParam" },
-              { ref: "LiveSpecificWebSearchPreviewParam" },
-              { ref: "LiveSpecificImageGenParam" },
-              { ref: "LiveSpecificComputerParam" },
-              { ref: "LiveSpecificCodeInterpreterParam" },
-              { ref: "LiveSpecificProgrammaticToolCallingParam" },
-              { ref: "LiveSpecificFunctionShellParam" },
-              { ref: "LiveSpecificCustomToolParam" },
-              { ref: "LiveSpecificApplyPatchParam" },
-            ],
-            openTag: [
-              "type",
-              [
-                "function",
-                "mcp",
-                "file_search",
-                "web_search",
-                "web_search_preview",
-                "image_generation",
-                "computer",
-                "code_interpreter",
-                "programmatic_tool_calling",
-                "shell",
-                "custom",
-                "apply_patch",
-              ],
-            ],
-          },
-          { ref: "LiveAllowedToolsChoiceParam" },
+          { ref: "LiveFunctionToolChoiceParam" },
+          { ref: "LiveMCPToolChoiceParam" },
+          { ref: "LiveSpecificFileSearchParam" },
+          { ref: "LiveSpecificWebSearchParam" },
+          { ref: "LiveSpecificWebSearchPreviewParam" },
+          { ref: "LiveSpecificImageGenParam" },
+          { ref: "LiveSpecificComputerParam" },
+          { ref: "LiveSpecificCodeInterpreterParam" },
+          { ref: "LiveSpecificProgrammaticToolCallingParam" },
+          { ref: "LiveSpecificFunctionShellParam" },
+          { ref: "LiveSpecificCustomToolParam" },
+          { ref: "LiveSpecificApplyPatchParam" },
+        ],
+        openTag: [
+          "type",
+          [
+            "function",
+            "mcp",
+            "file_search",
+            "web_search",
+            "web_search_preview",
+            "image_generation",
+            "computer",
+            "code_interpreter",
+            "programmatic_tool_calling",
+            "shell",
+            "custom",
+            "apply_patch",
+          ],
         ],
       },
-    },
+      { ref: "LiveAllowedToolsChoiceParam" },
+    ],
   },
   LiveResponsesDelegationSettingsUpdateInputParamToolsItem: {
     oneOf: [
@@ -9361,7 +9410,7 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     type: "object",
     properties: { steer: { ref: "_MisalignmentSteer" } },
   },
-  Model: { required: ["id", "object", "created", "owned_by"] },
+  Model: { type: "object", required: ["id", "object", "created", "owned_by"] },
   Moderation: {
     type: "object",
     required: ["input", "output"],
@@ -9456,6 +9505,7 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     properties: { type: { type: "string", enum: ["oci"] } },
   },
   OpenAIFile: {
+    type: "object",
     required: ["id", "object", "bytes", "created_at", "filename", "purpose", "status"],
     nullableRequired: ["bytes"],
   },
@@ -9618,8 +9668,9 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
   PermissionErrorResponse: {
     type: "object",
     required: ["error"],
-    properties: { error: { anyOf: [{ ref: "Error3" }, { type: "string" }] } },
+    properties: { error: { ref: "PermissionErrorResponseError" } },
   },
+  PermissionErrorResponseError: { anyOf: [{ ref: "Error3" }, { type: "string" }] },
   PersistedAgentToolConfigParam: {
     oneOf: [
       { ref: "PersistedAgentToolConfigParamFunction" },
@@ -10377,7 +10428,7 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
   RealtimeCallCreateRequest: {
     type: "object",
     required: ["sdp"],
-    properties: { session: { allOf: [{ ref: "RealtimeSessionCreateRequestGA" }] } },
+    properties: { session: { ref: "RealtimeSessionCreateRequestGA" } },
   },
   RealtimeCallReferRequest: { type: "object", required: ["target_uri"] },
   RealtimeClientEvent: {
@@ -11641,14 +11692,6 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     type: "object",
     required: ["type", "output_index", "item_id", "sequence_number"],
     properties: { type: { type: "string", enum: ["response.file_search_call.searching"] } },
-  },
-  ResponseFormat: {
-    oneOf: [
-      { ref: "ResponseFormatText" },
-      { ref: "ResponseFormatJsonSchema" },
-      { ref: "ResponseFormatJsonObject" },
-    ],
-    openTag: ["type", ["text", "json_schema", "json_object"]],
   },
   ResponseFormatJsonObject: {
     type: "object",
@@ -13964,10 +14007,6 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     nullableRequired: ["heading", "summary"],
     properties: { type: { type: "string", enum: ["chatkit.task"] } },
   },
-  TemplateItem: { oneOf: [{ ref: "EasyInputMessage" }, { ref: "EvalItem" }] },
-  TemplateItem2: {
-    oneOf: [{ type: "object", required: ["role", "content"] }, { ref: "EvalItem" }],
-  },
   TextContent: {
     type: "object",
     required: ["type", "text"],
@@ -14069,13 +14108,12 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     openTag: ["type", ["active", "locked", "closed"]],
   },
   ThreadStreamEvent: {
-    oneOf: [
-      {
-        type: "object",
-        required: ["event", "data"],
-        properties: { data: { ref: "ThreadObject" } },
-      },
-    ],
+    type: "object",
+    required: ["event", "data"],
+    properties: {
+      event: { type: "string", enum: ["thread.created"] },
+      data: { ref: "ThreadObject" },
+    },
   },
   ToggleCertificatesRequest: { type: "object", required: ["certificate_ids"] },
   TokenCountsBody: {
@@ -14324,10 +14362,6 @@ const modelSchemas: Readonly<Record<string, RuntimeSchema>> = {
     properties: { type: { type: "string", enum: ["tool_search"] } },
   },
   ToolsArray: { type: "array", items: { ref: "Tool" } },
-  ToolsItem: {
-    oneOf: [{ ref: "ChatCompletionTool" }, { ref: "CustomToolChatCompletions" }],
-    openTag: ["type", ["function", "custom"]],
-  },
   TopLogProb: { type: "object", required: ["token", "logprob", "bytes"] },
   TranscriptTextDeltaEvent: {
     type: "object",

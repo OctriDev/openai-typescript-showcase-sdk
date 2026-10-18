@@ -4,6 +4,28 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart14: Record<string, WireSchema> = {
+  VideoResource: {
+    id: { wire: "id" },
+    object: { wire: "object" },
+    model: { wire: "model" },
+    status: { wire: "status" },
+    progress: { wire: "progress" },
+    createdAt: { wire: "created_at" },
+    completedAt: { wire: "completed_at" },
+    expiresAt: { wire: "expires_at" },
+    prompt: { wire: "prompt" },
+    size: { wire: "size" },
+    seconds: { wire: "seconds" },
+    remixedFromVideoId: { wire: "remixed_from_video_id" },
+    error: { wire: "error", type: "Error2" },
+  },
+  VideoListResource: {
+    object: { wire: "object" },
+    data: { wire: "data", type: "VideoResource" },
+    firstId: { wire: "first_id" },
+    lastId: { wire: "last_id" },
+    hasMore: { wire: "has_more" },
+  },
   ImageRefParam2: {
     imageUrl: { wire: "image_url" },
     fileId: { wire: "file_id" },
@@ -331,19 +353,5 @@ export const wireSchemasPart14: Record<string, WireSchema> = {
     id: { wire: "id" },
     path: { wire: "path" },
     sizeBytes: { wire: "size_bytes" },
-  },
-  HostedSkillResourceSkillReference: {
-    ["type"]: { wire: "type" },
-    skillId: { wire: "skill_id" },
-    version: { wire: "version" },
-    name: { wire: "name" },
-    description: { wire: "description" },
-  },
-  AgentEnvironmentListResource: {
-    object: { wire: "object" },
-    data: { wire: "data" },
-    firstId: { wire: "first_id" },
-    lastId: { wire: "last_id" },
-    hasMore: { wire: "has_more" },
   },
 };

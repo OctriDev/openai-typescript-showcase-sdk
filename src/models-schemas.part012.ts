@@ -7,6 +7,20 @@ const parseRuntimeSchema = (source: string): RuntimeSchema => JSON.parse(source)
 
 export const modelSchemasPart012: readonly (readonly [string, RuntimeSchema])[] = [
   [
+    "SessionSpendControlResource",
+    parseRuntimeSchema(
+      '{"type":"object","required":["limit","consumed"],"properties":{"limit":{"type":"integer","minimum":1,"maximum":4503599627370495},"consumed":{"type":["integer","null"],"minimum":0}}}',
+    ),
+  ],
+
+  [
+    "ComputerUseApprovalRequestKindResourceBrowserAuthentication",
+    parseRuntimeSchema(
+      '{"type":"object","required":["type","reason","credentialOrigin","fields","options"],"properties":{"type":{"type":"string","enum":["browser_authentication"]},"reason":{"type":["string","null"],"minLength":0},"credentialOrigin":{"type":["string","null"],"minLength":0},"fields":{"type":"array","minItems":0,"maxItems":2000,"items":{"ref":"BrowserAuthenticationFieldResource"}},"options":{"type":"array","minItems":0,"maxItems":2000,"items":{"ref":"BrowserAuthenticationOptionResource"}}}}',
+    ),
+  ],
+
+  [
     "ComputerUseApprovalRequestKindResourceBrowserOriginAccess",
     parseRuntimeSchema(
       '{"type":"object","required":["type","reason","origin"],"properties":{"type":{"type":"string","enum":["browser_origin_access"]},"reason":{"type":["string","null"],"minLength":0},"origin":{"type":"string","minLength":0}}}',
@@ -555,14 +569,14 @@ export const modelSchemasPart012: readonly (readonly [string, RuntimeSchema])[] 
   [
     "ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParam",
     parseRuntimeSchema(
-      '{"type":"object","required":["type","action","fields"],"properties":{"type":{"type":"string"},"action":{"type":"string","enum":["submit"]},"fields":{"type":"array","minItems":0,"maxItems":6,"items":{"ref":"BrowserAuthenticationFieldValueParam"}},"selectedOption":{"type":["string","null"],"minLength":0,"maxLength":1048576}}}',
+      '{"type":"object","required":["type","action","fields"],"properties":{"type":{"type":"string","enum":["browser_authentication"]},"action":{"type":"string","enum":["submit"]},"fields":{"type":"array","minItems":0,"maxItems":6,"items":{"ref":"BrowserAuthenticationFieldValueParam"}},"selectedOption":{"type":["string","null"],"minLength":0,"maxLength":1048576}}}',
     ),
   ],
 
   [
     "ComputerUseApprovalResponseParamBrowserAuthenticationCancelParam",
     parseRuntimeSchema(
-      '{"type":"object","required":["type","action"],"properties":{"type":{"type":"string"},"action":{"type":"string","enum":["cancel"]}}}',
+      '{"type":"object","required":["type","action"],"properties":{"type":{"type":"string","enum":["browser_authentication"]},"action":{"type":"string","enum":["cancel"]}}}',
     ),
   ],
 
@@ -687,20 +701,6 @@ export const modelSchemasPart012: readonly (readonly [string, RuntimeSchema])[] 
     "McpOauthRefreshResource",
     parseRuntimeSchema(
       '{"type":"object","required":["tokenEndpoint","clientId","resource","scope","tokenEndpointAuth"],"properties":{"tokenEndpoint":{"type":"string","minLength":0},"clientId":{"type":"string","minLength":0},"resource":{"type":["string","null"],"minLength":0},"scope":{"type":["string","null"],"minLength":0},"tokenEndpointAuth":{"ref":"McpOauthTokenEndpointAuthResource"}}}',
-    ),
-  ],
-
-  [
-    "VaultCredentialAuthResourceMcpOauth",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type","mcpServerUrl","expiresAt","refresh"],"properties":{"type":{"type":"string","enum":["mcp_oauth"]},"mcpServerUrl":{"type":"string","minLength":0},"expiresAt":{"type":["string","null"],"minLength":0},"refresh":{"ref":"McpOauthRefreshResource"}}}',
-    ),
-  ],
-
-  [
-    "VaultCredentialAuthResourceStaticBearer",
-    parseRuntimeSchema(
-      '{"type":"object","required":["type","mcpServerUrl"],"properties":{"type":{"type":"string","enum":["static_bearer"]},"mcpServerUrl":{"type":"string","minLength":0}}}',
     ),
   ],
 ];

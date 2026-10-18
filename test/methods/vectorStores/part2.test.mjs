@@ -18,7 +18,11 @@ import {
 } from "../../helpers/mock-sdk.mjs";
 import { configureClient } from "../../../dist/client.js";
 import { SdkHttpError, SdkNetworkError, SdkResponseDecodeError } from "../../../dist/errors.js";
-import { searchVectorStore } from "../../../dist/methods/vectorStores/part2.js";
+import {
+  updateVectorStoreFileAttributes,
+  retrieveVectorStoreFileContent,
+  searchVectorStore,
+} from "../../../dist/methods/vectorStores/part2.js";
 
 // Assigned once the mock server has a port. Declared at module scope because
 // the call map below is built here too, and a config-first SDK's call
@@ -30,6 +34,35 @@ let config;
 // the generated part: it encodes each method's real signature (argument order
 // for positional style, the params object otherwise).
 const CALL = {
+  updateVectorStoreFileAttributes: {
+    route: "updateVectorStoreFileAttributes",
+    endpoint: "POST /vector_stores/{vector_store_id}/files/{file_id}",
+    mediaType: "application/json",
+    renamedKeys: [
+      "usage_bytes",
+      "created_at",
+      "vector_store_id",
+      "last_error",
+      "chunking_strategy",
+    ],
+    invoke: (bag) =>
+      updateVectorStoreFileAttributes(config, {
+        attributes: bag.__body?.["attributes"],
+        vectorStoreId: bag["vector_store_id"],
+        fileId: bag["file_id"],
+      }),
+  },
+  retrieveVectorStoreFileContent: {
+    route: "retrieveVectorStoreFileContent",
+    endpoint: "GET /vector_stores/{vector_store_id}/files/{file_id}/content",
+    mediaType: null,
+    renamedKeys: ["has_more", "next_page"],
+    invoke: (bag) =>
+      retrieveVectorStoreFileContent(config, {
+        vectorStoreId: bag["vector_store_id"],
+        fileId: bag["file_id"],
+      }),
+  },
   searchVectorStore: {
     route: "searchVectorStore",
     endpoint: "POST /vector_stores/{vector_store_id}/search",

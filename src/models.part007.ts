@@ -551,7 +551,7 @@ export function createThreadObject(value: Types.ThreadObject): Types.ThreadObjec
 
 /** Constructs a validated ThreadStreamEvent model value. */
 export function createThreadStreamEvent(value: Types.ThreadStreamEvent): Types.ThreadStreamEvent {
-  return modelRuntime.validate(value, "ThreadStreamEvent");
+  return modelRuntime.validate({ ...value }, "ThreadStreamEvent");
 }
 
 /** Constructs a validated ToggleCertificatesRequest model value. */

@@ -28,7 +28,6 @@ import {
   deleteMessage,
   listRuns,
   createRun,
-  createRunStream,
 } from "../../../dist/methods/assistants/part2.js";
 
 // Assigned once the mock server has a port. Declared at module scope because
@@ -170,33 +169,6 @@ const CALL = {
         temperature: bag.__body?.["temperature"],
         topP: bag.__body?.["top_p"],
         stream: bag.__body?.["stream"],
-        maxPromptTokens: bag.__body?.["max_prompt_tokens"],
-        maxCompletionTokens: bag.__body?.["max_completion_tokens"],
-        truncationStrategy: bag.__body?.["truncation_strategy"],
-        toolChoice: bag.__body?.["tool_choice"],
-        parallelToolCalls: bag.__body?.["parallel_tool_calls"],
-        responseFormat: bag.__body?.["response_format"],
-        threadId: bag["thread_id"],
-        include: bag["include[]"],
-      }),
-  },
-  createRunStream: {
-    route: "createRun",
-    endpoint: "POST /threads/{thread_id}/runs",
-    mediaType: "application/json",
-    invoke: (bag) =>
-      createRunStream(config, {
-        assistantId: bag.__body?.["assistant_id"],
-        stream: bag.__body?.["stream"],
-        model: bag.__body?.["model"],
-        reasoningEffort: bag.__body?.["reasoning_effort"],
-        instructions: bag.__body?.["instructions"],
-        additionalInstructions: bag.__body?.["additional_instructions"],
-        additionalMessages: bag.__body?.["additional_messages"],
-        tools: bag.__body?.["tools"],
-        metadata: bag.__body?.["metadata"],
-        temperature: bag.__body?.["temperature"],
-        topP: bag.__body?.["top_p"],
         maxPromptTokens: bag.__body?.["max_prompt_tokens"],
         maxCompletionTokens: bag.__body?.["max_completion_tokens"],
         truncationStrategy: bag.__body?.["truncation_strategy"],

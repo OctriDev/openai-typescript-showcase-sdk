@@ -53,14 +53,20 @@ export interface ThreadObject {
   metadata: Metadata | null;
 }
 
-export type ThreadStreamEvent = {
+/**
+ * Occurs when a new [thread](https://developers.openai.com/api/docs/assistants/migration) is created.
+ */
+export interface ThreadStreamEvent {
   /**
    * Whether to enable input audio transcription.
    */
   enabled?: boolean;
-  event: "thread.created" | (string & {});
+  /**
+   * Required enumerated value serialized in the `event` wire field.
+   */
+  event: "thread.created";
   /**
    * Represents a thread that contains [messages](https://developers.openai.com/api/docs/assistants/migration).
    */
   data: ThreadObject;
-};
+}

@@ -32,7 +32,6 @@ import {
 import type {
   CreateMessageParams,
   CreateRunParams,
-  CreateRunStreamParams,
   DeleteMessageParams,
   DeleteThreadParams,
   GetMessageParams,
@@ -44,11 +43,11 @@ import type {
 import {
   createMessage,
   createRun,
-  createRunStream,
   deleteMessage,
   deleteThread,
   getMessage,
   listMessages,
+  listMessagesPages,
   listRuns,
   listRunsPages,
   modifyMessage,
@@ -56,6 +55,7 @@ import {
 } from "./assistants/part2";
 import type {
   CancelRunParams,
+  CreateRunStreamParams,
   GetRunParams,
   GetRunStepParams,
   ListRunStepsParams,
@@ -65,9 +65,11 @@ import type {
 } from "./assistants/part3";
 import {
   cancelRun,
+  createRunStream,
   getRun,
   getRunStep,
   listRunSteps,
+  listRunStepsPages,
   modifyRun,
   submitAssistantsToolOutputsToRun,
   submitAssistantsToolOutputsToRunStream,
@@ -229,6 +231,12 @@ export class AssistantsNamespace {
   ): ReturnType<typeof listMessages> {
     return listMessages(this._config, params, requestOptions);
   }
+  listMessagesPages(
+    params: ListMessagesParams,
+    requestOptions?: RequestOptions,
+  ): ReturnType<typeof listMessagesPages> {
+    return listMessagesPages(this._config, params, requestOptions);
+  }
   /**
    * Creates a message in a thread. Provide the message `role` and `content`, and optionally include file attachments or metadata. Use this operation to add a user or assistant message to an existing conversation thread.
    *
@@ -349,6 +357,12 @@ export class AssistantsNamespace {
     requestOptions?: RequestOptions,
   ): ReturnType<typeof listRunSteps> {
     return listRunSteps(this._config, params, requestOptions);
+  }
+  listRunStepsPages(
+    params: ListRunStepsParams,
+    requestOptions?: RequestOptions,
+  ): ReturnType<typeof listRunStepsPages> {
+    return listRunStepsPages(this._config, params, requestOptions);
   }
   /**
    * Retrieves a specific step from a run on a thread. Use `include[]` to request file search result content when the step contains file search tool calls.

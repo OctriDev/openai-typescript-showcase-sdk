@@ -121,8 +121,44 @@ export interface LiveInitialSessionAudioOutputParam {
   /**
    * The voice used for Live speech, as a built-in voice name or a custom voice object containing its ID. Defaults to `marin` and cannot change after startup.
    */
-  voice?: string | LiveCustomVoiceParam;
+  voice?: LiveInitialSessionAudioOutputParamVoice;
 }
+
+export type LiveInitialSessionAudioOutputParamVoice =
+  | string
+  | "alloy"
+  | "ash"
+  | "ballad"
+  | "beacon"
+  | "bossa"
+  | "brise"
+  | "cedar"
+  | "cinder"
+  | "coral"
+  | "delta"
+  | "echo"
+  | "flitz"
+  | "gleam"
+  | "harema"
+  | "juni"
+  | "marin"
+  | "meridian"
+  | "nira"
+  | "noeul"
+  | "nuri"
+  | "quartz"
+  | "ripple"
+  | "sage"
+  | "shida"
+  | "shimmer"
+  | "sillage"
+  | "stone"
+  | "tempo"
+  | "verse"
+  | "vesper"
+  | "willow"
+  | (string & {})
+  | LiveCustomVoiceParam;
 
 /**
  * Startup audio configuration. Only primary WebSockets accept audio.format; WebRTC and SIP negotiate their media format. Voice and format are immutable after startup.

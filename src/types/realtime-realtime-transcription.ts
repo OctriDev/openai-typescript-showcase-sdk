@@ -42,7 +42,12 @@ export interface RealtimeTranscriptionSessionCreateRequest {
    * Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model.
    * Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
    */
-  inputAudioNoiseReduction?: unknown;
+  inputAudioNoiseReduction?: {
+    /**
+     * Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.
+     */
+    type?: NoiseReductionType;
+  };
   /**
    * The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
    * For `pcm16`, input audio must be 16-bit PCM at a 24kHz sample rate,
@@ -89,7 +94,12 @@ export interface RealtimeTranscriptionSessionCreateRequestGA {
        * Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model.
        * Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
        */
-      noiseReduction?: unknown;
+      noiseReduction?: {
+        /**
+         * Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.
+         */
+        type?: NoiseReductionType;
+      };
       /**
        * Configuration for turn detection, ether Server VAD or Semantic VAD. This can be set to `null` to turn off, in which case the client must manually trigger model response.
        *

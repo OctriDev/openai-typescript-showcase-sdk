@@ -4,6 +4,15 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart10: Record<string, WireSchema> = {
+  RunStepDetailsToolCallsCodeObject: {
+    id: { wire: "id" },
+    ["type"]: { wire: "type" },
+    codeInterpreter: { wire: "code_interpreter" },
+  },
+  RunStepDetailsToolCallsCodeOutputImageObject: {
+    ["type"]: { wire: "type" },
+    image: { wire: "image", fields: { fileId: { wire: "file_id" } } },
+  },
   RunStepDetailsToolCallsFileSearchObject: {
     id: { wire: "id" },
     ["type"]: { wire: "type" },
@@ -430,19 +439,5 @@ export const wireSchemasPart10: Record<string, WireSchema> = {
     ["type"]: { wire: "type" },
     name: { wire: "name" },
     createdAt: { wire: "created_at" },
-  },
-  WebSearchTool: {
-    ["type"]: { wire: "type" },
-    externalWebAccess: { wire: "external_web_access" },
-    filters: { wire: "filters", fields: { allowedDomains: { wire: "allowed_domains" } } },
-    userLocation: { wire: "user_location" },
-    searchContextSize: { wire: "search_context_size" },
-  },
-  WebhookAgentEnvironmentExpired: {
-    id: { wire: "id" },
-    object: { wire: "object" },
-    createdAt: { wire: "created_at" },
-    ["type"]: { wire: "type" },
-    data: { wire: "data" },
   },
 };

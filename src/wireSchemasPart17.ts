@@ -4,6 +4,18 @@
 import type { WireSchema } from "./client";
 
 export const wireSchemasPart17: Record<string, WireSchema> = {
+  SessionEventAgentSessionCreated: {
+    ["type"]: { wire: "type" },
+    eventId: { wire: "event_id" },
+    session: { wire: "session", type: "SessionResource" },
+  },
+  SessionEventAgentSessionTurnCreated: {
+    ["type"]: { wire: "type" },
+    eventId: { wire: "event_id" },
+    sessionId: { wire: "session_id" },
+    turnId: { wire: "turn_id" },
+    turn: { wire: "turn", type: "TurnResource" },
+  },
   SessionEventAgentSessionTurnInProgress: {
     ["type"]: { wire: "type" },
     eventId: { wire: "event_id" },
@@ -337,14 +349,5 @@ export const wireSchemasPart17: Record<string, WireSchema> = {
     accessToken: { wire: "access_token" },
     expiresAt: { wire: "expires_at" },
     refresh: { wire: "refresh", type: "CreateMcpOauthRefreshParam" },
-  },
-  CreateVaultCredentialAuthParamStaticBearer: {
-    ["type"]: { wire: "type" },
-    mcpServerUrl: { wire: "mcp_server_url" },
-    token: { wire: "token" },
-  },
-  VaultCredentialNetworkingParamLimited: {
-    ["type"]: { wire: "type" },
-    allowedHosts: { wire: "allowed_hosts" },
   },
 };
