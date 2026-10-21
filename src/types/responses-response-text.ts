@@ -3,9 +3,9 @@
 
 import type { ResponseLogProb } from "./responses-response";
 
-import type { TextResponseFormatConfiguration } from "./shared-text";
+import type { Verbosity } from "./shared-move-param";
 
-import type { Verbosity } from "./shared.part002";
+import type { TextResponseFormatConfiguration } from "./shared-text";
 
 /**
  * Emitted when there is an additional text delta.

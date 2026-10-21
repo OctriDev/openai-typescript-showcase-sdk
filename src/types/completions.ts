@@ -3,9 +3,9 @@
 
 import type { ChatCompletionStreamOptions } from "./shared-chat";
 
-import type { CompletionUsage } from "./shared.part001";
+import type { StopConfiguration } from "./shared-move-param";
 
-import type { StopConfiguration } from "./shared.part002";
+import type { CompletionUsage } from "./shared2";
 
 /**
  * Typed representation of the `CreateCompletionRequest` API schema.

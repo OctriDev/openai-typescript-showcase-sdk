@@ -3,7 +3,7 @@
 
 import type { AssistantToolsCode, AssistantToolsFileSearchTypeOnly } from "./assistants-assistant";
 
-import type { Metadata } from "./shared.part001";
+import type { Metadata } from "./shared2";
 
 /**
  * References an image [File](https://developers.openai.com/api/reference/resources/files) in the content of a message.

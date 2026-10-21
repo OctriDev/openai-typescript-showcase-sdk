@@ -3,7 +3,7 @@
 
 import type { NoiseReductionType } from "./realtime";
 
-import type { RealtimeServerEventError } from "./realtime-realtime-server-event.part001";
+import type { RealtimeServerEventError } from "./realtime-realtime-server-event-shared";
 
 /**
  * A `RealtimeTranslationClientEvent` whose `type` names no branch this SDK knows, kept as received.

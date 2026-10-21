@@ -3,7 +3,7 @@
 
 import type { CustomToolParam } from "./shared-custom";
 
-import type { FunctionToolParam } from "./shared-function.part002";
+import type { FunctionToolParam } from "./shared-function-tool-call-output-resource";
 
 /**
  * Groups function/custom tools under a shared namespace.

@@ -3,7 +3,7 @@
 
 import type { SearchContentType, SearchContextSize } from "./shared-search";
 
-import type { ApproximateLocation } from "./shared.part001";
+import type { ApproximateLocation } from "./shared2";
 
 /**
  * Action type "find_in_page": Searches for a pattern within a loaded page.

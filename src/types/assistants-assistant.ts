@@ -9,13 +9,16 @@ import type { FileSearchRankingOptions } from "./assistants-file";
 
 import type { MessageStreamEvent } from "./assistants-message";
 
-import type { RunStepStreamEvent, RunStreamEvent } from "./assistants-run.part002";
+import type {
+  RunStepStreamEvent,
+  RunStreamEvent,
+} from "./assistants-run-step-details-tool-calls-function-object";
 
 import type { ThreadStreamEvent } from "./assistants-thread";
 
-import type { FunctionObject } from "./shared-function.part001";
+import type { FunctionObject } from "./shared-function-shared";
 
-import type { Metadata } from "./shared.part001";
+import type { Metadata } from "./shared2";
 
 /**
  * Represents an `assistant` that can call the model and use tools.

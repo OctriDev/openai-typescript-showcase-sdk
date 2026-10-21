@@ -3,7 +3,7 @@
 
 import type { AutoCodeInterpreterToolParam } from "./shared-auto";
 
-import type { CallableToolAllowedCaller } from "./shared.part001";
+import type { CallableToolAllowedCaller } from "./shared2";
 
 /**
  * The image output from the code interpreter.

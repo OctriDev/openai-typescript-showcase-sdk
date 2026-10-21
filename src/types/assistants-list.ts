@@ -5,9 +5,9 @@ import type { AssistantObject } from "./assistants-assistant";
 
 import type { MessageObject } from "./assistants-message";
 
-import type { RunObject } from "./assistants-run.part001";
+import type { RunObject } from "./assistants-run-shared";
 
-import type { RunStepObject } from "./assistants-run.part002";
+import type { RunStepObject } from "./assistants-run-step-details-tool-calls-function-object";
 
 /**
  * Typed representation of the `ListAssistantsResponse` API schema.

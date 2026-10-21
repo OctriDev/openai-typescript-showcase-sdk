@@ -74740,6 +74740,222 @@
       ]
     },
     {
+      "id": "updateProjectSpendLimit",
+      "wireOperationId": "updateProjectSpendLimit",
+      "method": "post",
+      "path": "/organization/projects/{project_id}/spend_limit",
+      "namespace": ["spendLimits"],
+      "streams": false,
+      "mode": "normal",
+      "streamSelector": null,
+      "requestMediaType": "application/json",
+      "contentTypes": null,
+      "publicMethods": [
+        {
+          "mode": "normal",
+          "name": "updateProjectSpendLimit"
+        }
+      ],
+      "requestModes": [
+        {
+          "mediaType": "application/json",
+          "encoderKind": "json",
+          "schemaRef": "#/components/schemas/UpdateProjectSpendLimitBody",
+          "schemaType": {
+            "type": "ref",
+            "format": null,
+            "ref": "UpdateProjectSpendLimitBody",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          "bodyShape": "fields",
+          "fields": [
+            {
+              "name": "threshold_amount",
+              "required": true,
+              "repeated": false,
+              "partKind": "scalar",
+              "contentType": null
+            },
+            {
+              "name": "currency",
+              "required": true,
+              "repeated": false,
+              "partKind": "scalar",
+              "contentType": null
+            },
+            {
+              "name": "interval",
+              "required": true,
+              "repeated": false,
+              "partKind": "scalar",
+              "contentType": null
+            }
+          ]
+        }
+      ],
+      "responseModes": [
+        {
+          "statusCode": "200",
+          "mediaType": "application/json",
+          "decoderKind": "json",
+          "schemaRef": "#/components/schemas/ProjectSpendLimitResource",
+          "schemaType": {
+            "type": "ref",
+            "format": null,
+            "ref": "ProjectSpendLimitResource",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          "hasAuthoredExample": false,
+          "authoredExampleSource": "none"
+        }
+      ],
+      "errorResponseModes": [
+        {
+          "statusCode": "400",
+          "mediaType": "application/json",
+          "decoderKind": "json",
+          "schemaRef": "#/components/schemas/ErrorResponse",
+          "schemaType": {
+            "type": "ref",
+            "format": null,
+            "ref": "ErrorResponse",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          "hasAuthoredExample": false,
+          "authoredExampleSource": "none"
+        },
+        {
+          "statusCode": "403",
+          "mediaType": "application/json",
+          "decoderKind": "json",
+          "schemaRef": "#/components/schemas/PermissionErrorResponse",
+          "schemaType": {
+            "type": "ref",
+            "format": null,
+            "ref": "PermissionErrorResponse",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          "hasAuthoredExample": false,
+          "authoredExampleSource": "none"
+        },
+        {
+          "statusCode": "404",
+          "mediaType": "application/json",
+          "decoderKind": "json",
+          "schemaRef": "#/components/schemas/ErrorResponse",
+          "schemaType": {
+            "type": "ref",
+            "format": null,
+            "ref": "ErrorResponse",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
+          "hasAuthoredExample": false,
+          "authoredExampleSource": "none"
+        }
+      ],
+      "params": [
+        {
+          "name": "currency",
+          "in": "body",
+          "required": true,
+          "nullable": false,
+          "type": "string",
+          "wireType": "string",
+          "declaredValue": "USD",
+          "mediaTypes": ["application/json"]
+        },
+        {
+          "name": "interval",
+          "in": "body",
+          "required": true,
+          "nullable": false,
+          "type": "string",
+          "wireType": "string",
+          "declaredValue": "month",
+          "mediaTypes": ["application/json"]
+        },
+        {
+          "name": "project_id",
+          "in": "path",
+          "required": true,
+          "nullable": false,
+          "type": "string",
+          "wireType": "string",
+          "declaredValue": null,
+          "style": "simple",
+          "explode": false
+        },
+        {
+          "name": "threshold_amount",
+          "in": "body",
+          "required": true,
+          "nullable": false,
+          "type": "integer",
+          "wireType": "integer",
+          "declaredValue": null,
+          "mediaTypes": ["application/json"]
+        }
+      ],
+      "bindings": [
+        {
+          "name": "project_id",
+          "in": "path",
+          "required": true,
+          "nullable": false,
+          "type": "string",
+          "wireType": "string",
+          "declaredValue": null,
+          "style": "simple",
+          "explode": false
+        },
+        {
+          "name": "threshold_amount",
+          "in": "body",
+          "required": true,
+          "nullable": false,
+          "type": "integer",
+          "wireType": "integer",
+          "declaredValue": null,
+          "mediaTypes": ["application/json"]
+        },
+        {
+          "name": "currency",
+          "in": "body",
+          "required": true,
+          "nullable": false,
+          "type": "string",
+          "wireType": "string",
+          "declaredValue": "USD",
+          "mediaTypes": ["application/json"]
+        },
+        {
+          "name": "interval",
+          "in": "body",
+          "required": true,
+          "nullable": false,
+          "type": "string",
+          "wireType": "string",
+          "declaredValue": "month",
+          "mediaTypes": ["application/json"]
+        }
+      ]
+    },
+    {
       "id": "updateRole",
       "wireOperationId": "updateRole",
       "method": "post",
@@ -75534,222 +75750,6 @@
         }
       ],
       "bindings": [
-        {
-          "name": "threshold_amount",
-          "in": "body",
-          "required": true,
-          "nullable": false,
-          "type": "integer",
-          "wireType": "integer",
-          "declaredValue": null,
-          "mediaTypes": ["application/json"]
-        },
-        {
-          "name": "currency",
-          "in": "body",
-          "required": true,
-          "nullable": false,
-          "type": "string",
-          "wireType": "string",
-          "declaredValue": "USD",
-          "mediaTypes": ["application/json"]
-        },
-        {
-          "name": "interval",
-          "in": "body",
-          "required": true,
-          "nullable": false,
-          "type": "string",
-          "wireType": "string",
-          "declaredValue": "month",
-          "mediaTypes": ["application/json"]
-        }
-      ]
-    },
-    {
-      "id": "updateSpendLimitsProject",
-      "wireOperationId": "updateSpendLimitsProject",
-      "method": "post",
-      "path": "/organization/projects/{project_id}/spend_limit",
-      "namespace": ["spendLimits"],
-      "streams": false,
-      "mode": "normal",
-      "streamSelector": null,
-      "requestMediaType": "application/json",
-      "contentTypes": null,
-      "publicMethods": [
-        {
-          "mode": "normal",
-          "name": "updateSpendLimitsProject"
-        }
-      ],
-      "requestModes": [
-        {
-          "mediaType": "application/json",
-          "encoderKind": "json",
-          "schemaRef": "#/components/schemas/UpdateProjectSpendLimitBody",
-          "schemaType": {
-            "type": "ref",
-            "format": null,
-            "ref": "UpdateProjectSpendLimitBody",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          "bodyShape": "fields",
-          "fields": [
-            {
-              "name": "threshold_amount",
-              "required": true,
-              "repeated": false,
-              "partKind": "scalar",
-              "contentType": null
-            },
-            {
-              "name": "currency",
-              "required": true,
-              "repeated": false,
-              "partKind": "scalar",
-              "contentType": null
-            },
-            {
-              "name": "interval",
-              "required": true,
-              "repeated": false,
-              "partKind": "scalar",
-              "contentType": null
-            }
-          ]
-        }
-      ],
-      "responseModes": [
-        {
-          "statusCode": "200",
-          "mediaType": "application/json",
-          "decoderKind": "json",
-          "schemaRef": "#/components/schemas/ProjectSpendLimitResource",
-          "schemaType": {
-            "type": "ref",
-            "format": null,
-            "ref": "ProjectSpendLimitResource",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          "hasAuthoredExample": false,
-          "authoredExampleSource": "none"
-        }
-      ],
-      "errorResponseModes": [
-        {
-          "statusCode": "400",
-          "mediaType": "application/json",
-          "decoderKind": "json",
-          "schemaRef": "#/components/schemas/ErrorResponse",
-          "schemaType": {
-            "type": "ref",
-            "format": null,
-            "ref": "ErrorResponse",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          "hasAuthoredExample": false,
-          "authoredExampleSource": "none"
-        },
-        {
-          "statusCode": "403",
-          "mediaType": "application/json",
-          "decoderKind": "json",
-          "schemaRef": "#/components/schemas/PermissionErrorResponse",
-          "schemaType": {
-            "type": "ref",
-            "format": null,
-            "ref": "PermissionErrorResponse",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          "hasAuthoredExample": false,
-          "authoredExampleSource": "none"
-        },
-        {
-          "statusCode": "404",
-          "mediaType": "application/json",
-          "decoderKind": "json",
-          "schemaRef": "#/components/schemas/ErrorResponse",
-          "schemaType": {
-            "type": "ref",
-            "format": null,
-            "ref": "ErrorResponse",
-            "nullable": false,
-            "items": null,
-            "mapValue": null,
-            "variants": null
-          },
-          "hasAuthoredExample": false,
-          "authoredExampleSource": "none"
-        }
-      ],
-      "params": [
-        {
-          "name": "currency",
-          "in": "body",
-          "required": true,
-          "nullable": false,
-          "type": "string",
-          "wireType": "string",
-          "declaredValue": "USD",
-          "mediaTypes": ["application/json"]
-        },
-        {
-          "name": "interval",
-          "in": "body",
-          "required": true,
-          "nullable": false,
-          "type": "string",
-          "wireType": "string",
-          "declaredValue": "month",
-          "mediaTypes": ["application/json"]
-        },
-        {
-          "name": "project_id",
-          "in": "path",
-          "required": true,
-          "nullable": false,
-          "type": "string",
-          "wireType": "string",
-          "declaredValue": null,
-          "style": "simple",
-          "explode": false
-        },
-        {
-          "name": "threshold_amount",
-          "in": "body",
-          "required": true,
-          "nullable": false,
-          "type": "integer",
-          "wireType": "integer",
-          "declaredValue": null,
-          "mediaTypes": ["application/json"]
-        }
-      ],
-      "bindings": [
-        {
-          "name": "project_id",
-          "in": "path",
-          "required": true,
-          "nullable": false,
-          "type": "string",
-          "wireType": "string",
-          "declaredValue": null,
-          "style": "simple",
-          "explode": false
-        },
         {
           "name": "threshold_amount",
           "in": "body",
@@ -253944,6 +253944,23 @@
         ]
       },
       {
+        "id": "updateProjectSpendLimit",
+        "method": "post",
+        "path": "/organization/projects/{project_id}/spend_limit",
+        "summary": "Creates or replaces a project's hard spend limit. Supply `threshold_amount`, `currency`, and `interval` to set the spending threshold and the period used to evaluate it. The response includes the resulting limit and its enforcement state.",
+        "description": "Create or replace a project's hard spend limit.",
+        "deprecated": false,
+        "deprecationMessage": null,
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the project whose hard spend limit is being managed."
+          }
+        ]
+      },
+      {
         "id": "updateRole",
         "method": "post",
         "path": "/organization/roles/{role_id}",
@@ -254009,23 +254026,6 @@
         "deprecated": false,
         "deprecationMessage": null,
         "parameters": []
-      },
-      {
-        "id": "updateSpendLimitsProject",
-        "method": "post",
-        "path": "/organization/projects/{project_id}/spend_limit",
-        "summary": "Creates or replaces a project's hard spend limit. Supply `threshold_amount`, `currency`, and `interval` to set the spending threshold and the period used to evaluate it. The response includes the resulting limit and its enforcement state.",
-        "description": "Create or replace a project's hard spend limit.",
-        "deprecated": false,
-        "deprecationMessage": null,
-        "parameters": [
-          {
-            "name": "project_id",
-            "in": "path",
-            "required": true,
-            "description": "The ID of the project whose hard spend limit is being managed."
-          }
-        ]
       },
       {
         "id": "updateVault",

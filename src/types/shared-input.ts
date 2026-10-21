@@ -13,7 +13,7 @@ import type { ProgramItemParam, ProgramOutputItemParam } from "./shared-program"
 
 import type { PromptCacheBreakpointConfig, PromptCacheBreakpointParam } from "./shared-prompt";
 
-import type { DetailEnum, EasyInputMessage } from "./shared.part001";
+import type { DetailEnum, EasyInputMessage } from "./shared2";
 
 /**
  * An audio input to the model.

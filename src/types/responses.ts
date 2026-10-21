@@ -19,7 +19,7 @@ import type { ModerationParam } from "./shared-moderation";
 
 import type { Tool } from "./shared-tool";
 
-import type { CreateModelResponseProperties, IncludeEnum } from "./shared.part001";
+import type { CreateModelResponseProperties, IncludeEnum } from "./shared2";
 
 export type CacheMissReasonTypeEnum =
   | "model_changed"

@@ -5,7 +5,7 @@ import type { RealtimeConversationItem } from "./realtime-realtime-conversation"
 
 import type { RealtimeResponseCreateParams } from "./realtime-realtime-response";
 
-import type { RealtimeSessionCreateRequestGA } from "./realtime-realtime-session.part001";
+import type { RealtimeSessionCreateRequestGA } from "./realtime-realtime-session-shared";
 
 import type {
   RealtimeTranscriptionSessionCreateRequest,

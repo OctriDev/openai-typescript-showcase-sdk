@@ -3,7 +3,7 @@
 
 import type { ChatkitWorkflow } from "./shared-chatkit";
 
-import type { FunctionObject } from "./shared-function.part001";
+import type { FunctionObject } from "./shared-function-shared";
 
 /**
  * Options for streaming response. Only set this when you set `stream: true`.

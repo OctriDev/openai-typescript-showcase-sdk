@@ -3,7 +3,7 @@
 
 import type { CustomToolCall, CustomToolCallOutput } from "./shared-custom";
 
-import type { FunctionCallOutputStatusEnum, FunctionCallStatus } from "./shared-function.part001";
+import type { FunctionCallOutputStatusEnum, FunctionCallStatus } from "./shared-function-shared";
 
 export type CustomToolCallOutputResource = CustomToolCallOutput & {
   /**

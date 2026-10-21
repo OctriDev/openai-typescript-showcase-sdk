@@ -24,7 +24,7 @@ import {
   deleteSpendLimitsOrganization,
   retrieveSpendLimitsProject,
   deleteSpendLimitsProject,
-  updateSpendLimitsProject,
+  updateProjectSpendLimit,
 } from "../../dist/methods/spendLimits.js";
 
 // Assigned once the mock server has a port. Declared at module scope because
@@ -75,13 +75,13 @@ const CALL = {
     mediaType: null,
     invoke: (bag) => deleteSpendLimitsProject(config, { projectId: bag["project_id"] }),
   },
-  updateSpendLimitsProject: {
-    route: "updateSpendLimitsProject",
+  updateProjectSpendLimit: {
+    route: "updateProjectSpendLimit",
     endpoint: "POST /organization/projects/{project_id}/spend_limit",
     mediaType: "application/json",
     renamedKeys: ["threshold_amount"],
     invoke: (bag) =>
-      updateSpendLimitsProject(config, {
+      updateProjectSpendLimit(config, {
         thresholdAmount: bag.__body?.["threshold_amount"],
         currency: bag.__body?.["currency"],
         interval: bag.__body?.["interval"],

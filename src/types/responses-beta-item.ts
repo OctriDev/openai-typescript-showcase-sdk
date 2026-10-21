@@ -41,6 +41,8 @@ import type {
 
 import type { BetaFileSearchToolCall } from "./responses-beta-file";
 
+import type { BetaFunctionToolCallResource } from "./responses-beta-function-beta-list-input-items";
+
 import type {
   BetaFunctionCallOutputItemParam,
   BetaFunctionShellCall,
@@ -49,12 +51,9 @@ import type {
   BetaFunctionShellCallOutputItemParam,
   BetaFunctionToolCall,
   BetaFunctionToolCallOutput,
-} from "./responses-beta-function.part001";
+} from "./responses-beta-function-shared";
 
-import type {
-  BetaFunctionToolCallOutputResource,
-  BetaFunctionToolCallResource,
-} from "./responses-beta-function.part002";
+import type { BetaFunctionToolCallOutputResource } from "./responses-beta-function-tool-call-output-resource";
 
 import type { BetaImageGenToolCall } from "./responses-beta-image";
 

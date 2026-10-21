@@ -9,9 +9,8 @@ import type {
   EvalJsonlFileContentSource,
   EvalJsonlFileIdSource,
   EvalResponsesSource,
-} from "./evals-eval.part001";
-
-import type { EvalStoredCompletionsSource } from "./evals-eval.part002";
+  EvalStoredCompletionsSource,
+} from "./evals-eval-shared";
 
 import type { ChatCompletionTool } from "./shared-chat";
 
@@ -29,7 +28,7 @@ import type { TextResponseFormatConfiguration } from "./shared-text";
 
 import type { Tool } from "./shared-tool";
 
-import type { EasyInputMessage, Metadata } from "./shared.part001";
+import type { EasyInputMessage, Metadata } from "./shared2";
 
 /**
  * A CompletionsRunDataSource object describing a model sampling configuration.

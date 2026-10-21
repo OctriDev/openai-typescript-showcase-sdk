@@ -26,6 +26,8 @@ import type { ModelIdsShared } from "./shared-model";
 
 import type { ModerationParam } from "./shared-moderation";
 
+import type { ParallelToolCalls, StopConfiguration, Verbosity } from "./shared-move-param";
+
 import type { ReasoningEffort } from "./shared-reasoning";
 
 import type {
@@ -36,9 +38,7 @@ import type {
 
 import type { VoiceIdsOrCustomVoice } from "./shared-voice";
 
-import type { CompletionUsage, CreateModelResponseProperties, Metadata } from "./shared.part001";
-
-import type { ParallelToolCalls, StopConfiguration, Verbosity } from "./shared.part002";
+import type { CompletionUsage, CreateModelResponseProperties, Metadata } from "./shared2";
 
 export type CreateChatCompletionRequest = CreateModelResponseProperties & {
   /**

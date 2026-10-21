@@ -3,13 +3,9 @@
 
 import type { ClickParam } from "./shared-click";
 
-import type { FunctionCallItemStatus } from "./shared-function.part001";
+import type { FunctionCallItemStatus } from "./shared-function-shared";
 
 import type { ImageDetail } from "./shared-image";
-
-import type { PromptCacheBreakpointConfig } from "./shared-prompt";
-
-import type { DoubleClickAction, DragParam, KeyPressAction } from "./shared.part001";
 
 import type {
   MoveParam,
@@ -17,7 +13,11 @@ import type {
   ScrollParam,
   TypeParam,
   WaitParam,
-} from "./shared.part002";
+} from "./shared-move-param";
+
+import type { PromptCacheBreakpointConfig } from "./shared-prompt";
+
+import type { DoubleClickAction, DragParam, KeyPressAction } from "./shared2";
 
 /**
  * A `ComputerAction` whose `type` names no branch this SDK knows, kept as received.

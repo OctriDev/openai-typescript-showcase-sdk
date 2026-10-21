@@ -21,9 +21,9 @@ import type {
   FunctionShellCall,
   FunctionShellCallOutput,
   FunctionToolCall,
-} from "./shared-function.part001";
+} from "./shared-function-shared";
 
-import type { FunctionToolCallOutputResource } from "./shared-function.part002";
+import type { FunctionToolCallOutputResource } from "./shared-function-tool-call-output-resource";
 
 import type { ImageGenToolCall } from "./shared-image";
 
@@ -35,6 +35,8 @@ import type { MCPListTools } from "./shared-mcplist";
 
 import type { MCPToolCall } from "./shared-mcptool";
 
+import type { RefusalContent } from "./shared-move-param";
+
 import type { OutputMessage, OutputTextContent } from "./shared-output";
 
 import type { Program, ProgramOutput } from "./shared-program";
@@ -44,8 +46,6 @@ import type { ReasoningItem, ReasoningTextContent } from "./shared-reasoning";
 import type { ToolSearchCall, ToolSearchOutput } from "./shared-tool";
 
 import type { WebSearchToolCall } from "./shared-web";
-
-import type { RefusalContent } from "./shared.part002";
 
 /**
  * A `OutputContent` whose `type` names no branch this SDK knows, kept as received.

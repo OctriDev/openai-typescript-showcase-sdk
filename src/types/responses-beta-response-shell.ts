@@ -5,7 +5,7 @@ import type { BetaShellCallOutputDelta } from "./responses-beta";
 
 import type { BetaAgentTag } from "./responses-beta-agent";
 
-import type { BetaFunctionShellCallOutputContent } from "./responses-beta-function.part001";
+import type { BetaFunctionShellCallOutputContent } from "./responses-beta-function-shared";
 
 /**
  * A streaming event that indicated a shell command was added to a tool call.

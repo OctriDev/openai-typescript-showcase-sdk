@@ -28,9 +28,9 @@ import type {
   BetaFunctionShellCall,
   BetaFunctionShellCallOutput,
   BetaFunctionToolCall,
-} from "./responses-beta-function.part001";
+} from "./responses-beta-function-shared";
 
-import type { BetaFunctionToolCallOutputResource } from "./responses-beta-function.part002";
+import type { BetaFunctionToolCallOutputResource } from "./responses-beta-function-tool-call-output-resource";
 
 import type { BetaImageGenToolCall } from "./responses-beta-image";
 

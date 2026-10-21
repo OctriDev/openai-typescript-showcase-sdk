@@ -15,7 +15,7 @@ import type { ToolChoiceFunction, ToolChoiceMCP, ToolChoiceOptions } from "./sha
 
 import type { VoiceIdsOrCustomVoice, VoiceIdsShared } from "./shared-voice";
 
-import type { Metadata } from "./shared.part001";
+import type { Metadata } from "./shared2";
 
 /**
  * The response resource.

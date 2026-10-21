@@ -30,7 +30,7 @@ import type {
   BetaFunctionCallStatus,
   BetaFunctionShellToolParam,
   BetaFunctionTool,
-} from "./responses-beta-function.part001";
+} from "./responses-beta-function-shared";
 
 import type { BetaImageGenTool } from "./responses-beta-image";
 
