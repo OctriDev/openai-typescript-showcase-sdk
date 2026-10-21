@@ -12,7 +12,7 @@ import type { AssistantsApiResponseFormatOption } from "./assistants-assistants"
 
 import type { ReasoningEffort } from "./shared-reasoning";
 
-import type { Metadata } from "./shared.part001";
+import type { Metadata } from "./shared2";
 
 /**
  * Typed representation of the `ModifyAssistantRequest` API schema.

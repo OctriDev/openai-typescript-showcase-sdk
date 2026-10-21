@@ -16,7 +16,7 @@ import type { BetaAgentTag, Beta_AgentTagParam } from "./responses-beta-agent";
 
 import type { BetaClickParam } from "./responses-beta-click";
 
-import type { BetaFunctionCallItemStatus } from "./responses-beta-function.part001";
+import type { BetaFunctionCallItemStatus } from "./responses-beta-function-shared";
 
 import type { BetaImageDetail } from "./responses-beta-image";
 

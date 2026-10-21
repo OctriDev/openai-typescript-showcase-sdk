@@ -186,9 +186,9 @@ export async function deleteSpendLimitsProject(
   );
 }
 
-export type UpdateSpendLimitsProjectError = ErrorResponse | PermissionErrorResponse;
+export type UpdateProjectSpendLimitError = ErrorResponse | PermissionErrorResponse;
 
-export type UpdateSpendLimitsProjectParams = UpdateProjectSpendLimitBody & {
+export type UpdateProjectSpendLimitParams = UpdateProjectSpendLimitBody & {
   projectId: string;
 };
 
@@ -205,9 +205,9 @@ export type UpdateSpendLimitsProjectParams = UpdateProjectSpendLimitBody & {
  * @param interval - The time interval for evaluating spend against the
  *   threshold. Currently, only `month` is supported.
  */
-export async function updateSpendLimitsProject(
+export async function updateProjectSpendLimit(
   config: ClientConfig,
-  { projectId, thresholdAmount, currency, interval }: UpdateSpendLimitsProjectParams,
+  { projectId, thresholdAmount, currency, interval }: UpdateProjectSpendLimitParams,
   requestOptions?: RequestOptions,
 ): Promise<ProjectSpendLimitResource> {
   validateRange("threshold_amount", thresholdAmount, { min: 1 });
@@ -215,7 +215,7 @@ export async function updateSpendLimitsProject(
   const _resp = await sdkRequest<ProjectSpendLimitResource>({
     method: "POST",
     path: `/organization/projects/${encodePathSegment(projectId)}/spend_limit`,
-    operationId: "updateSpendLimitsProject",
+    operationId: "updateProjectSpendLimit",
     errors: { "400": "ErrorResponse", "403": "PermissionErrorResponse", "404": "ErrorResponse" },
     responseDecoder: "json",
     ...requestOptions,
@@ -295,10 +295,10 @@ export class SpendLimitsNamespace {
    *
    * Create or replace a project's hard spend limit.
    */
-  updateProject(
-    params: UpdateSpendLimitsProjectParams,
+  update(
+    params: UpdateProjectSpendLimitParams,
     requestOptions?: RequestOptions,
-  ): ReturnType<typeof updateSpendLimitsProject> {
-    return updateSpendLimitsProject(this._config, params, requestOptions);
+  ): ReturnType<typeof updateProjectSpendLimit> {
+    return updateProjectSpendLimit(this._config, params, requestOptions);
   }
 }

@@ -3,7 +3,7 @@
 
 import type { InlineSkillParam } from "./shared-inline";
 
-import type { SkillReferenceParam } from "./shared.part002";
+import type { SkillReferenceParam } from "./shared-move-param";
 
 /**
  * Typed representation of the `ContainerAutoParam` API schema.

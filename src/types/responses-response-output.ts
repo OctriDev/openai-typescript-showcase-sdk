@@ -3,7 +3,7 @@
 
 import type { OutputItem } from "./responses-output";
 
-import type { Annotation } from "./shared.part001";
+import type { Annotation } from "./shared2";
 
 /**
  * Emitted when a new output item is added.

@@ -24,12 +24,12 @@ import type {
   FunctionShellCallOutput,
   FunctionToolCall,
   FunctionToolCallOutput,
-} from "./shared-function.part001";
+} from "./shared-function-shared";
 
 import type {
   FunctionToolCallOutputResource,
   FunctionToolCallResource,
-} from "./shared-function.part002";
+} from "./shared-function-tool-call-output-resource";
 
 import type { ImageGenToolCall } from "./shared-image";
 

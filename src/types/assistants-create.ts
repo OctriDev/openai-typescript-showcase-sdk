@@ -22,11 +22,11 @@ import type {
   MessageRequestContentTextObject,
 } from "./assistants-message";
 
+import type { ParallelToolCalls } from "./shared-move-param";
+
 import type { ReasoningEffort } from "./shared-reasoning";
 
-import type { Metadata } from "./shared.part001";
-
-import type { ParallelToolCalls } from "./shared.part002";
+import type { Metadata } from "./shared2";
 
 /**
  * Typed representation of the `CreateAssistantRequest` API schema.

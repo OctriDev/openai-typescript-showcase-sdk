@@ -5,7 +5,7 @@ import type { RealtimeBetaResponseCreateParams } from "./realtime-realtime-beta-
 
 import type { RealtimeConversationItem } from "./realtime-realtime-conversation";
 
-import type { RealtimeSessionCreateRequest } from "./realtime-realtime-session.part001";
+import type { RealtimeSessionCreateRequest } from "./realtime-realtime-session-create-realtime-session";
 
 import type { RealtimeTranscriptionSessionCreateRequest } from "./realtime-realtime-transcription";
 

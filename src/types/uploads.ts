@@ -3,7 +3,7 @@
 
 import type { FileExpirationAfter } from "./shared-file";
 
-import type { OpenAIFile } from "./shared.part002";
+import type { OpenAIFile } from "./shared-move-param";
 
 /**
  * Typed representation of the `AddUploadPartRequest` API schema.

@@ -5,13 +5,13 @@ import type { ComputerScreenshotContent } from "./shared-computer";
 
 import type { InputFileContent, InputImageContent, InputTextContent } from "./shared-input";
 
+import type { RefusalContent, SummaryTextContent } from "./shared-move-param";
+
 import type { OutputTextContent } from "./shared-output";
 
 import type { ReasoningTextContent } from "./shared-reasoning";
 
 import type { TextContent } from "./shared-text";
-
-import type { RefusalContent, SummaryTextContent } from "./shared.part002";
 
 /**
  * A message to or from the model.

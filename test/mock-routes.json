@@ -10258,7 +10258,7 @@
     }
   },
   {
-    "operationId": "updateSpendLimitsProject",
+    "operationId": "updateProjectSpendLimit",
     "summary": "Creates or replaces a project's hard spend limit. Supply `threshold_amount`, `currency`, and `interval` to set the spending threshold and the period used to evaluate it. The response includes the resulting limit and its enforcement state.",
     "method": "POST",
     "pathTemplate": "/organization/projects/{project_id}/spend_limit",

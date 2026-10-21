@@ -3,9 +3,9 @@
 
 import type { MessagePhase } from "./shared-message";
 
-import type { Annotation, LogProb } from "./shared.part001";
+import type { RefusalContent } from "./shared-move-param";
 
-import type { RefusalContent } from "./shared.part002";
+import type { Annotation, LogProb } from "./shared2";
 
 /**
  * An output message from the model.

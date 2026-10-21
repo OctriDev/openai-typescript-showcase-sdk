@@ -3,7 +3,7 @@
 
 import type { ShellCallOutputDelta } from "./responses";
 
-import type { FunctionShellCallOutputContent } from "./shared-function.part001";
+import type { FunctionShellCallOutputContent } from "./shared-function-shared";
 
 /**
  * A streaming event that indicated a shell command was added to a tool call.

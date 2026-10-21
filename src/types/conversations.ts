@@ -15,12 +15,12 @@ import type { CustomToolCall, CustomToolCallOutput } from "./shared-custom";
 
 import type { FileSearchToolCall } from "./shared-file";
 
-import type { FunctionShellCall, FunctionShellCallOutput } from "./shared-function.part001";
+import type { FunctionShellCall, FunctionShellCallOutput } from "./shared-function-shared";
 
 import type {
   FunctionToolCallOutputResource,
   FunctionToolCallResource,
-} from "./shared-function.part002";
+} from "./shared-function-tool-call-output-resource";
 
 import type { ImageGenToolCall } from "./shared-image";
 
@@ -46,7 +46,7 @@ import type { ToolSearchCall, ToolSearchOutput } from "./shared-tool";
 
 import type { WebSearchToolCall } from "./shared-web";
 
-import type { Metadata } from "./shared.part001";
+import type { Metadata } from "./shared2";
 
 /**
  * A `ConversationItem` whose `type` names no branch this SDK knows, kept as received.

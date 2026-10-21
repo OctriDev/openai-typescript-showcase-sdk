@@ -9,7 +9,7 @@ import type {
   BetaFunctionAndCustomToolCallOutput,
   BetaFunctionCallOutputStatusEnum,
   BetaFunctionCallStatus,
-} from "./responses-beta-function.part001";
+} from "./responses-beta-function-shared";
 
 import type { BetaToolCallCaller, BetaToolCallCallerParam } from "./responses-beta-tool";
 

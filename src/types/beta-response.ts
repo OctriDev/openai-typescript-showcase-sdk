@@ -7,7 +7,7 @@ import type { BetaUserMessageItemParam } from "./beta-user-message";
 
 import type { BetaAgentTag } from "./responses-beta-agent";
 
-import type { BetaFunctionCallOutputItemParam } from "./responses-beta-function.part001";
+import type { BetaFunctionCallOutputItemParam } from "./responses-beta-function-shared";
 
 import type { BetaInputItem } from "./responses-beta-input";
 

@@ -19,7 +19,7 @@ import type {
   FunctionCallStatus,
   FunctionShellToolParam,
   FunctionTool,
-} from "./shared-function.part001";
+} from "./shared-function-shared";
 
 import type { ImageGenTool } from "./shared-image";
 
@@ -27,15 +27,15 @@ import type { LocalShellToolParam } from "./shared-local";
 
 import type { MCPTool } from "./shared-mcptool";
 
+import type { ProgrammaticToolCallingParam } from "./shared-move-param";
+
 import type { NamespaceToolParam } from "./shared-namespace";
 
 import type { ProgramToolCallCaller, ProgramToolCallCallerParam } from "./shared-program";
 
 import type { WebSearchPreviewTool, WebSearchTool } from "./shared-web";
 
-import type { CallableToolAllowedCaller, EmptyModelParam } from "./shared.part001";
-
-import type { ProgrammaticToolCallingParam } from "./shared.part002";
+import type { CallableToolAllowedCaller, EmptyModelParam } from "./shared2";
 
 /**
  * A `Tool` whose `type` names no branch this SDK knows, kept as received.

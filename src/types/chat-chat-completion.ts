@@ -15,7 +15,7 @@ import type {
 
 import type { CreateChatCompletionResponse } from "./chat-create";
 
-import type { FunctionParameters } from "./shared-function.part001";
+import type { FunctionParameters } from "./shared-function-shared";
 
 /**
  * Typed representation of the `ChatCompletionDeleted` API schema.

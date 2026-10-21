@@ -23,7 +23,7 @@ import type {
   FunctionShellCallItemParam,
   FunctionShellCallOutputItemParam,
   FunctionToolCall,
-} from "./shared-function.part001";
+} from "./shared-function-shared";
 
 import type { ImageGenToolCall } from "./shared-image";
 

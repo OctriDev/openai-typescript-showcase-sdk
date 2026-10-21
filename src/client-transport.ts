@@ -572,7 +572,7 @@ const OPERATION_SECURITY: Readonly<Record<string, readonly (readonly string[])[]
 
   deleteSpendLimitsProject: [["AdminApiKeyAuth"]],
 
-  updateSpendLimitsProject: [["AdminApiKeyAuth"]],
+  updateProjectSpendLimit: [["AdminApiKeyAuth"]],
 
   createProjectsServiceAccountApiKey: [["AdminApiKeyAuth"]],
 

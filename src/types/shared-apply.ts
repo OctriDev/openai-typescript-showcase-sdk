@@ -3,7 +3,7 @@
 
 import type { ToolCallCaller, ToolCallCallerParam } from "./shared-tool";
 
-import type { CallableToolAllowedCaller } from "./shared.part001";
+import type { CallableToolAllowedCaller } from "./shared2";
 
 export type ApplyPatchCallOutputStatus = "completed" | "failed" | (string & {});
 

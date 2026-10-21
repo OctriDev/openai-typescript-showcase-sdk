@@ -3,7 +3,7 @@
 
 import type { BetaCustomToolParam } from "./responses-beta-custom";
 
-import type { BetaFunctionToolParam } from "./responses-beta-function.part002";
+import type { BetaFunctionToolParam } from "./responses-beta-function-tool-call-output-resource";
 
 /**
  * Groups function/custom tools under a shared namespace.
